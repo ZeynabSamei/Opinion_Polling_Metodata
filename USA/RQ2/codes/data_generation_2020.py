@@ -10,8 +10,8 @@ import random
 # Directory where THIS script lives
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DATA_DIR = BASE_DIR / "data"
-OUTPUT_DIR = BASE_DIR / "result"
+DATA_DIR = BASE_DIR / "dataset_test"
+OUTPUT_DIR = BASE_DIR / "dataset_test"
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -19,9 +19,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 file_path = DATA_DIR / "anes_timeseries_2020_csv_20220210.csv"
 
 # Output files
-jsonl_filename = OUTPUT_DIR / "anes_2020_finetune.jsonl"
-json_filename  = OUTPUT_DIR / "anes_2020_chat_finetune.json"
-csv_filename   = OUTPUT_DIR / "anes_2020_chat_finetune.csv"
+json_filename  = OUTPUT_DIR / "anes_2020_test_dataset.json"
 
 
 
@@ -45,13 +43,16 @@ COLS_MAP = {
 
 df = df[list(COLS_MAP.keys())].rename(columns=COLS_MAP)
 
-FEATURE_COLS = [c for c in df.columns if c != "vote_choice"]
+FEATURE_COLS = [c for c in df.columns]
 
 df = df[(df[FEATURE_COLS] >= 0).all(axis=1)]
-df = df[df["vote_choice"].isin([1, 2])].copy()
+
+# df = df[df["vote_choice"].isin([1, 2])].copy()
+df = df.copy()
+df["vote_choice"] = df["vote_choice"].replace({3: 3,4: 3,5: 3})
+df = df[df["vote_choice"].isin([1, 2, 3])]
 
 print("Final dataset size:", df.shape)
-
 # ==========================================
 # 2. Text Mappings
 # ==========================================
