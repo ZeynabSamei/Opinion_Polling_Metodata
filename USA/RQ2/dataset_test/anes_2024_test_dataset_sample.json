@@ -1,0 +1,398 @@
+[
+  {
+    "features_raw": {
+      "vote_choice": 2,
+      "gender": 1,
+      "race": 3,
+      "age": 28,
+      "ideology": 5,
+      "pol_interest": 2,
+      "church_attendance": 2
+    },
+    "features_text": {
+      "race": "hispanic",
+      "gender": "man",
+      "age": 28,
+      "ideology": "slightly conservative",
+      "church_attendance": "do not attend church",
+      "pol_interest": "somewhat"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am hispanic. I am a man. I am 28 years old. Ideologically, I am slightly conservative. I do not attend church. I am somewhat interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Donald Trump"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 1,
+      "gender": 2,
+      "race": 1,
+      "age": 35,
+      "ideology": 2,
+      "pol_interest": 4,
+      "church_attendance": 2
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "woman",
+      "age": 35,
+      "ideology": "liberal",
+      "church_attendance": "do not attend church",
+      "pol_interest": "not at all"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a woman. I am 35 years old. Ideologically, I am liberal. I do not attend church. I am not at all interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Kamala Harris"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 2,
+      "gender": 1,
+      "race": 1,
+      "age": 54,
+      "ideology": 5,
+      "pol_interest": 2,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "man",
+      "age": 54,
+      "ideology": "slightly conservative",
+      "church_attendance": "attend church",
+      "pol_interest": "somewhat"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a man. I am 54 years old. Ideologically, I am slightly conservative. I attend church. I am somewhat interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Donald Trump"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 1,
+      "gender": 1,
+      "race": 6,
+      "age": 62,
+      "ideology": 3,
+      "pol_interest": 2,
+      "church_attendance": 2
+    },
+    "features_text": {
+      "race": "mixed race",
+      "gender": "man",
+      "age": 62,
+      "ideology": "slightly liberal",
+      "church_attendance": "do not attend church",
+      "pol_interest": "somewhat"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am mixed race. I am a man. I am 62 years old. Ideologically, I am slightly liberal. I do not attend church. I am somewhat interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Kamala Harris"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 2,
+      "gender": 1,
+      "race": 1,
+      "age": 26,
+      "ideology": 6,
+      "pol_interest": 3,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "man",
+      "age": 26,
+      "ideology": "conservative",
+      "church_attendance": "attend church",
+      "pol_interest": "not very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a man. I am 26 years old. Ideologically, I am conservative. I attend church. I am not very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Donald Trump"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 1,
+      "gender": 1,
+      "race": 1,
+      "age": 76,
+      "ideology": 4,
+      "pol_interest": 1,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "man",
+      "age": 76,
+      "ideology": "moderate",
+      "church_attendance": "attend church",
+      "pol_interest": "very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a man. I am 76 years old. Ideologically, I am moderate. I attend church. I am very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Kamala Harris"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 1,
+      "gender": 2,
+      "race": 1,
+      "age": 80,
+      "ideology": 2,
+      "pol_interest": 1,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "woman",
+      "age": 80,
+      "ideology": "liberal",
+      "church_attendance": "attend church",
+      "pol_interest": "very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a woman. I am 80 years old. Ideologically, I am liberal. I attend church. I am very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Kamala Harris"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 1,
+      "gender": 2,
+      "race": 1,
+      "age": 62,
+      "ideology": 4,
+      "pol_interest": 1,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "woman",
+      "age": 62,
+      "ideology": "moderate",
+      "church_attendance": "attend church",
+      "pol_interest": "very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a woman. I am 62 years old. Ideologically, I am moderate. I attend church. I am very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Kamala Harris"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 1,
+      "gender": 2,
+      "race": 1,
+      "age": 78,
+      "ideology": 5,
+      "pol_interest": 3,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "woman",
+      "age": 78,
+      "ideology": "slightly conservative",
+      "church_attendance": "attend church",
+      "pol_interest": "not very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a woman. I am 78 years old. Ideologically, I am slightly conservative. I attend church. I am not very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Kamala Harris"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 2,
+      "gender": 2,
+      "race": 1,
+      "age": 55,
+      "ideology": 7,
+      "pol_interest": 1,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "woman",
+      "age": 55,
+      "ideology": "extremely conservative",
+      "church_attendance": "attend church",
+      "pol_interest": "very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a woman. I am 55 years old. Ideologically, I am extremely conservative. I attend church. I am very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Donald Trump"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 1,
+      "gender": 2,
+      "race": 1,
+      "age": 40,
+      "ideology": 2,
+      "pol_interest": 3,
+      "church_attendance": 2
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "woman",
+      "age": 40,
+      "ideology": "liberal",
+      "church_attendance": "do not attend church",
+      "pol_interest": "not very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a woman. I am 40 years old. Ideologically, I am liberal. I do not attend church. I am not very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Kamala Harris"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 2,
+      "gender": 2,
+      "race": 1,
+      "age": 80,
+      "ideology": 6,
+      "pol_interest": 1,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "woman",
+      "age": 80,
+      "ideology": "conservative",
+      "church_attendance": "attend church",
+      "pol_interest": "very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'.Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a woman. I am 80 years old. Ideologically, I am conservative. I attend church. I am very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Donald Trump"
+      }
+    ]
+  }
+]
