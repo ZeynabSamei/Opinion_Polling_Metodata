@@ -88,7 +88,7 @@ CHURCH_MAP = {
 SYSTEM_PROMPT = (
     "You are an expert political analyst specializing in US elections and voting behavior. "
     "Your task is to analyze the demographic profile provided in the text and predict the vote "
-    "choice in the 2024 Election. Output strictly one name: 'Donald Trump' or 'Kamala Harris'."
+    "choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'."
 )
 
 chat_data = []
@@ -119,19 +119,22 @@ for _, row in df.iterrows():
 
         )
 
-        assistant_text = (
-            "Kamala Harris" if row["vote_choice"] == 1 else "Donald Trump"
-        )
-
-        chat_data.append({
-            "features_raw": raw_features,
-            "features_text": text_features,
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_text},
-                {"role": "assistant", "content": assistant_text}
-            ]
-        })
+    if row["vote_choice"] == 1:
+                assistant_text = "Kamala Harris"
+            elif row["vote_choice"] == 2:
+                assistant_text = "Donald Trump"
+            else:
+                assistant_text = "Other"
+    
+            chat_data.append({
+                "features_raw": raw_features,
+                "features_text": text_features,
+                "messages": [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_text},
+                    {"role": "assistant", "content": assistant_text}
+                ]
+            })
 
         csv_rows.append({
             **raw_features,
