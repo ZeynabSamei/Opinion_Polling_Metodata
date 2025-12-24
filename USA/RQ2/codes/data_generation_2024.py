@@ -46,6 +46,10 @@ FEATURE_COLS = [c for c in df.columns]
 df = df[(df[FEATURE_COLS] >= 0).all(axis=1)]
 
 # df = df[df["vote_choice"].isin([1, 2])].copy()
+df = df.copy()
+df["vote_choice"] = df["vote_choice"].replace({3: 3,4: 3,5: 3,6: 3})
+df = df[df["vote_choice"].isin([1, 2, 3])]
+
 
 
 
