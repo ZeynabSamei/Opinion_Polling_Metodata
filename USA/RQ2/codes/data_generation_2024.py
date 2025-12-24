@@ -10,8 +10,8 @@ import random
 # Directory where THIS script lives
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DATA_DIR = BASE_DIR / "data_test"
-OUTPUT_DIR = BASE_DIR / "data_test"
+DATA_DIR = BASE_DIR / "dataset_test"
+OUTPUT_DIR = BASE_DIR / "dataset_test"
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
