@@ -169,6 +169,4 @@ with open(json_filename, "w") as f:
 
 
 print("Saved files:")
-print(" -", jsonl_filename)
 print(" -", json_filename)
-print(" -", csv_filename)
