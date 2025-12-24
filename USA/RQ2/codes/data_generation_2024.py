@@ -122,21 +122,21 @@ for _, row in df.iterrows():
         )
 
         if row["vote_choice"] == 1:
-                    assistant_text = "Kamala Harris"
-                elif row["vote_choice"] == 2:
-                    assistant_text = "Donald Trump"
-                else:
-                    assistant_text = "Other"
-        
-                chat_data.append({
-                    "features_raw": raw_features,
-                    "features_text": text_features,
-                    "messages": [
-                        {"role": "system", "content": SYSTEM_PROMPT},
-                        {"role": "user", "content": user_text},
-                        {"role": "assistant", "content": assistant_text}
-                    ]
-                })
+            assistant_text = "Kamala Harris"
+        elif row["vote_choice"] == 2:
+            assistant_text = "Donald Trump"
+        else:
+            assistant_text = "Other"
+
+        chat_data.append({
+            "features_raw": raw_features,
+            "features_text": text_features,
+            "messages": [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_text},
+                {"role": "assistant", "content": assistant_text}
+            ]
+        })
 
         csv_rows.append({
             **raw_features,
