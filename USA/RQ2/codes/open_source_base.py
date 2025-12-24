@@ -89,7 +89,7 @@ CANDIDATES_NORM = [c.lower() for c in CANDIDATES]
 CLASS_MAP = {
     1: CANDIDATES[0],
     2: CANDIDATES[1],
-    3: "others"
+    3: "Other"
 }
 
 # -----------------------------
@@ -102,21 +102,21 @@ def normalize_vote(text):
       - 'others' otherwise
     """
     if text is None:
-        return "others"
+        return "other"
 
     t = text.lower()
     for c in CANDIDATES:
         if c.lower() in t:
             return c
 
-    return "others"
+    return "Other"
 
 
 def extract_ground_truth(messages):
     for m in messages:
         if m["role"] == "assistant":
             return normalize_vote(m["content"])
-    return "others"
+    return "Other"
 
 
 def get_vote_probs(messages):
@@ -125,7 +125,7 @@ def get_vote_probs(messages):
     Produces probabilities for:
       - Candidate A
       - Candidate B
-      - others (residual)
+      - Other (residual)
     """
 
     clean_msgs = [m for m in messages if m["role"] != "assistant"]
@@ -161,9 +161,9 @@ def get_vote_probs(messages):
     else:
         candidate_probs = {k: 1 / len(CANDIDATES) for k in CANDIDATES}
 
-    # Add "others" as residual class
+    # Add "Other" as residual class
     others_prob = max(0.0, 1.0 - sum(candidate_probs.values()))
-    candidate_probs["others"] = others_prob
+    candidate_probs["Other"] = others_prob
 
     # Final renormalization
     total = sum(candidate_probs.values())
