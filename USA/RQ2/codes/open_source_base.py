@@ -99,10 +99,10 @@ def normalize_vote(text):
     """
     Returns:
       - candidate name if mentioned
-      - 'others' otherwise
+      - 'Other' otherwise
     """
     if text is None:
-        return "other"
+        return "Other"
 
     t = text.lower()
     for c in CANDIDATES:
@@ -186,7 +186,7 @@ def vote_to_numeric(vote):
     3-class numeric encoding:
       1 = Candidate A
       2 = Candidate B
-      3 = Others
+      3 = Other
     """
     if vote is None:
         return 3
