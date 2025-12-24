@@ -256,8 +256,8 @@ df_summary.to_csv(summary_path, index=False)
 # Print summary
 # -----------------------------
 print("\nSummary:")
-print(df_summary)
 print("\nAverage accuracy:", df_final["accuracy"].mean())
-print("Average mutual information:", df_final["mutual_inf"].mean())
 print("Tetrachoric correlation:", tetra)
+print("Bias:", df_final["Bias_Donald Trump"].mean())
+print("Average mutual information:", df_final["mutual_inf"].mean())
 print(f"\nSaved df_summary to: {summary_path}")
