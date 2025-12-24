@@ -65,16 +65,16 @@ SYSTEM_PROMPT = "You are an expert political analyst. Answer the interview quest
 # ==========================================
 chat_data = []
 
-for omit_feature in [q["col"] for q in QUESTIONS]:
-    omit_question = next(q for q in QUESTIONS if q["col"] == omit_feature)
+for _, row in tqdm(df.iterrows(), total=len(df), desc="Building interviews"):
+    for omit_feature in [q["col"] for q in QUESTIONS]:
+        omit_question = next(q for q in QUESTIONS if q["col"] == omit_feature)
 
-    for _, row in tqdm(df.iterrows(), total=len(df), desc=f"Omitting {omit_feature}"):
         try:
             interview_text = ""
             for q in QUESTIONS:
                 col = q["col"]
                 if col == omit_feature:
-                    continue  # omit this variable
+                    continue  # omit this variable in the main sequence
                 if col not in row or pd.isna(row[col]):
                     continue
 
@@ -87,7 +87,7 @@ for omit_feature in [q["col"] for q in QUESTIONS]:
                         continue
                     interview_text += f"Me: {val}\n\n"
 
-            # The omitted variable question is always last
+            # Append the omitted feature's question **last**
             interview_text += omit_question["question"]
 
             # LLM answer placeholder (ground truth)
