@@ -2,33 +2,22 @@ import pandas as pd
 import json
 from pathlib import Path
 import random
+import sys
+from tqdm import tqdm
 
 # ==========================================
-# Paths (VS Code & Git friendly)
+# Paths
 # ==========================================
-
-# Directory where THIS script lives
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-DATA_DIR = BASE_DIR / "data"
-OUTPUT_DIR = BASE_DIR / "result"
+DATA_DIR = BASE_DIR / "dataset_test"
+OUTPUT_DIR = BASE_DIR / "dataset_test"
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-# Input dataset
 file_path = DATA_DIR / "anes_timeseries_2020_csv_20220210.csv"
 
-# Output files
-jsonl_filename = OUTPUT_DIR / "anes_2020_finetune.jsonl"
-json_filename  = OUTPUT_DIR / "anes_2020_chat_finetune.json"
-csv_filename   = OUTPUT_DIR / "anes_2020_chat_finetune.csv"
-
-
-
 # ==========================================
-# 1. Load and Clean Data
+# 1. Load Data
 # ==========================================
-
 df = pd.read_csv(file_path)
 
 COLS_MAP = {
@@ -44,155 +33,110 @@ COLS_MAP = {
 }
 
 df = df[list(COLS_MAP.keys())].rename(columns=COLS_MAP)
+df = df[(df[list(COLS_MAP.values())] >= 0).all(axis=1)]
 
-FEATURE_COLS = [c for c in df.columns if c != "vote_choice"]
-
-df = df[(df[FEATURE_COLS] >= 0).all(axis=1)]
-df = df[df["vote_choice"].isin([1, 2])].copy()
-
-print("Final dataset size:", df.shape)
+# 3-class vote coding
+df["vote_choice"] = df["vote_choice"].replace({3: 3, 4: 3, 5: 3})
+df = df[df["vote_choice"].isin([1, 2, 3])]
 
 # ==========================================
 # 2. Text Mappings
 # ==========================================
-
-RACE_MAP = {
-    1: "white", 2: "black", 3: "hispanic",
-    4: "asian", 5: "native American", 6: "mixed race"
-}
-
+RACE_MAP = {1: "white", 2: "black", 3: "hispanic", 4: "asian", 5: "native American", 6: "mixed race"}
 GENDER_MAP = {1: "man", 2: "woman"}
-
 IDEOLOGY_MAP = {
-    1: "extremely liberal", 2: "liberal", 3: "slightly liberal",
-    4: "moderate", 5: "slightly conservative",
-    6: "conservative", 7: "extremely conservative"
+    1: "extremely liberal", 2: "liberal", 3: "slightly liberal", 4: "moderate",
+    5: "slightly conservative", 6: "conservative", 7: "extremely conservative"
 }
-
 PARTY_MAP = {
-    1: "a strong Democrat",
-    2: "not a very strong Democrat",
-    3: "an independent Democrat",
-    4: "an independent",
-    5: "an independent Republican",
-    6: "not a very strong Republican",
+    1: "a strong Democrat", 2: "not a very strong Democrat", 3: "an independent Democrat",
+    4: "an independent", 5: "an independent Republican", 6: "not a very strong Republican",
     7: "a strong Republican"
 }
-
-INTEREST_MAP = {
-    1: "very", 2: "somewhat",
-    3: "not very", 4: "not at all"
-}
-
-DISCUSS_MAP = {
-    1: "I like to discuss politics with my family and friends.",
-    2: "I never discuss politics with my family or friends."
-}
-
-CHURCH_MAP = {
-    2: "do not attend church",
-    1: "attend church"
-}
+INTEREST_MAP = {1: "very", 2: "somewhat", 3: "not very", 4: "not at all"}
+DISCUSS_MAP = {1: "I like to discuss politics with my family and friends.", 2: "I never discuss politics with my family or friends."}
+CHURCH_MAP = {1: "attend church", 2: "do not attend church"}
 
 # ==========================================
-# 3. Build Dataset
+# 3. System Prompt
 # ==========================================
+SYSTEM_PROMPT = "You are an expert political analyst. Answer the interview questions truthfully based on the information provided."
 
-SYSTEM_PROMPT = (
-    "You are an expert political analyst specializing in US elections and voting behavior. "
-    "Your task is to analyze the demographic profile provided in the text and predict the vote "
-    "choice in the 2020 Election. Output strictly one name: 'Donald Trump' or 'Joe Biden'."
-)
+# ==========================================
+# 4. Questions Setup
+# ==========================================
+QUESTIONS = [
+    {"col": "gender", "question": "Interviewer: What is your gender?", "vals": GENDER_MAP},
+    {"col": "race", "question": "Interviewer: Which racial group do you identify with?", "vals": RACE_MAP},
+    {"col": "age", "question": "Interviewer: What is your age in years?", "vals": None},
+    {"col": "ideology", "question": "Interviewer: How would you describe your political ideology?", "vals": IDEOLOGY_MAP},
+    {"col": "party_id", "question": "Interviewer: How would you describe your political affiliation?", "vals": PARTY_MAP},
+    {"col": "church_attendance", "question": "Interviewer: Do you attend religious services?", "vals": CHURCH_MAP},
+    {"col": "pol_interest", "question": "Interviewer: How interested are you in politics?", "vals": INTEREST_MAP},
+    {"col": "discuss_politics", "question": "Interviewer: Do you discuss politics with your family and friends?", "vals": DISCUSS_MAP},
+    {"col": "vote_choice", "question": "Interviewer: Who did you vote for in the 2020 election?", "vals": {1: "Joe Biden", 2: "Donald Trump", 3: "others"}}
+]
 
+# ==========================================
+# 5. Omitted Variable (LLM predicts this)
+# ==========================================
+if len(sys.argv) < 2:
+    print("Usage: python generate_interview_2020.py <variable_to_predict>")
+    sys.exit(1)
+
+HR_OMIT = sys.argv[1]  # e.g., "vote_choice", "church_attendance"
+omit_question = next(q for q in QUESTIONS if q["col"] == HR_OMIT)
+
+# ==========================================
+# 6. Build Interview-style Dataset
+# ==========================================
 chat_data = []
-csv_rows = []
 
-for _, row in df.iterrows():
+for _, row in tqdm(df.iterrows(), total=len(df)):
     try:
-        # Raw features
-        raw_features = row.to_dict()
+        interview_text = ""
+        for q in QUESTIONS:
+            col = q["col"]
+            if col == HR_OMIT:
+                continue  # omit this variable
+            if col not in row or pd.isna(row[col]):
+                continue
 
-        # Text-mapped features
-        text_features = {
-            "race": RACE_MAP[row["race"]],
-            "gender": GENDER_MAP[row["gender"]],
-            "age": int(row["age"]),
-            "ideology": IDEOLOGY_MAP[row["ideology"]],
-            "party_id": PARTY_MAP[row["party_id"]],
-            "church_attendance": CHURCH_MAP[row["church_attendance"]],
-            "pol_interest": INTEREST_MAP[row["pol_interest"]],
-            "discuss_politics": DISCUSS_MAP[row["discuss_politics"]],
-        }
+            interview_text += q["question"] + "\n"
+            if q["vals"] is None:
+                interview_text += f"Me: {int(row[col])}\n\n"
+            else:
+                val = q["vals"].get(int(row[col]))
+                if val is None:
+                    continue
+                interview_text += f"Me: {val}\n\n"
 
-        user_text = (
-            f"Racially, I am {text_features['race']}. "
-            f"I am a {text_features['gender']}. "
-            f"I am {text_features['age']} years old. "
-            f"Ideologically, I am {text_features['ideology']}. "
-            f"Politically, I am {text_features['party_id']}. "
-            f"I {text_features['church_attendance']}. "
-            f"I am {text_features['pol_interest']} interested in politics. "
-            f"{text_features['discuss_politics']} "
-            "In the 2020 presidential election, I voted for "
-        )
-
-        assistant_text = (
-            "Joe Biden" if row["vote_choice"] == 1 else "Donald Trump"
-        )
+        # LLM answer placeholder
+        if omit_question["vals"]:
+            assistant_text = omit_question["vals"].get(row[HR_OMIT], "unknown")
+        else:
+            assistant_text = str(row[HR_OMIT])
 
         chat_data.append({
-            "features_raw": raw_features,
-            "features_text": text_features,
+            "features_raw": row.to_dict(),
             "messages": [
                 {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_text},
+                {"role": "user", "content": interview_text.strip()},
                 {"role": "assistant", "content": assistant_text}
             ]
         })
-
-        csv_rows.append({
-            **raw_features,
-            **{f"{k}_text": v for k, v in text_features.items()},
-            "user_content": user_text,
-            "assistant_content": assistant_text
-        })
-
-    except KeyError:
+    except Exception:
         continue
 
 # ==========================================
-# 4. Shuffle (Reproducible)
+# 7. Shuffle & Save
 # ==========================================
-
 SEED = 42
 random.seed(SEED)
+random.shuffle(chat_data)
 
-combined = list(zip(chat_data, csv_rows))
-random.shuffle(combined)
-chat_data, csv_rows = zip(*combined)
-
-chat_data = list(chat_data)
-csv_rows = list(csv_rows)
-
-# ==========================================
-# 5. Save Outputs
-# ==========================================
-
-# JSONL
-with open(jsonl_filename, "w") as f:
-    for entry in chat_data:
-        json.dump(entry, f)
-        f.write("\n")
-
-# JSON
-with open(json_filename, "w") as f:
+output_file = OUTPUT_DIR / f"anes_2020_interview_{HR_OMIT}.json"
+with open(output_file, "w") as f:
     json.dump(chat_data, f, indent=2)
 
-# CSV
-df_out=pd.DataFrame(csv_rows)
-pd.DataFrame(csv_rows).to_csv(csv_filename, index=False)
-
-print("Saved files:")
-print(" -", jsonl_filename)
-print(" -", json_filename)
-print(" -", csv_filename)
+print(f"Saved ANES 2020 dataset predicting '{HR_OMIT}': {output_file}")
