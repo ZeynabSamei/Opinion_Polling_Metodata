@@ -1,0 +1,134 @@
+[
+  {
+    "features_raw": {
+      "vote_choice": 1,
+      "gender": 1,
+      "race": 1,
+      "age": 54,
+      "ideology": 4,
+      "pol_interest": 1,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "man",
+      "age": 54,
+      "ideology": "moderate",
+      "church_attendance": "attend church",
+      "pol_interest": "very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump' or 'Kamala Harris'."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a man. I am 54 years old. Ideologically, I am moderate. I attend church. I am very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Kamala Harris"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 2,
+      "gender": 1,
+      "race": 1,
+      "age": 73,
+      "ideology": 6,
+      "pol_interest": 1,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "man",
+      "age": 73,
+      "ideology": "conservative",
+      "church_attendance": "attend church",
+      "pol_interest": "very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump' or 'Kamala Harris'."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a man. I am 73 years old. Ideologically, I am conservative. I attend church. I am very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Donald Trump"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 2,
+      "gender": 1,
+      "race": 1,
+      "age": 28,
+      "ideology": 6,
+      "pol_interest": 3,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "white",
+      "gender": "man",
+      "age": 28,
+      "ideology": "conservative",
+      "church_attendance": "attend church",
+      "pol_interest": "not very"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump' or 'Kamala Harris'."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am white. I am a man. I am 28 years old. Ideologically, I am conservative. I attend church. I am not very interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Donald Trump"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "vote_choice": 1,
+      "gender": 2,
+      "race": 2,
+      "age": 80,
+      "ideology": 4,
+      "pol_interest": 2,
+      "church_attendance": 1
+    },
+    "features_text": {
+      "race": "black",
+      "gender": "woman",
+      "age": 80,
+      "ideology": "moderate",
+      "church_attendance": "attend church",
+      "pol_interest": "somewhat"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in US elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2024 Election. Output strictly one name: 'Donald Trump' or 'Kamala Harris'."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am black. I am a woman. I am 80 years old. Ideologically, I am moderate. I attend church. I am somewhat interested in politics. "
+      },
+      {
+        "role": "assistant",
+        "content": "Kamala Harris"
+      }
+    ]
+  }
+]
