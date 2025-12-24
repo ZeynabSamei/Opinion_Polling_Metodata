@@ -151,7 +151,6 @@ SEED = 42
 random.seed(SEED)
 
 combined = list(zip(chat_data, csv_rows))
-print(combined)
 random.shuffle(combined)
 chat_data, csv_rows = zip(*combined)
 
