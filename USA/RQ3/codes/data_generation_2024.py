@@ -2,7 +2,6 @@ import pandas as pd
 import json
 from pathlib import Path
 import random
-import sys
 from tqdm import tqdm
 
 # ==========================================
@@ -11,14 +10,13 @@ from tqdm import tqdm
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "dataset_test"
 OUTPUT_DIR = BASE_DIR / "dataset_test"
-
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 file_path = DATA_DIR / "anes_timeseries_2024_csv_20250808.csv"
 
 # ==========================================
 # 1. Load Data
 # ==========================================
-df = pd.read_csv(file_path)
+df = pd.read_csv(file_path, low_memory=False)
 
 # ==========================================
 # 2. Map Columns & Text Values
@@ -63,62 +61,59 @@ QUESTIONS = [
 SYSTEM_PROMPT = "You are an expert political analyst. Answer the interview questions truthfully based on the information provided."
 
 # ==========================================
-# 5. Omitted Variable (LLM should predict)
-# ==========================================
-if len(sys.argv) < 2:
-    print("Usage: python generate_interview.py <variable_to_predict>")
-    sys.exit(1)
-
-HR_OMIT = sys.argv[1]  # e.g., "vote_choice", "church_attendance"
-omit_question = next(q for q in QUESTIONS if q["col"] == HR_OMIT)
-
-# ==========================================
-# 6. Build Interview Dialogs
+# 5. Build Interview Dialogs
 # ==========================================
 chat_data = []
 
-for _, row in tqdm(df.iterrows(), total=len(df)):
-    try:
-        interview_text = ""
-        for q in QUESTIONS:
-            col = q["col"]
-            if col == HR_OMIT:
-                continue  # omit this variable
-            if col not in row or pd.isna(row[col]):
-                continue
+for omit_feature in [q["col"] for q in QUESTIONS]:
+    omit_question = next(q for q in QUESTIONS if q["col"] == omit_feature)
 
-            interview_text += q["question"] + "\n"
-            if q["vals"] is None:
-                interview_text += f"Me: {int(row[col])}\n\n"
-            else:
-                val = q["vals"].get(int(row[col]))
-                if val is None:
+    for _, row in tqdm(df.iterrows(), total=len(df), desc=f"Omitting {omit_feature}"):
+        try:
+            interview_text = ""
+            for q in QUESTIONS:
+                col = q["col"]
+                if col == omit_feature:
+                    continue  # omit this variable
+                if col not in row or pd.isna(row[col]):
                     continue
-                interview_text += f"Me: {val}\n\n"
 
-        # The LLM answer placeholder
-        assistant_text = omit_question["vals"].get(row[HR_OMIT], "unknown") if omit_question["vals"] else str(row[HR_OMIT])
+                interview_text += q["question"] + "\n"
+                if q["vals"] is None:
+                    interview_text += f"Me: {int(row[col])}\n\n"
+                else:
+                    val = q["vals"].get(int(row[col]))
+                    if val is None:
+                        continue
+                    interview_text += f"Me: {val}\n\n"
 
-        chat_data.append({
-            "features_raw": row.to_dict(),
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": interview_text.strip()},
-                {"role": "assistant", "content": assistant_text}
-            ]
-        })
-    except Exception:
-        continue
+            # The omitted variable question is always last
+            interview_text += omit_question["question"]
+
+            # LLM answer placeholder (ground truth)
+            assistant_text = omit_question["vals"].get(row[omit_feature], "unknown") if omit_question["vals"] else str(row[omit_feature])
+
+            chat_data.append({
+                "omit_variable": omit_feature,
+                "features_raw": row.to_dict(),
+                "messages": [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": interview_text.strip()},
+                    {"role": "assistant", "content": assistant_text}
+                ]
+            })
+        except Exception:
+            continue
 
 # ==========================================
-# 7. Shuffle & Save
+# 6. Shuffle & Save
 # ==========================================
 SEED = 42
 random.seed(SEED)
 random.shuffle(chat_data)
 
-output_file = OUTPUT_DIR / f"anes_2024_interview_{HR_OMIT}.json"
+output_file = OUTPUT_DIR / f"anes_2024_interview_all_features.json"
 with open(output_file, "w") as f:
     json.dump(chat_data, f, indent=2)
 
-print(f"Saved dataset predicting '{HR_OMIT}': {output_file}")
+print(f"Saved dataset with all features predicted in turn: {output_file}")
