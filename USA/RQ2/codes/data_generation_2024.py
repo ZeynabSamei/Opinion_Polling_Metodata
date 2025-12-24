@@ -16,7 +16,7 @@ OUTPUT_DIR = BASE_DIR / "dataset_test"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Input dataset
-file_path = DATA_DIR / "anes_timeseries_2024_csv_20220210.csv"
+file_path = DATA_DIR / "anes_timeseries_2024_csv_20250808.csv"
 
 # Output files
 json_filename  = OUTPUT_DIR / "anes_2024_test_dataset.json"
