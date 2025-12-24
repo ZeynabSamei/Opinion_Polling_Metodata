@@ -11,14 +11,6 @@ import torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from sklearn.metrics import cohen_kappa_score
 
-# Optional ICC
-try:
-    import pingouin as pg
-    icc_available = True
-except ImportError:
-    print("pingouin not installed, ICC will be skipped")
-    icc_available = False
-
 # -----------------------------
 # Arguments
 # -----------------------------
@@ -57,7 +49,6 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.float16
 )
 
-# Pad token fix
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.pad_token_id = tokenizer.eos_token_id
 model.config.pad_token_id = tokenizer.eos_token_id
@@ -81,34 +72,16 @@ elif args.election_year == 2024:
 else:
     raise ValueError(f"Unsupported election_year: {args.election_year}")
 
-CANDIDATES_NORM = [c.lower() for c in CANDIDATES]
-
-# -----------------------------
-# 3-class definition
-# -----------------------------
-CLASS_MAP = {
-    1: CANDIDATES[0],
-    2: CANDIDATES[1],
-    3: "Other"
-}
-
 # -----------------------------
 # Helper functions
 # -----------------------------
 def normalize_vote(text):
-    """
-    Returns:
-      - candidate name if mentioned
-      - 'Other' otherwise
-    """
     if text is None:
         return "Other"
-
     t = text.lower()
     for c in CANDIDATES:
         if c.lower() in t:
             return c
-
     return "Other"
 
 
@@ -120,14 +93,6 @@ def extract_ground_truth(messages):
 
 
 def get_vote_probs(messages):
-    """
-    Deterministic single-pass probability extraction.
-    Produces probabilities for:
-      - Candidate A
-      - Candidate B
-      - Other (residual)
-    """
-
     clean_msgs = [m for m in messages if m["role"] != "assistant"]
     prompt = "\n".join(f"{m['role']}: {m['content']}" for m in clean_msgs)
     prompt += f"\nVote choice ({' or '.join(CANDIDATES)}):"
@@ -154,18 +119,15 @@ def get_vote_probs(messages):
 
             candidate_probs[candidate] = prob
 
-    # Normalize candidate probs
     total = sum(candidate_probs.values())
     if total > 0:
         candidate_probs = {k: v / total for k, v in candidate_probs.items()}
     else:
         candidate_probs = {k: 1 / len(CANDIDATES) for k in CANDIDATES}
 
-    # Add "Other" as residual class
     others_prob = max(0.0, 1.0 - sum(candidate_probs.values()))
     candidate_probs["Other"] = others_prob
 
-    # Final renormalization
     total = sum(candidate_probs.values())
     candidate_probs = {k: v / total for k, v in candidate_probs.items()}
 
@@ -182,19 +144,9 @@ def mutual_information(probs, ground_truth, eps=1e-12):
 
 
 def vote_to_numeric(vote):
-    """
-    3-class numeric encoding:
-      1 = Candidate A
-      2 = Candidate B
-      3 = Other
-    """
-    if vote is None:
-        return 3
-
-    v = vote.lower()
-    if v == CANDIDATES[0].lower():
+    if vote == CANDIDATES[0]:
         return 1
-    elif v == CANDIDATES[1].lower():
+    elif vote == CANDIDATES[1]:
         return 2
     else:
         return 3
@@ -222,86 +174,90 @@ for idx, entry in tqdm(enumerate(data), total=len(data)):
     })
 
     if (idx + 1) % args.save_every == 0:
-        df_tmp = pd.DataFrame(results)
-        save_path = os.path.join(
-            args.out_dir,
-            f"{args.model_name.replace('/', '_')}_{args.election_year}_partial.pkl"
+        pd.DataFrame(results).to_pickle(
+            os.path.join(
+                args.out_dir,
+                f"{args.model_name.replace('/', '_')}_{args.election_year}_partial.pkl"
+            )
         )
-        df_tmp.to_pickle(save_path)
-        print(f"Saved intermediate results at index {idx}")
 
     time.sleep(args.sleep)
 
 df_final = pd.DataFrame(results)
 
 # -----------------------------
-# Metrics
+# Binary encoding (for tetra + bias)
 # -----------------------------
-anes_votes = df_final["ground_truth"].map(vote_to_numeric).to_numpy()
-gpt_votes = df_final["predicted_vote"].map(vote_to_numeric).to_numpy()
+df_final["llm_binary"] = df_final["predicted_vote"]
+df_final["anes_binary"] = df_final["ground_truth"]
 
-vote_metrics = {
-    "cohen_kappa": cohen_kappa_score(anes_votes, gpt_votes),
-    "proportion_agreement": np.mean(anes_votes == gpt_votes)
-}
-
-if icc_available:
-    try:
-        df_temp = pd.DataFrame({"anes": anes_votes, "gpt": gpt_votes})
-        df_long = df_temp.reset_index().melt(
-            id_vars="index",
-            value_vars=["anes", "gpt"],
-            var_name="rater",
-            value_name="vote"
-        )
-        icc_df = pg.intraclass_corr(
-            data=df_long,
-            targets="index",
-            raters="rater",
-            ratings="vote"
-        )
-        vote_metrics["ICC"] = icc_df.loc[
-            icc_df["Type"] == "ICC2k", "ICC"
-        ].values[0]
-    except Exception as e:
-        print(f"ICC computation failed: {e}")
-        vote_metrics["ICC"] = None
-else:
-    vote_metrics["ICC"] = None
-
-for k, v in vote_metrics.items():
-    df_final[k] = v
-
-# -----------------------------
-# Merge original input
-# -----------------------------
-df_input = pd.DataFrame(data)
-extra_cols = [c for c in df_input.columns if c not in df_final.columns]
-df_final = pd.concat(
-    [df_final.reset_index(drop=True), df_input[extra_cols].reset_index(drop=True)],
-    axis=1
+df_final["llm_num"] = df_final["llm_binary"].apply(
+    lambda x: 0 if x == CANDIDATES[1] else 1
+)
+df_final["anes_num"] = df_final["anes_binary"].apply(
+    lambda x: 0 if x == CANDIDATES[1] else 1
 )
 
 # -----------------------------
-# Save results
+# Tetrachoric correlation
 # -----------------------------
-out_file = os.path.join(
+def tetrachoric_corr_safe(vec1, vec2):
+    A = np.sum((vec1 == 0) & (vec2 == 0))
+    B = np.sum((vec1 == 0) & (vec2 == 1))
+    C = np.sum((vec1 == 1) & (vec2 == 0))
+    D = np.sum((vec1 == 1) & (vec2 == 1))
+    if (A+B)==0 or (C+D)==0 or (A+C)==0 or (B+D)==0:
+        return np.nan
+    try:
+        return np.cos(np.pi / (1 + np.sqrt((A*D)/(B*C))))
+    except:
+        return np.nan
+
+tetra = tetrachoric_corr_safe(
+    df_final["llm_num"].values,
+    df_final["anes_num"].values
+)
+
+# -----------------------------
+# Bias computation
+# -----------------------------
+summary_rows = []
+row = {
+    "Variable": "Wholesample",
+    "n_samples": len(df_final),
+    "Tetra": tetra,
+    "Prop.Agree": np.mean(df_final["llm_binary"] == df_final["anes_binary"])
+}
+
+for c in CANDIDATES:
+    real_pct = np.mean(df_final["anes_binary"] == c)
+    llm_pct = np.mean([p[c] for p in df_final["probs"]])
+    row[f"RealPct_{c}"] = real_pct
+    row[f"LLMPct_{c}"] = llm_pct
+    row[f"Bias_{c}"] = llm_pct - real_pct
+
+summary_rows.append(row)
+df_summary = pd.DataFrame(summary_rows)
+
+# -----------------------------
+# Save outputs
+# -----------------------------
+final_path = os.path.join(
     args.out_dir,
     f"{args.model_name.replace('/', '_')}_{args.election_year}_final.pkl"
 )
+summary_path = final_path.replace(".pkl", "_summary.csv")
 
-df_final.to_pickle(out_file)
-df_final.to_csv(out_file.replace(".pkl", ".csv"), index=False)
-
-print(f"Saved final results to {out_file}")
+df_final.to_pickle(final_path)
+df_final.to_csv(final_path.replace(".pkl", ".csv"), index=False)
+df_summary.to_csv(summary_path, index=False)
 
 # -----------------------------
-# Summary
+# Print summary
 # -----------------------------
 print("\nSummary:")
-print("Average accuracy:", df_final["accuracy"].mean())
+print(df_summary)
+print("\nAverage accuracy:", df_final["accuracy"].mean())
 print("Average mutual information:", df_final["mutual_inf"].mean())
-for k, v in vote_metrics.items():
-    print(f"{k}: {v}")
-
-print("\n⚠️ Note: ICC is not theoretically ideal for 3-class nominal outcomes.")
+print("Tetrachoric correlation:", tetra)
+print(f"\nSaved df_summary to: {summary_path}")
