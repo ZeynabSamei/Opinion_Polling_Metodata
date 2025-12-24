@@ -4,180 +4,167 @@ from pathlib import Path
 import random
 
 # ==========================================
-# Paths (VS Code & Git friendly)
+# Paths
 # ==========================================
-
-# Directory where THIS script lives
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-DATA_DIR = BASE_DIR / "data"
-OUTPUT_DIR = BASE_DIR / "result"
+DATA_DIR = BASE_DIR / "dataset_test"
+OUTPUT_DIR = BASE_DIR / "dataset_test"
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Input dataset
 file_path = DATA_DIR / "anes_timeseries_2024_csv_20220210.csv"
-
-# Output files
-jsonl_filename = OUTPUT_DIR / "anes_2024_finetune.jsonl"
-json_filename  = OUTPUT_DIR / "anes_2024_chat_finetune.json"
-csv_filename   = OUTPUT_DIR / "anes_2024_chat_finetune.csv"
-
+json_filename = OUTPUT_DIR / "anes_2024_interview_dataset.json"
 
 # ==========================================
-# 1. Load and Clean Data
+# 1. Load & Clean Data
 # ==========================================
-
 df = pd.read_csv(file_path)
 
 COLS_MAP = {
-    "V242096x": "vote_choice", 
-    "V241550": "gender", 
-    "V241501x": "race", 
-    "V241458x": "age", 
-    "V241177": "ideology", 
+    "V242096x": "vote_choice",
+    "V241550": "gender",
+    "V241501x": "race",
+    "V241458x": "age",
+    "V241177": "ideology",
     "V242400": "pol_interest",
-    "V241439": "church_attendance", 
+    "V241439": "church_attendance",
 }
-
 
 df = df[list(COLS_MAP.keys())].rename(columns=COLS_MAP)
 
-FEATURE_COLS = [c for c in df.columns if c != "vote_choice"]
-
+FEATURE_COLS = list(df.columns)
 df = df[(df[FEATURE_COLS] >= 0).all(axis=1)]
 
-df = df[df["vote_choice"].isin([1, 2])].copy()
-
-
+# 3-class vote coding
+df["vote_choice"] = df["vote_choice"].replace({3: 3, 4: 3, 5: 3, 6: 3})
+df = df[df["vote_choice"].isin([1, 2, 3])]
 
 print("Final dataset size:", df.shape)
 
 # ==========================================
-# 2. Text Mappings
+# 2. Interview Question Definitions
 # ==========================================
-
-RACE_MAP = {
-    1: "white", 2: "black", 3: "hispanic",
-    4: "asian", 5: "native American", 6: "mixed race"
-}
-
-GENDER_MAP = {1: "man", 2: "woman"}
-
-IDEOLOGY_MAP = {
-    1: "extremely liberal", 2: "liberal", 3: "slightly liberal",
-    4: "moderate", 5: "slightly conservative",
-    6: "conservative", 7: "extremely conservative"
-}
-
-
-INTEREST_MAP = {
-    1: "very", 2: "somewhat",
-    3: "not very", 4: "not at all"
-}
-
-
-CHURCH_MAP = {
-    2: "do not attend church",
-    1: "attend church"
-}
+QUESTIONS = [
+    {
+        "col": "gender",
+        "question": 'Interviewer: What is your gender?',
+        "vals": {1: "man", 2: "woman"}
+    },
+    {
+        "col": "race",
+        "question": 'Interviewer: Which racial group do you identify with?',
+        "vals": {
+            1: "white",
+            2: "black",
+            3: "hispanic",
+            4: "asian",
+            5: "native American",
+            6: "mixed race"
+        }
+    },
+    {
+        "col": "age",
+        "question": 'Interviewer: What is your age in years?',
+        "vals": None  # numeric
+    },
+    {
+        "col": "ideology",
+        "question": 'Interviewer: How would you describe your political ideology?',
+        "vals": {
+            1: "extremely liberal",
+            2: "liberal",
+            3: "slightly liberal",
+            4: "moderate",
+            5: "slightly conservative",
+            6: "conservative",
+            7: "extremely conservative"
+        }
+    },
+    {
+        "col": "church_attendance",
+        "question": 'Interviewer: Do you attend religious services?',
+        "vals": {1: "yes", 2: "no"}
+    },
+    {
+        "col": "pol_interest",
+        "question": 'Interviewer: How interested are you in politics?',
+        "vals": {
+            1: "very interested",
+            2: "somewhat interested",
+            3: "not very interested",
+            4: "not at all interested"
+        }
+    }
+]
 
 # ==========================================
-# 3. Build Dataset
+# 3. System Prompt
 # ==========================================
-
 SYSTEM_PROMPT = (
-    "You are an expert political analyst specializing in US elections and voting behavior. "
-    "Your task is to analyze the demographic profile provided in the text and predict the vote "
-    "choice in the 2024 Election. Output strictly one name: 'Donald Trump' or 'Kamala Harris'."
+    "You are an expert political analyst. Based on the interview below, "
+    "predict the respondent’s vote choice in the 2024 US Presidential Election. "
+    "Respond with exactly one of the following:\n"
+    "- Donald Trump\n"
+    "- Kamala Harris\n"
+    "- others"
 )
 
+# ==========================================
+# 4. Build Interview Dialogs
+# ==========================================
 chat_data = []
-csv_rows = []
 
 for _, row in df.iterrows():
     try:
-        # Raw features
-        raw_features = row.to_dict()
+        interview_text = ""
 
-        # Text-mapped features
-        text_features = {
-            "race": RACE_MAP[row["race"]],
-            "gender": GENDER_MAP[row["gender"]],
-            "age": int(row["age"]),
-            "ideology": IDEOLOGY_MAP[row["ideology"]],
-            "church_attendance": CHURCH_MAP[row["church_attendance"]],
-            "pol_interest": INTEREST_MAP[row["pol_interest"]],
-        }
+        for q in QUESTIONS:
+            col = q["col"]
+            if col not in row or pd.isna(row[col]):
+                continue
 
-        user_text = (
-            f"Racially, I am {text_features['race']}. "
-            f"I am a {text_features['gender']}. "
-            f"I am {text_features['age']} years old. "
-            f"Ideologically, I am {text_features['ideology']}. "
-            f"I {text_features['church_attendance']}. "
-            f"I am {text_features['pol_interest']} interested in politics. "
+            interview_text += q["question"] + "\n"
 
-        )
+            if q["vals"] is None:
+                interview_text += f"Me: {int(row[col])}\n\n"
+            else:
+                val = q["vals"].get(int(row[col]))
+                if val is None:
+                    continue
+                interview_text += f"Me: {val}\n\n"
 
-        assistant_text = (
-            "Kamala Harris" if row["vote_choice"] == 1 else "Donald Trump"
-        )
+        # Ground truth vote
+        if row["vote_choice"] == 1:
+            assistant_text = "Kamala Harris"
+        elif row["vote_choice"] == 2:
+            assistant_text = "Donald Trump"
+        else:
+            assistant_text = "others"
 
         chat_data.append({
-            "features_raw": raw_features,
-            "features_text": text_features,
+            "features_raw": row.to_dict(),
             "messages": [
                 {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_text},
+                {"role": "user", "content": interview_text.strip()},
                 {"role": "assistant", "content": assistant_text}
             ]
         })
 
-        csv_rows.append({
-            **raw_features,
-            **{f"{k}_text": v for k, v in text_features.items()},
-            "user_content": user_text,
-            "assistant_content": assistant_text
-        })
-
-    except KeyError:
+    except Exception:
         continue
 
 # ==========================================
-# 4. Shuffle (Reproducible)
+# 5. Shuffle (Reproducible)
 # ==========================================
-
 SEED = 42
 random.seed(SEED)
-
-combined = list(zip(chat_data, csv_rows))
-print(combined)
-random.shuffle(combined)
-chat_data, csv_rows = zip(*combined)
-
-chat_data = list(chat_data)
-csv_rows = list(csv_rows)
+random.shuffle(chat_data)
 
 # ==========================================
-# 5. Save Outputs
+# 6. Save Output
 # ==========================================
-
-# JSONL
-with open(jsonl_filename, "w") as f:
-    for entry in chat_data:
-        json.dump(entry, f)
-        f.write("\n")
-
-# JSON
 with open(json_filename, "w") as f:
     json.dump(chat_data, f, indent=2)
 
-# CSV
-df_out=pd.DataFrame(csv_rows)
-pd.DataFrame(csv_rows).to_csv(csv_filename, index=False)
-
-print("Saved files:")
-print(" -", jsonl_filename)
+print("Saved interview-style dataset:")
 print(" -", json_filename)
-print(" -", csv_filename)
