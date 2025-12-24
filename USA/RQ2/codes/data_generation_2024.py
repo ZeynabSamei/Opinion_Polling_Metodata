@@ -89,6 +89,8 @@ SYSTEM_PROMPT = (
     "You are an expert political analyst specializing in US elections and voting behavior. "
     "Your task is to analyze the demographic profile provided in the text and predict the vote "
     "choice in the 2024 Election. Output strictly one name: 'Donald Trump', 'Kamala Harris' or 'Other'."
+    "Select 'Other' if the vote is unknown or if it is likely for someone other than these two candidates."
+    
 )
 
 chat_data = []
