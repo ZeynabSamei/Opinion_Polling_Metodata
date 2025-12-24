@@ -13,6 +13,7 @@ OUTPUT_DIR = BASE_DIR / "dataset_test"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 file_path = DATA_DIR / "anes_timeseries_2020_csv_20220210.csv"
+output_file = OUTPUT_DIR / "anes_2020_interview_all_features.json"
 
 # ==========================================
 # 1. Load Data
@@ -62,15 +63,15 @@ SYSTEM_PROMPT = "You are an expert political analyst. Answer the interview quest
 # 4. Questions Setup
 # ==========================================
 QUESTIONS = [
-    {"col": "gender", "question": "Interviewer: What is your gender?", "vals": GENDER_MAP},
-    {"col": "race", "question": "Interviewer: Which racial group do you identify with?", "vals": RACE_MAP},
-    {"col": "age", "question": "Interviewer: What is your age in years?", "vals": None},
-    {"col": "ideology", "question": "Interviewer: How would you describe your political ideology?", "vals": IDEOLOGY_MAP},
-    {"col": "party_id", "question": "Interviewer: How would you describe your political affiliation?", "vals": PARTY_MAP},
-    {"col": "church_attendance", "question": "Interviewer: Do you attend religious services?", "vals": CHURCH_MAP},
-    {"col": "pol_interest", "question": "Interviewer: How interested are you in politics?", "vals": INTEREST_MAP},
-    {"col": "discuss_politics", "question": "Interviewer: Do you discuss politics with your family and friends?", "vals": DISCUSS_MAP},
-    {"col": "vote_choice", "question": "Interviewer: Who did you vote for in the 2020 election?", "vals": {1: "Joe Biden", 2: "Donald Trump", 3: "others"}}
+    {"col": "gender", "question": "What is your gender? Are you 'man' or 'woman'?", "vals": GENDER_MAP},
+    {"col": "race", "question": "I am going to read you a list of race categories. What race do you consider yourself to be? 'White', 'Black', 'Asian', 'Hispanic', 'Native American', or 'Mixed race'?", "vals": RACE_MAP},
+    {"col": "age", "question": "What is your age in years?", "vals": None},
+    {"col": "ideology", "question": "When asked about your political ideology, would you say you are 'extremely liberal', 'liberal', 'slightly liberal', 'moderate', 'slightly conservative', 'conservative', or 'extremely conservative'?", "vals": IDEOLOGY_MAP},
+    {"col": "party_id", "question": "How would you describe your political affiliation?", "vals": PARTY_MAP},
+    {"col": "church_attendance", "question": "Do you attend religious services? Please respond with 'attend church' or 'do not attend church'.", "vals": CHURCH_MAP},
+    {"col": "pol_interest", "question": "How interested would you say you are in politics? Are you 'very', 'somewhat', 'not very', or 'not at all' interested?", "vals": INTEREST_MAP},
+    {"col": "discuss_politics", "question": "Do you discuss politics with your family and friends?", "vals": DISCUSS_MAP},
+    {"col": "vote_choice", "question": "Which presidential candidate did you vote for in 2020? 'Joe Biden', 'Donald Trump', or 'others'?", "vals": {1: "Joe Biden", 2: "Donald Trump", 3: "others"}}
 ]
 
 # ==========================================
@@ -87,21 +88,21 @@ for omit_feature in [q["col"] for q in QUESTIONS]:
             for q in QUESTIONS:
                 col = q["col"]
                 if col == omit_feature:
-                    continue  # omit this variable
+                    continue
                 if col not in row or pd.isna(row[col]):
                     continue
 
-                interview_text += q["question"] + "\n"
+                interview_text += f"- {q['question']}\n"
                 if q["vals"] is None:
-                    interview_text += f"Me: {int(row[col])}\n\n"
+                    interview_text += f"- Respondent: {int(row[col])}\n\n"
                 else:
                     val = q["vals"].get(int(row[col]))
                     if val is None:
                         continue
-                    interview_text += f"Me: {val}\n\n"
+                    interview_text += f"- Respondent: {val}\n\n"
 
             # Omitted feature is always last
-            interview_text += omit_question["question"]
+            interview_text += f"- {omit_question['question']}"
 
             # Assistant answer placeholder (ground truth)
             assistant_text = omit_question["vals"].get(row[omit_feature], "unknown") if omit_question["vals"] else str(row[omit_feature])
@@ -125,7 +126,6 @@ SEED = 42
 random.seed(SEED)
 random.shuffle(chat_data)
 
-output_file = OUTPUT_DIR / f"anes_2020_interview_all_features.json"
 with open(output_file, "w") as f:
     json.dump(chat_data, f, indent=2)
 
