@@ -179,21 +179,11 @@ csv_rows = list(csv_rows)
 # 5. Save Outputs
 # ==========================================
 
-# JSONL
-with open(jsonl_filename, "w") as f:
-    for entry in chat_data:
-        json.dump(entry, f)
-        f.write("\n")
 
 # JSON
 with open(json_filename, "w") as f:
     json.dump(chat_data, f, indent=2)
 
-# CSV
-df_out=pd.DataFrame(csv_rows)
-pd.DataFrame(csv_rows).to_csv(csv_filename, index=False)
 
 print("Saved files:")
-print(" -", jsonl_filename)
 print(" -", json_filename)
-print(" -", csv_filename)
