@@ -13,10 +13,17 @@ from sklearn.metrics import cohen_kappa_score
 import argparse
 from tqdm import tqdm
 
+# Optional PEFT / LoRA
+try:
+    from peft import LoraConfig, get_peft_model, TaskType
+    peft_available = True
+except ImportError:
+    peft_available = False
+
 # -----------------------------
 # Arguments
 # -----------------------------
-parser = argparse.ArgumentParser(description="Fast fine-tune + inference for opinion QA")
+parser = argparse.ArgumentParser(description="Fast fine-tune + inference with optional LoRA")
 parser.add_argument("--model_name", type=str, required=True)
 parser.add_argument("--data_path", type=str, required=True)
 parser.add_argument("--fine_tune_data", type=str, default=None)
@@ -75,6 +82,23 @@ model.eval()
 device = model.device if hasattr(model, "device") else next(model.parameters()).device
 
 # -----------------------------
+# Apply LoRA if requested
+# -----------------------------
+if args.use_lora:
+    if not peft_available:
+        raise ImportError("PEFT is not installed. Install via `pip install peft` to use LoRA.")
+    print("Applying LoRA adapters...")
+    lora_config = LoraConfig(
+        task_type=TaskType.CAUSAL_LM,
+        r=16,
+        lora_alpha=32,
+        lora_dropout=0.05,
+        bias="none"
+    )
+    model = get_peft_model(model, lora_config)
+    print("LoRA applied!")
+
+# -----------------------------
 # Helper functions
 # -----------------------------
 def normalize_vote(text):
@@ -92,7 +116,6 @@ def extract_ground_truth(messages):
     return None
 
 def get_vote_probs(messages, max_new_tokens=10):
-    """Single deterministic pass to get candidate probabilities"""
     clean_msgs = [m for m in messages if m["role"] != "assistant"]
     prompt = "\n".join(f"{m['role']}: {m['content']}" for m in clean_msgs)
     prompt += f"\nVote choice ({' or '.join(CANDIDATES)}):"
@@ -127,9 +150,9 @@ def accuracy_from_probs(probs, ground_truth):
 # Fine-tuning (optional)
 # -----------------------------
 if ft_data:
-    print("Starting fast fine-tuning ...")
+    print("Starting fine-tuning ...")
     ft_texts = []
-    for item in ft_data[:5000]:  # subset for speed
+    for item in ft_data[:5000]:  # small subset for speed
         prompt = "\n".join(f"{m['role']}: {m['content']}" for m in item.get("messages", []))
         target = next((m["content"] for m in item.get("messages", []) if m["role"]=="assistant"), "")
         ft_texts.append({"text": prompt + tokenizer.eos_token + target + tokenizer.eos_token})
@@ -162,7 +185,7 @@ if ft_data:
     print("Fine-tuning completed.")
 
 # -----------------------------
-# Inference loop
+# Inference
 # -----------------------------
 results = []
 for idx, entry in tqdm(enumerate(test_data), total=len(test_data)):
@@ -187,8 +210,8 @@ for idx, entry in tqdm(enumerate(test_data), total=len(test_data)):
 # -----------------------------
 # Save results
 # -----------------------------
-out_file = os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{args.election_year}_fast_results.pkl")
+out_file = os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{args.election_year}_results.pkl")
 pd.DataFrame(results).to_pickle(out_file)
 pd.DataFrame(results).to_csv(out_file.replace(".pkl",".csv"), index=False)
 print(f"Saved results to {out_file}")
-print("Finished fast run!")
+print("Finished!")
