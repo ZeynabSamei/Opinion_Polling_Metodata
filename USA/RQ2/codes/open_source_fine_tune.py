@@ -208,6 +208,80 @@ for idx, entry in tqdm(enumerate(test_data), total=len(test_data)):
     })
 
 # -----------------------------
+# Convert results to DataFrame
+# -----------------------------
+df_final = pd.DataFrame(results)
+
+# -----------------------------
+# Binary encoding for tetra + bias
+# -----------------------------
+df_final["llm_binary"] = df_final["predicted_vote"]
+df_final["anes_binary"] = df_final["ground_truth"]
+
+df_final["llm_num"] = df_final["llm_binary"].apply(lambda x: 0 if x == CANDIDATES[1] else 1)
+df_final["anes_num"] = df_final["anes_binary"].apply(lambda x: 0 if x == CANDIDATES[1] else 1)
+
+# -----------------------------
+# Tetrachoric correlation
+# -----------------------------
+def tetrachoric_corr_safe(vec1, vec2):
+    A = np.sum((vec1 == 0) & (vec2 == 0))
+    B = np.sum((vec1 == 0) & (vec2 == 1))
+    C = np.sum((vec1 == 1) & (vec2 == 0))
+    D = np.sum((vec1 == 1) & (vec2 == 1))
+    if (A+B)==0 or (C+D)==0 or (A+C)==0 or (B+D)==0:
+        return np.nan
+    try:
+        return np.cos(np.pi / (1 + np.sqrt((A*D)/(B*C))))
+    except:
+        return np.nan
+
+tetra = tetrachoric_corr_safe(df_final["llm_num"].values, df_final["anes_num"].values)
+
+# -----------------------------
+# Bias computation
+# -----------------------------
+summary_rows = []
+row = {
+    "Variable": "Wholesample",
+    "n_samples": len(df_final),
+    "Tetra": tetra,
+    "Prop.Agree": np.mean(df_final["llm_binary"] == df_final["anes_binary"])
+}
+
+for c in CANDIDATES:
+    real_pct = np.mean(df_final["anes_binary"] == c)
+    llm_pct = np.mean([p[c] for p in df_final["probs"]])
+    row[f"RealPct_{c}"] = real_pct
+    row[f"LLMPct_{c}"] = llm_pct
+    row[f"Bias_{c}"] = llm_pct - real_pct
+
+summary_rows.append(row)
+df_summary = pd.DataFrame(summary_rows)
+
+# -----------------------------
+# Save outputs
+# -----------------------------
+final_path = os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{args.election_year}_final.pkl")
+summary_path = final_path.replace(".pkl", "_summary.csv")
+
+df_final.to_pickle(final_path)
+df_final.to_csv(final_path.replace(".pkl", ".csv"), index=False)
+df_summary.to_csv(summary_path, index=False)
+
+# -----------------------------
+# Print summary
+# -----------------------------
+print("\nSummary:", flush=True)
+print("Average accuracy:", df_final["accuracy"].mean(), flush=True)
+print("Tetrachoric correlation:", tetra, flush=True)
+print("Bias on Trump:", df_summary[f"Bias_{CANDIDATES[0]}"][0], flush=True)
+print("Average mutual information:", df_final["mutual_inf"].mean(), flush=True)
+print(f"Saved df_summary to: {summary_path}", flush=True)
+
+
+
+# -----------------------------
 # Save results
 # -----------------------------
 out_file = os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{args.election_year}_results.pkl")
@@ -215,3 +289,6 @@ pd.DataFrame(results).to_pickle(out_file)
 pd.DataFrame(results).to_csv(out_file.replace(".pkl",".csv"), index=False)
 print(f"Saved results to {out_file}")
 print("Finished!")
+
+
+
