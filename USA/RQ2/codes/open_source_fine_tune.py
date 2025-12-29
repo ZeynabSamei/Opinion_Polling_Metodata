@@ -152,7 +152,7 @@ def accuracy_from_probs(probs, ground_truth):
 if ft_data:
     print("Starting fine-tuning ...")
     ft_texts = []
-    for item in ft_data[:5000]:  # small subset for speed
+    for item in ft_data:  # small subset for speed
         prompt = "\n".join(f"{m['role']}: {m['content']}" for m in item.get("messages", []))
         target = next((m["content"] for m in item.get("messages", []) if m["role"]=="assistant"), "")
         ft_texts.append({"text": prompt + tokenizer.eos_token + target + tokenizer.eos_token})
@@ -170,7 +170,11 @@ if ft_data:
         logging_steps=50,
         save_strategy="no",
         fp16=True,
-        seed=args.seed
+        seed=args.seed,
+        learning_rate=5e-5 if args.use_lora else 1e-5,
+        warmup_ratio=0.1,
+        
+        
     )
 
     trainer = Trainer(
