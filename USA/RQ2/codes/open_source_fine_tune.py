@@ -295,12 +295,19 @@ print("Bias on Trump:", df_summary[f"Bias_{CANDIDATES[0]}"][0], flush=True)
 print("Average mutual information:", df_final["mutual_inf"].mean(), flush=True)
 print(f"Saved df_summary to: {summary_path}", flush=True)
 
-
+def safe_name(s):
+    return str(s).replace("/", "_").replace(" ", "_")
 
 # -----------------------------
 # Save results
 # -----------------------------
-out_file = os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{args.election_year}_{args.fine_tune_data}_results.pkl")
+# out_file = os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{args.election_year}_{args.fine_tune_data}_results.pkl")
+out_file = os.path.join(
+    args.out_dir,
+    f"{safe_name(args.model_name)}_"
+    f"{args.election_year}_"
+    f"{safe_name(args.fine_tune_data)}_results.pkl"
+)
 pd.DataFrame(results).to_pickle(out_file)
 pd.DataFrame(results).to_csv(out_file.replace(".pkl",".csv"), index=False)
 print(f"Saved results to {out_file}")
