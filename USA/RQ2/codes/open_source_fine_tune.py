@@ -300,7 +300,7 @@ print(f"Saved df_summary to: {summary_path}", flush=True)
 # -----------------------------
 # Save results
 # -----------------------------
-out_file = os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{args.election_year}_results.pkl")
+out_file = os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{args.election_year}_{args.fine_tune_data}_results.pkl")
 pd.DataFrame(results).to_pickle(out_file)
 pd.DataFrame(results).to_csv(out_file.replace(".pkl",".csv"), index=False)
 print(f"Saved results to {out_file}")
