@@ -51,6 +51,8 @@ df = df[(df[FEATURE_COLS] >= 0).all(axis=1)]
 df = df.copy()
 df["vote_choice"] = df["vote_choice"].replace({3: 3,4: 3,5: 3})
 df = df[df["vote_choice"].isin([1, 2, 3])]
+df = df[df["ideology"]!=99]
+
 
 print("Final dataset size:", df.shape)
 # ==========================================
