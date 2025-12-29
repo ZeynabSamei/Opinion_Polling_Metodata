@@ -184,6 +184,11 @@ if ft_data:
     trainer.train()
     print("Fine-tuning completed.")
 
+
+def mutual_information(probs, ground_truth, eps=1e-12):
+    p = max(probs.get(ground_truth, eps), eps)
+    return -np.log2(p)
+
 # -----------------------------
 # Inference
 # -----------------------------
@@ -197,6 +202,7 @@ for idx, entry in tqdm(enumerate(test_data), total=len(test_data)):
     probs = get_vote_probs(messages)
     pred = max(probs, key=probs.get)
     acc = accuracy_from_probs(probs, gt)
+    mi = mutual_information(probs, gt)
 
     results.append({
         "idx": idx,
@@ -204,8 +210,13 @@ for idx, entry in tqdm(enumerate(test_data), total=len(test_data)):
         "ground_truth": gt,
         "predicted_vote": pred,
         "probs": probs,
-        "accuracy": acc
+        "accuracy": acc,
+        "mutual_inf": mi
     })
+
+
+
+
 
 # -----------------------------
 # Convert results to DataFrame
@@ -276,7 +287,7 @@ print("\nSummary:", flush=True)
 print("Average accuracy:", df_final["accuracy"].mean(), flush=True)
 print("Tetrachoric correlation:", tetra, flush=True)
 print("Bias on Trump:", df_summary[f"Bias_{CANDIDATES[0]}"][0], flush=True)
-print("Average mutual information:", df_final["mutual_inf"].mean(), flush=True)
+# print("Average mutual information:", df_final["mutual_inf"].mean(), flush=True)
 print(f"Saved df_summary to: {summary_path}", flush=True)
 
 
