@@ -170,7 +170,7 @@ if ft_data:
         num_train_epochs=args.ft_epochs,
         logging_steps=50,
         save_strategy="no",
-        fp16=True,
+        bf16=True,
         seed=args.seed,
         # learning_rate=5e-5 if args.use_lora else 1e-5,
         learning_rate=1e-4,      # LoRA-friendly
