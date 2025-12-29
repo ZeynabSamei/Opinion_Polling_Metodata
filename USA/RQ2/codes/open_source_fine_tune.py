@@ -287,7 +287,7 @@ print("\nSummary:", flush=True)
 print("Average accuracy:", df_final["accuracy"].mean(), flush=True)
 print("Tetrachoric correlation:", tetra, flush=True)
 print("Bias on Trump:", df_summary[f"Bias_{CANDIDATES[0]}"][0], flush=True)
-# print("Average mutual information:", df_final["mutual_inf"].mean(), flush=True)
+print("Average mutual information:", df_final["mutual_inf"].mean(), flush=True)
 print(f"Saved df_summary to: {summary_path}", flush=True)
 
 
