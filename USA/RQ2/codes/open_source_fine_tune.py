@@ -73,8 +73,13 @@ tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
     device_map="auto",
-    torch_dtype=torch.float16
+    torch_dtype=torch.bfloat16
+    max_memory={i: "75GiB" for i in range(4)}
+    
 )
+
+model.gradient_checkpointing_enable()
+model.config.use_cache = False
 tokenizer.pad_token = tokenizer.eos_token
 model.config.pad_token_id = tokenizer.eos_token_id
 model.generation_config.pad_token_id = tokenizer.eos_token_id
