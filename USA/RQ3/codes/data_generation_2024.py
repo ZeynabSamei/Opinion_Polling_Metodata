@@ -13,7 +13,7 @@ OUTPUT_DIR = BASE_DIR / "dataset_test"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 file_path = DATA_DIR / "anes_timeseries_2024_csv_20250808.csv"
-output_file = OUTPUT_DIR / "anes_2024_interview_all_features_flat.json"
+output_file = OUTPUT_DIR / "anes_2024_interview_all_features.json"
 
 # ==========================================
 # 1. Load Data
