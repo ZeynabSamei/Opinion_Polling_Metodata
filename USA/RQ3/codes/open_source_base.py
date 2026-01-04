@@ -195,7 +195,7 @@ print(f"\nSaved results to: {OUT_FILE}")
 # Save final output as PKL
 # =====================================================
 df = pd.DataFrame(buffer)
-
+print(df.head(10))
 with open(OUT_PKL, "wb") as f:
     pickle.dump(df, f)
 
