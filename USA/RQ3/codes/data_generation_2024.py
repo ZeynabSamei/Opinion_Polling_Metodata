@@ -74,7 +74,7 @@ QUESTIONS = [
               5: "slightly conservative", 6: "conservative", 7: "extremely conservative"}}
 ]
 
-SYSTEM_PROMPT = "You are an expert political analyst. Answer the interview questions truthfully based on the information provided."
+SYSTEM_PROMPT = "You are an expert political analyst. Answer the interview questions truthfully based on the information provided. Just choose from the list of options with no more explanations."
 
 # ==========================================
 # 4. Build Interviews
