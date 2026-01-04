@@ -13,7 +13,7 @@ OUTPUT_DIR = BASE_DIR / "dataset_test"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 file_path = DATA_DIR / "anes_timeseries_2024_csv_20250808.csv"
-output_file = OUTPUT_DIR / "anes_2024_interview_all_features.json"
+output_file = OUTPUT_DIR / "anes_2024_interview_all_features_flat.json"
 
 # ==========================================
 # 1. Load Data
@@ -77,15 +77,15 @@ QUESTIONS = [
 SYSTEM_PROMPT = "You are an expert political analyst. Answer the interview questions truthfully based on the information provided. Just choose from the list of options with no more explanations."
 
 # ==========================================
-# 4. Build Interviews
+# 4. Build Interviews (flat format)
 # ==========================================
 chat_data = []
 
 for _, row in tqdm(df.iterrows(), total=len(df)):
     try:
         for HR_OMIT in [q["col"] for q in QUESTIONS]:
-            interview_text = ""
-
+            interview_text = SYSTEM_PROMPT + "\n\n"
+            
             # Add all questions except omitted feature
             for q in QUESTIONS:
                 col = q["col"]
@@ -94,18 +94,18 @@ for _, row in tqdm(df.iterrows(), total=len(df)):
                 if col not in row or pd.isna(row[col]):
                     continue
 
-                interview_text += f"- {q['question']}\n"
+                interview_text += f"{q['question']}\n"
                 if q["vals"] is None:
-                    interview_text += f"- Respondent: {int(row[col])}\n\n"
+                    interview_text += f"Respondent: {int(row[col])}\n\n"
                 else:
                     val = q["vals"].get(int(row[col]))
                     if val is None:
                         continue
-                    interview_text += f"- Respondent: {val}\n\n"
+                    interview_text += f"Respondent: {val}\n\n"
 
-            # Add the omitted feature as the last question
+            # Add the omitted feature as the last question (without answer)
             omit_question = next(q for q in QUESTIONS if q["col"] == HR_OMIT)
-            interview_text += f"- {omit_question['question']}\n"
+            interview_text += f"{omit_question['question']}\n"
 
             if omit_question["vals"] is None:
                 assistant_text = str(row[HR_OMIT])
@@ -114,11 +114,8 @@ for _, row in tqdm(df.iterrows(), total=len(df)):
 
             chat_data.append({
                 "features_raw": row.to_dict(),
-                "messages": [
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": interview_text.strip()},
-                    {"role": "assistant", "content": assistant_text}
-                ],
+                "prompt": interview_text.strip(),
+                "label": assistant_text,
                 "omitted_feature": HR_OMIT
             })
     except Exception:
@@ -134,4 +131,4 @@ random.shuffle(chat_data)
 with open(output_file, "w") as f:
     json.dump(chat_data, f, indent=2)
 
-print(f"Saved dataset predicting all features: {output_file}")
+print(f"Saved flat dataset predicting all features: {output_file}")
