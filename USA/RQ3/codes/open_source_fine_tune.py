@@ -244,7 +244,13 @@ for item in tqdm(interviews):
 # ===============================
 # Save output (IDENTICAL)
 # ===============================
-out_pkl = Path(args.out_dir) / f"anes_{args.election_year}_{args.model_name.replace('/', '_')}_interview.pkl"
+# out_pkl = Path(args.out_dir) / f"anes_{args.election_year}_{args.model_name.replace('/', '_')}_interview.pkl"
+out_pkl = os.path.join(
+    args.out_dir,
+    f"{safe_name(args.model_name)}_"
+    f"{args.election_year}_"
+    f"{safe_name(args.fine_tune_data)}_results.pkl"
+)
 
 df = pd.DataFrame(results)
 df.to_pickle(out_pkl)
