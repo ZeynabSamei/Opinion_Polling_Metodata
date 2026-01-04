@@ -5,6 +5,8 @@ import torch
 from pathlib import Path
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM
+import pickle
+import pandas as pd
 
 # =====================================================
 # Arguments
@@ -34,8 +36,8 @@ torch.manual_seed(args.seed)
 DATA_PATH = Path(args.data_path)
 OUT_DIR = Path(args.out_dir)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-
-OUT_FILE = OUT_DIR / f"anes_{args.election_year}_{args.model_name.replace('/', '_')}_predictions.jsonl"
+OUT_PKL = OUT_DIR / f"anes_{args.election_year}_{args.model_name.replace('/', '_')}_interview.pkl"
+OUT_FILE = OUT_DIR / f"anes_{args.election_year}_{args.model_name.replace('/', '_')}_interview.jsonl"
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -109,6 +111,8 @@ with open(OUT_FILE, "w") as fout:
         system_msg = item["messages"][0]["content"]
         user_msg = item["messages"][1]["content"]
         target = item["omitted_feature"]
+        ground_truth = item["features_raw"][target]
+
 
         prompt = tokenizer.apply_chat_template(
             [
@@ -146,11 +150,14 @@ with open(OUT_FILE, "w") as fout:
             "election_year": args.election_year,
             "model": args.model_name,
             "omitted_feature": target,
+            "ground_truth": ground_truth,
+            "prompt": prompt,
             "prediction_raw": pred_raw,
             "prediction_norm": pred_norm,
             "valid": valid,
             "features_raw": item["features_raw"]
         })
+
 
         # processed += 1
 
@@ -168,3 +175,14 @@ with open(OUT_FILE, "w") as fout:
         fout.write(json.dumps(row) + "\n")
 
 print(f"\nSaved results to: {OUT_FILE}")
+# =====================================================
+# Save final output as PKL
+# =====================================================
+df = pd.DataFrame(buffer)
+
+with open(OUT_PKL, "wb") as f:
+    pickle.dump(df, f)
+
+print(f"\nSaved final results to: {OUT_PKL}")
+print(f"Total rows: {len(df)}")
+
