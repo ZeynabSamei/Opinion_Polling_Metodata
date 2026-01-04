@@ -120,7 +120,7 @@ with open(OUT_FILE, "w") as fout:
         if target in ALLOWED_ANSWERS:
             try:
                 # If raw_value is an integer index
-                ground_truth = ALLOWED_ANSWERS[target][int(raw_value)]
+                ground_truth = ALLOWED_ANSWERS[target][int(raw_value)-1]
             except (ValueError, IndexError, TypeError):
                 # fallback: keep raw value as-is if mapping fails
                 ground_truth = str(raw_value)
