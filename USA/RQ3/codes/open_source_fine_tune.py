@@ -99,15 +99,44 @@ if args.fine_tune_data:
     with open(args.fine_tune_data) as f:
         ft_data = [json.loads(l) for l in f]
 
-    ft_texts = []
-    for item in ft_data:
-        prompt = "\n".join(
+
+
+def build_ft_text(item):
+    """
+    Normalize different FT dataset formats into a single text string
+    """
+
+    # Case 1: Chat-style dataset (messages)
+    if "messages" in item:
+        return "\n".join(
             f"{m['role']}: {m['content']}"
             for m in item["messages"]
+            if "role" in m and "content" in m
         )
-        ft_texts.append({
-            "text": prompt + tokenizer.eos_token
-        })
+
+    # Case 2: Prompt / completion format
+    if "prompt" in item and "completion" in item:
+        return item["prompt"] + tokenizer.eos_token + item["completion"]
+
+    # Case 3: OpenAI-style chat completion
+    if "prompt" in item and "response" in item:
+        return item["prompt"] + tokenizer.eos_token + item["response"]
+
+    # Case 4: Already flattened text
+    if "text" in item:
+        return item["text"]
+
+    # Case 5: Fallback (safe)
+    return json.dumps(item)
+
+
+print("Starting fine-tuning...")
+
+ft_texts = []
+for item in ft_data:
+    text = build_ft_text(item)
+    if text and isinstance(text, str):
+        ft_texts.append({"text": text + tokenizer.eos_token})
 
     ds = Dataset.from_list(ft_texts)
 
