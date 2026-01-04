@@ -111,7 +111,22 @@ with open(OUT_FILE, "w") as fout:
         system_msg = item["messages"][0]["content"]
         user_msg = item["messages"][1]["content"]
         target = item["omitted_feature"]
-        ground_truth = item["features_raw"][target]
+        # ground_truth = item["features_raw"][target]
+
+        raw_value = item["features_raw"][target]
+
+        # Map numeric index to text if target is in allowed answers
+        if target in ALLOWED_ANSWERS:
+            try:
+                # If raw_value is an integer index
+                ground_truth = ALLOWED_ANSWERS[target][int(raw_value)]
+            except (ValueError, IndexError, TypeError):
+                # fallback: keep raw value as-is if mapping fails
+                ground_truth = str(raw_value)
+        else:
+            # if target is not in ALLOWED_ANSWERS, just use raw
+            ground_truth = str(raw_value)
+
 
 
         prompt = tokenizer.apply_chat_template(
