@@ -60,7 +60,7 @@ model.eval()
 # =====================================================
 ALLOWED_ANSWERS = {
     "gender": ["male", "female"],
-    "race": ["white", "black", "asian", "hispanic"],
+    "race": ["white", "black", "hispanic", "asian",'native american','mixed race'],
     "church_attendance": ["yes", "no"],
     "pol_interest": [
         "very interested",
@@ -68,6 +68,7 @@ ALLOWED_ANSWERS = {
         "not very interested",
         "not at all interested"
     ],
+
     "vote_choice": [
         "kamala harris",
         "donald trump",
