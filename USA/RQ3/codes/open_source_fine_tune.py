@@ -37,6 +37,9 @@ parser.add_argument("--use_lora", action="store_true")
 
 args = parser.parse_args()
 
+
+def safe_name(s):
+    return str(s).replace("/", "_").replace(" ", "_")
 # ===============================
 # Setup
 # ===============================
@@ -244,6 +247,9 @@ for item in tqdm(interviews):
 # ===============================
 # Save output (IDENTICAL)
 # ===============================
+
+
+    
 # out_pkl = Path(args.out_dir) / f"anes_{args.election_year}_{args.model_name.replace('/', '_')}_interview.pkl"
 out_pkl = os.path.join(
     args.out_dir,
