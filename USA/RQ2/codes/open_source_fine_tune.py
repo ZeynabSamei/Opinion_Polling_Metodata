@@ -278,6 +278,8 @@ for c in CANDIDATES:
 summary_rows.append(row)
 df_summary = pd.DataFrame(summary_rows)
 
+
+print('Acc:',acc, 'Tetra:',tetra)
 # -----------------------------
 # Save outputs
 # -----------------------------
