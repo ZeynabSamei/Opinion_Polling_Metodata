@@ -147,37 +147,60 @@ if args.fine_tune_data:
 
     dataset = Dataset.from_list(ft_samples)
 
-    def tokenize_fn(examples):
-        return tokenizer(
-            examples["text"],
-            truncation=True,
-            padding="max_length",
-            max_length=args.max_seq_length
-        )
+# ----------------------------------------
+# 1. Load tokenizer & model
+# ----------------------------------------
+tokenizer = AutoTokenizer.from_pretrained(
+    args.model_name,
+    use_fast=True,
+)
 
-    tokenized_ds = dataset.map(tokenize_fn, batched=True)
+if tokenizer.pad_token is None:
+    tokenizer.pad_token = tokenizer.eos_token
 
-    trainer = Trainer(
-        model=model,
-        args=TrainingArguments(
-            output_dir=os.path.join(args.out_dir, "ft_model"),
-            per_device_train_batch_size=args.ft_batch_size,
-            num_train_epochs=args.ft_epochs,
-            learning_rate=1e-4,
-            logging_steps=50,
-            save_strategy="no",
-            seed=args.seed,
-            bf16=True if DEVICE == "cuda" else False
-        ),
-        train_dataset=tokenized_ds,
-        data_collator=DataCollatorForLanguageModeling(
-            tokenizer=tokenizer,
-            mlm=False
-        )
+model = AutoModelForCausalLM.from_pretrained(
+    args.model_name,
+    device_map="auto",
+    torch_dtype=torch.bfloat16 if DEVICE=="cuda" else torch.float32
+)
+
+# ----------------------------------------
+# 2. Tokenization function
+# ----------------------------------------
+def tokenize_fn(examples):
+    return tokenizer(
+        examples["text"],
+        truncation=True,
+        padding="max_length",  # safe now
+        max_length=args.max_seq_length
     )
 
-    trainer.train()
-    print("Fine-tuning completed")
+tokenized_ds = dataset.map(tokenize_fn, batched=True)
+
+# ----------------------------------------
+# 3. Trainer
+# ----------------------------------------
+trainer = Trainer(
+    model=model,
+    args=TrainingArguments(
+        output_dir=os.path.join(args.out_dir, "ft_model"),
+        per_device_train_batch_size=args.ft_batch_size,
+        num_train_epochs=args.ft_epochs,
+        learning_rate=1e-4,
+        logging_steps=50,
+        save_strategy="no",
+        seed=args.seed,
+        bf16=True if DEVICE == "cuda" else False
+    ),
+    train_dataset=tokenized_ds,
+    data_collator=DataCollatorForLanguageModeling(
+        tokenizer=tokenizer,
+        mlm=False
+    )
+)
+
+trainer.train()
+print("Fine-tuning completed")
 
 # ===============================
 # Inference (UNCHANGED LOGIC)
