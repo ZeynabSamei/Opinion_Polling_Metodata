@@ -279,7 +279,6 @@ summary_rows.append(row)
 df_summary = pd.DataFrame(summary_rows)
 
 
-print('Acc:',acc, 'Tetra:',tetra)
 # -----------------------------
 # Save outputs
 # -----------------------------
@@ -287,8 +286,8 @@ final_path = os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{a
 summary_path = final_path.replace(".pkl", "_summary.csv")
 
 df_final.to_pickle(final_path)
-df_final.to_csv(final_path.replace(".pkl", ".csv"), index=False)
-df_summary.to_csv(summary_path, index=False)
+# df_final.to_csv(final_path.replace(".pkl", ".csv"), index=False)
+# df_summary.to_csv(summary_path, index=False)
 
 # -----------------------------
 # Save detailed results
@@ -304,6 +303,8 @@ pd.DataFrame(results).to_pickle(out_file)
 pd.DataFrame(results).to_csv(out_file.replace(".pkl",".csv"), index=False)
 print(f"Saved results to {out_file}")
 print("Finished!")
+print('Acc:',df_final["accuracy"].mean(), 'Tetra:',tetra)
+
 
 
 
