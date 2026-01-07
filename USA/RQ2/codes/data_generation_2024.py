@@ -120,6 +120,7 @@ for _, row in df.iterrows():
             f"Ideologically, I am {text_features['ideology']}. "
             f"I {text_features['church_attendance']}. "
             f"I am {text_features['pol_interest']} interested in politics. "
+            "In the 2024 presidential election, I voted for "
 
         )
 
