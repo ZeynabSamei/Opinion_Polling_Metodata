@@ -164,6 +164,38 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.bfloat16 if DEVICE=="cuda" else torch.float32
 )
 
+
+
+def get_option_probs(prompt, options, tokenizer, model, device):
+    input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
+
+    option_probs = {}
+    with torch.no_grad():
+        for option in options:
+            option_ids = tokenizer.encode(option, add_special_tokens=False)
+            logp = 0.0
+            cur_ids = input_ids.clone()
+
+            for tok in option_ids:
+                outputs = model(input_ids=cur_ids)
+                logits = outputs.logits[:, -1, :]
+                log_probs = torch.log_softmax(logits, dim=-1)
+                logp += log_probs[0, tok].item()
+                cur_ids = torch.cat(
+                    [cur_ids, torch.tensor([[tok]], device=device)], dim=1
+                )
+
+            option_probs[option] = np.exp(logp)
+
+    Z = sum(option_probs.values())
+    if Z > 0:
+        option_probs = {k: v / Z for k, v in option_probs.items()}
+    else:
+        option_probs = {k: 1 / len(options) for k in options}
+
+    return option_probs
+
+
 # ----------------------------------------
 # 2. Tokenization function
 # ----------------------------------------
@@ -214,14 +246,25 @@ for item in tqdm(interviews):
     target = item["omitted_feature"]
 
     raw_value = item["features_raw"][target]
+    
+
+    
 
     if target in ALLOWED_ANSWERS:
         try:
             ground_truth = ALLOWED_ANSWERS[target][int(raw_value) - 1]
+            option_probs = get_option_probs(
+                prompt=prompt,
+                options=ALLOWED_ANSWERS[target],
+                tokenizer=tokenizer,
+                model=model,
+                device=model.device
+            )
         except Exception:
             ground_truth = str(raw_value)
     else:
         ground_truth = str(raw_value)
+        option_probs = None
 
     prompt = tokenizer.apply_chat_template(
         [
@@ -264,6 +307,7 @@ for item in tqdm(interviews):
         "prediction_raw": pred_raw,
         "prediction_norm": pred_norm,
         "valid": valid,
+        "option_probs": option_probs,
         "features_raw": item["features_raw"]
     })
 
