@@ -196,6 +196,8 @@ df_final.to_pickle(final_path)
 # df_final.to_csv(final_path.replace(".pkl", ".csv"), index=False)
 # df_summary.to_csv(summary_path, index=False)
 
+print(df_final['probs'][0])
+
 # -----------------------------
 # Print summary
 # -----------------------------
@@ -204,7 +206,6 @@ print("Average accuracy:", df_final["accuracy"].mean())
 print("Average mutual information:", df_final["mutual_inf"].mean())
 print("Average Wasserstein distance:", df_final["wasserstein"].mean())
 print(f"\nSaved df_summary to: {summary_path}")
-
 
 
 
