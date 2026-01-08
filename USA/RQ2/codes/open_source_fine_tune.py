@@ -48,11 +48,9 @@ torch.manual_seed(args.seed)
 # -----------------------------
 if args.election_year == 2020:
     CANDIDATES = ["Donald Trump", "Joe Biden"]
-    ALL_CLASSES = ["Donald Trump", "Joe Biden", "Other"]
 
 elif args.election_year == 2024:
     CANDIDATES = ["Donald Trump", "Kamala Harris"]
-    ALL_CLASSES = ["Donald Trump", "Kamala Harris", "Other"]
 
 
 CANDIDATES_NORM = [c.lower() for c in CANDIDATES]
@@ -117,6 +115,7 @@ def normalize_vote(text):
     return "Other"
 
 
+
 def extract_ground_truth(messages):
     for m in messages:
         if m.get("role") == "assistant":
@@ -126,8 +125,7 @@ def extract_ground_truth(messages):
 def get_vote_probs(messages):
     clean_msgs = [m for m in messages if m["role"] != "assistant"]
     prompt = "\n".join(f"{m['role']}: {m['content']}" for m in clean_msgs)
-    prompt += f"\nVote choice ({' or '.join(ALL_CLASSES)}):"
-    prompt += "\nVote choice:"
+    prompt += f"\nVote choice ({' or '.join(CANDIDATES)}):"
 
     input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
 
@@ -149,22 +147,14 @@ def get_vote_probs(messages):
 
             probs[candidate] = p
 
-    # Normalize Trump/Harris
+    # Binary normalization
     Z = sum(probs.values())
     if Z > 0:
         probs = {k: v / Z for k, v in probs.items()}
     else:
-        probs = {k: 0.5 for k in probs}
-
-    # Residual "Other"
-    probs["Other"] = max(0.0, 1.0 - sum(probs.values()))
-
-    # Final normalization (numerical safety)
-    Z = sum(probs.values())
-    probs = {k: v / Z for k, v in probs.items()}
+        probs = {c: 0.5 for c in CANDIDATES}
 
     return probs
-
 
 def accuracy_from_probs(probs, ground_truth):
     return int(max(probs, key=probs.get) == ground_truth)
@@ -270,25 +260,30 @@ df_final = pd.DataFrame(results)
 df_final["llm_binary"] = df_final["predicted_vote"]
 df_final["anes_binary"] = df_final["ground_truth"]
 
-df_final["llm_num"] = df_final["llm_binary"].apply(lambda x: 0 if x == CANDIDATES[1] else 1)
-df_final["anes_num"] = df_final["anes_binary"].apply(lambda x: 0 if x == CANDIDATES[1] else 1)
+df_final["llm_num"] = df_final["llm_binary"].apply(
+    lambda x: 0 if x == CANDIDATES[1] else 1
+)
+df_final["anes_num"] = df_final["anes_binary"].apply(
+    lambda x: 0 if x == CANDIDATES[1] else 1
+)
 
-# -----------------------------
-# Tetrachoric correlation
-# -----------------------------
-# def tetrachoric_corr_safe(vec1, vec2):
-#     A = np.sum((vec1 == 0) & (vec2 == 0))
-#     B = np.sum((vec1 == 0) & (vec2 == 1))
-#     C = np.sum((vec1 == 1) & (vec2 == 0))
-#     D = np.sum((vec1 == 1) & (vec2 == 1))
-#     if (A+B)==0 or (C+D)==0 or (A+C)==0 or (B+D)==0:
-#         return np.nan
-#     try:
-#         return np.cos(np.pi / (1 + np.sqrt((A*D)/(B*C))))
-#     except:
-#         return np.nan
 
-# tetra = tetrachoric_corr_safe(df_final["llm_num"].values, df_final["anes_num"].values)
+-----------------------------
+Tetrachoric correlation
+-----------------------------
+def tetrachoric_corr_safe(vec1, vec2):
+    A = np.sum((vec1 == 0) & (vec2 == 0))
+    B = np.sum((vec1 == 0) & (vec2 == 1))
+    C = np.sum((vec1 == 1) & (vec2 == 0))
+    D = np.sum((vec1 == 1) & (vec2 == 1))
+    if (A+B)==0 or (C+D)==0 or (A+C)==0 or (B+D)==0:
+        return np.nan
+    try:
+        return np.cos(np.pi / (1 + np.sqrt((A*D)/(B*C))))
+    except:
+        return np.nan
+
+tetra = tetrachoric_corr_safe(df_final["llm_num"].values, df_final["anes_num"].values)
 
 # -----------------------------
 # Bias computation
@@ -301,12 +296,13 @@ row = {
     "Prop.Agree": np.mean(df_final["llm_binary"] == df_final["anes_binary"])
 }
 
-for c in ALL_CLASSES:
+for c in CANDIDATES:
     real_pct = np.mean(df_final["anes_binary"] == c)
     llm_pct = np.mean([p[c] for p in df_final["probs"]])
     row[f"RealPct_{c}"] = real_pct
     row[f"LLMPct_{c}"] = llm_pct
     row[f"Bias_{c}"] = llm_pct - real_pct
+
 
 summary_rows.append(row)
 df_summary = pd.DataFrame(summary_rows)
@@ -334,8 +330,8 @@ out_file = os.path.join(
 pd.DataFrame(results).to_pickle(out_file)
 pd.DataFrame(results).to_csv(out_file.replace(".pkl",".csv"), index=False)
 print(f"Saved results to {out_file}")
-print("Finished!")
-print('Acc:',df_final["accuracy"].mean())
+print("Finished!........")
+print('Acc:',df_final["accuracy"].mean() , 'Tetra:', tetra)
 
 
 
@@ -351,7 +347,6 @@ print('Acc:',df_final["accuracy"].mean())
 #     DataCollatorForLanguageModeling
 # )
 # from datasets import Dataset
-# from sklearn.metrics import cohen_kappa_score
 # import argparse
 # from tqdm import tqdm
 
@@ -391,8 +386,13 @@ print('Acc:',df_final["accuracy"].mean())
 # # -----------------------------
 # if args.election_year == 2020:
 #     CANDIDATES = ["Donald Trump", "Joe Biden"]
+#     ALL_CLASSES = ["Donald Trump", "Joe Biden", "Other"]
+
 # elif args.election_year == 2024:
 #     CANDIDATES = ["Donald Trump", "Kamala Harris"]
+#     ALL_CLASSES = ["Donald Trump", "Kamala Harris", "Other"]
+
+
 # CANDIDATES_NORM = [c.lower() for c in CANDIDATES]
 
 # # -----------------------------
@@ -415,11 +415,8 @@ print('Acc:',df_final["accuracy"].mean())
 # model = AutoModelForCausalLM.from_pretrained(
 #     args.model_name,
 #     device_map="auto",
-#     torch_dtype=torch.bfloat16,
-#     max_memory={i: "75GiB" for i in range(4)}
-    
+#     torch_dtype=torch.bfloat16
 # )
-
 # model.gradient_checkpointing_enable()
 # model.config.use_cache = False
 # tokenizer.pad_token = tokenizer.eos_token
@@ -449,65 +446,110 @@ print('Acc:',df_final["accuracy"].mean())
 # # Helper functions
 # # -----------------------------
 # def normalize_vote(text):
-#     if text is None: return None
+#     if text is None:
+#         return "Other"
 #     t = text.lower()
 #     for c in CANDIDATES:
 #         if c.lower() in t:
 #             return c
-#     return None
+#     return "Other"
+
 
 # def extract_ground_truth(messages):
 #     for m in messages:
-#         if m["role"] == "assistant":
-#             return normalize_vote(m["content"])
+#         if m.get("role") == "assistant":
+#             return normalize_vote(m.get("content"))
 #     return None
 
-# def get_vote_probs(messages, max_new_tokens=10):
+# def get_vote_probs(messages):
 #     clean_msgs = [m for m in messages if m["role"] != "assistant"]
 #     prompt = "\n".join(f"{m['role']}: {m['content']}" for m in clean_msgs)
-#     prompt += f"\nVote choice ({' or '.join(CANDIDATES)}):"
+#     prompt += f"\nVote choice ({' or '.join(ALL_CLASSES)}):"
+#     prompt += "\nVote choice:"
 
-#     inputs_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
-#     candidate_probs = {}
-#     for candidate in CANDIDATES:
-#         candidate_ids = tokenizer.encode(candidate, add_special_tokens=False)
-#         prob = 1.0
-#         current_input_ids = inputs_ids.clone()
-#         with torch.no_grad():
-#             for token_id in candidate_ids:
-#                 outputs = model(input_ids=current_input_ids)
-#                 logits = outputs.logits[:, -1, :]
+#     input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
+
+#     probs = {}
+
+#     with torch.no_grad():
+#         for candidate in CANDIDATES:
+#             token_ids = tokenizer.encode(candidate, add_special_tokens=False)
+#             p = 1.0
+#             curr = input_ids.clone()
+
+#             for tid in token_ids:
+#                 logits = model(curr).logits[:, -1, :]
 #                 token_probs = torch.softmax(logits, dim=-1)
-#                 prob *= token_probs[0, token_id].item()
-#                 current_input_ids = torch.cat([current_input_ids, torch.tensor([[token_id]]).to(device)], dim=1)
-#         candidate_probs[candidate] = prob
+#                 p *= token_probs[0, tid].item()
+#                 curr = torch.cat(
+#                     [curr, torch.tensor([[tid]], device=device)], dim=1
+#                 )
 
-#     total = sum(candidate_probs.values())
-#     if total > 0:
-#         candidate_probs = {c: p / total for c, p in candidate_probs.items()}
+#             probs[candidate] = p
+
+#     # Normalize Trump/Harris
+#     Z = sum(probs.values())
+#     if Z > 0:
+#         probs = {k: v / Z for k, v in probs.items()}
 #     else:
-#         candidate_probs = {c: 1/len(CANDIDATES) for c in CANDIDATES}
+#         probs = {k: 0.5 for k in probs}
 
-#     return candidate_probs
+#     # Residual "Other"
+#     probs["Other"] = max(0.0, 1.0 - sum(probs.values()))
+
+#     # Final normalization (numerical safety)
+#     Z = sum(probs.values())
+#     probs = {k: v / Z for k, v in probs.items()}
+
+#     return probs
+
 
 # def accuracy_from_probs(probs, ground_truth):
 #     return int(max(probs, key=probs.get) == ground_truth)
 
+# def mutual_information(probs, ground_truth, eps=1e-12):
+#     p = max(probs.get(ground_truth, eps), eps)
+#     return -np.log2(p)
+
+
+# def probs_to_vector(probs):
+#     return np.array([
+#         probs["Donald Trump"],
+#         probs["Kamala Harris"],
+#         probs["Other"]
+#     ])
+
+
 # # -----------------------------
-# # Fine-tuning (optional)
+# # Fine-tuning (optional, robust)
 # # -----------------------------
 # if ft_data:
 #     print("Starting fine-tuning ...")
 #     ft_texts = []
-#     for item in ft_data:  # small subset for speed
-#         prompt = "\n".join(f"{m['role']}: {m['content']}" for m in item.get("messages", []))
-#         target = next((m["content"] for m in item.get("messages", []) if m["role"]=="assistant"), "")
+
+#     for item in ft_data:
+#         # Chat-completion format
+#         if "messages" in item:
+#             messages = item["messages"]
+#             prompt = "\n".join(f"{m['role']}: {m['content']}" for m in messages if m.get("role") != "assistant")
+#             target = next((m["content"] for m in messages if m.get("role")=="assistant"), "")
+#         # Completion format
+#         elif "prompt" in item and "completion" in item:
+#             prompt = item["prompt"]
+#             target = item["completion"]
+#         # Unknown format → skip
+#         else:
+#             print(f"Skipping FT item (unknown format): {item}")
+#             continue
+
 #         ft_texts.append({"text": prompt + tokenizer.eos_token + target + tokenizer.eos_token})
 
 #     dataset = Dataset.from_list(ft_texts)
+
 #     def tokenize_fn(examples):
 #         return tokenizer(examples["text"], truncation=True, padding="max_length", max_length=192)
 #     tokenized_ds = dataset.map(tokenize_fn, batched=True)
+
 #     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
 
 #     training_args = TrainingArguments(
@@ -519,11 +561,9 @@ print('Acc:',df_final["accuracy"].mean())
 #         save_strategy="no",
 #         bf16=True,
 #         seed=args.seed,
-#         # learning_rate=5e-5 if args.use_lora else 1e-5,
-#         learning_rate=1e-4,      # LoRA-friendly
-#         warmup_ratio=0.1,        
+#         learning_rate=1e-4,
+#         warmup_ratio=0.1,
 #     )
-
 
 #     trainer = Trainer(
 #         model=model,
@@ -536,11 +576,6 @@ print('Acc:',df_final["accuracy"].mean())
 #     trainer.train()
 #     print("Fine-tuning completed.")
 
-
-# def mutual_information(probs, ground_truth, eps=1e-12):
-#     p = max(probs.get(ground_truth, eps), eps)
-#     return -np.log2(p)
-
 # # -----------------------------
 # # Inference
 # # -----------------------------
@@ -548,7 +583,7 @@ print('Acc:',df_final["accuracy"].mean())
 # for idx, entry in tqdm(enumerate(test_data), total=len(test_data)):
 #     messages = entry.get("messages", [])
 #     gt = extract_ground_truth(messages)
-#     if gt is None or gt.lower() not in CANDIDATES_NORM:
+#     if gt is None:
 #         continue
 
 #     probs = get_vote_probs(messages)
@@ -566,18 +601,10 @@ print('Acc:',df_final["accuracy"].mean())
 #         "mutual_inf": mi
 #     })
 
-
-
-
-
 # # -----------------------------
 # # Convert results to DataFrame
 # # -----------------------------
 # df_final = pd.DataFrame(results)
-
-# # -----------------------------
-# # Binary encoding for tetra + bias
-# # -----------------------------
 # df_final["llm_binary"] = df_final["predicted_vote"]
 # df_final["anes_binary"] = df_final["ground_truth"]
 
@@ -587,19 +614,19 @@ print('Acc:',df_final["accuracy"].mean())
 # # -----------------------------
 # # Tetrachoric correlation
 # # -----------------------------
-# def tetrachoric_corr_safe(vec1, vec2):
-#     A = np.sum((vec1 == 0) & (vec2 == 0))
-#     B = np.sum((vec1 == 0) & (vec2 == 1))
-#     C = np.sum((vec1 == 1) & (vec2 == 0))
-#     D = np.sum((vec1 == 1) & (vec2 == 1))
-#     if (A+B)==0 or (C+D)==0 or (A+C)==0 or (B+D)==0:
-#         return np.nan
-#     try:
-#         return np.cos(np.pi / (1 + np.sqrt((A*D)/(B*C))))
-#     except:
-#         return np.nan
+# # def tetrachoric_corr_safe(vec1, vec2):
+# #     A = np.sum((vec1 == 0) & (vec2 == 0))
+# #     B = np.sum((vec1 == 0) & (vec2 == 1))
+# #     C = np.sum((vec1 == 1) & (vec2 == 0))
+# #     D = np.sum((vec1 == 1) & (vec2 == 1))
+# #     if (A+B)==0 or (C+D)==0 or (A+C)==0 or (B+D)==0:
+# #         return np.nan
+# #     try:
+# #         return np.cos(np.pi / (1 + np.sqrt((A*D)/(B*C))))
+# #     except:
+# #         return np.nan
 
-# tetra = tetrachoric_corr_safe(df_final["llm_num"].values, df_final["anes_num"].values)
+# # tetra = tetrachoric_corr_safe(df_final["llm_num"].values, df_final["anes_num"].values)
 
 # # -----------------------------
 # # Bias computation
@@ -608,11 +635,11 @@ print('Acc:',df_final["accuracy"].mean())
 # row = {
 #     "Variable": "Wholesample",
 #     "n_samples": len(df_final),
-#     "Tetra": tetra,
+#     # "Tetra": tetra,
 #     "Prop.Agree": np.mean(df_final["llm_binary"] == df_final["anes_binary"])
 # }
 
-# for c in CANDIDATES:
+# for c in ALL_CLASSES:
 #     real_pct = np.mean(df_final["anes_binary"] == c)
 #     llm_pct = np.mean([p[c] for p in df_final["probs"]])
 #     row[f"RealPct_{c}"] = real_pct
@@ -622,6 +649,7 @@ print('Acc:',df_final["accuracy"].mean())
 # summary_rows.append(row)
 # df_summary = pd.DataFrame(summary_rows)
 
+
 # # -----------------------------
 # # Save outputs
 # # -----------------------------
@@ -629,41 +657,22 @@ print('Acc:',df_final["accuracy"].mean())
 # summary_path = final_path.replace(".pkl", "_summary.csv")
 
 # df_final.to_pickle(final_path)
-# df_final.to_csv(final_path.replace(".pkl", ".csv"), index=False)
-# df_summary.to_csv(summary_path, index=False)
+
 
 # # -----------------------------
-# # Print summary
+# # Save detailed results
 # # -----------------------------
-# print("\nSummary:", flush=True)
-# print("Average accuracy:", df_final["accuracy"].mean(), flush=True)
-# print("Tetrachoric correlation:", tetra, flush=True)
-# print("Bias on Trump:", df_summary[f"Bias_{CANDIDATES[0]}"][0], flush=True)
-# print("Average mutual information:", df_final["mutual_inf"].mean(), flush=True)
-# print(f"Saved df_summary to: {summary_path}", flush=True)
-
 # def safe_name(s):
 #     return str(s).replace("/", "_").replace(" ", "_")
 
-# # -----------------------------
-# # Save results
-# # -----------------------------
-# # out_file = os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{args.election_year}_{args.fine_tune_data}_results.pkl")
 # out_file = os.path.join(
 #     args.out_dir,
-#     f"{safe_name(args.model_name)}_"
-#     f"{args.election_year}_"
-#     f"{safe_name(args.fine_tune_data)}_results.pkl"
+#     f"{safe_name(args.model_name)}_{args.election_year}_{safe_name(args.fine_tune_data)}_results.pkl"
 # )
 # pd.DataFrame(results).to_pickle(out_file)
 # pd.DataFrame(results).to_csv(out_file.replace(".pkl",".csv"), index=False)
 # print(f"Saved results to {out_file}")
 # print("Finished!")
-
-
-
-
-
-
+# print('Acc:',df_final["accuracy"].mean())
 
 
