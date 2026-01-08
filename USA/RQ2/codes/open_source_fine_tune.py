@@ -268,9 +268,9 @@ df_final["anes_num"] = df_final["anes_binary"].apply(
 )
 
 
------------------------------
-Tetrachoric correlation
------------------------------
+# -----------------------------
+# Tetrachoric correlation
+# -----------------------------
 def tetrachoric_corr_safe(vec1, vec2):
     A = np.sum((vec1 == 0) & (vec2 == 0))
     B = np.sum((vec1 == 0) & (vec2 == 1))
