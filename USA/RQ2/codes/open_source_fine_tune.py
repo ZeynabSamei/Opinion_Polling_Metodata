@@ -151,6 +151,9 @@ def mutual_information(probs, ground_truth, eps=1e-12):
     p = max(probs.get(ground_truth, eps), eps)
     return -np.log2(p)
 
+
+os.environ["WANDB_MODE"] = "disabled"
+
 # -----------------------------
 # Fine-tuning (optional, robust)
 # -----------------------------
