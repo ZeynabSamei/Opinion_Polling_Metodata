@@ -1,3 +1,6 @@
+# =====================================================
+# Imports
+# =====================================================
 import os
 import json
 import pickle
@@ -8,20 +11,21 @@ import torch
 import pandas as pd
 from pathlib import Path
 from tqdm import tqdm
+
 from transformers import (
     AutoTokenizer,
     AutoModelForCausalLM,
     Trainer,
     TrainingArguments,
-    DataCollatorForLanguageModeling
+    DataCollatorForLanguageModeling,
 )
 from datasets import Dataset
 
-# ===============================
+# =====================================================
 # Arguments
-# ===============================
+# =====================================================
 parser = argparse.ArgumentParser(
-    description="Fine-tune (optional) + Evaluate LLM on ANES interview prompts"
+    description="Fine-tune (LoRA) + Evaluate LLM on ANES interview prompts"
 )
 
 parser.add_argument("--model_name", type=str, required=True)
@@ -30,29 +34,33 @@ parser.add_argument("--fine_tune_data", type=str, default=None)
 parser.add_argument("--out_dir", type=str, default="./results")
 parser.add_argument("--election_year", type=int, choices=[2020, 2024], required=True)
 parser.add_argument("--ft_epochs", type=int, default=1)
-parser.add_argument("--ft_batch_size", type=int, default=4)
+parser.add_argument("--ft_batch_size", type=int, default=1)
 parser.add_argument("--max_seq_length", type=int, default=192)
 parser.add_argument("--seed", type=int, default=42)
 parser.add_argument("--use_lora", action="store_true")
 
 args = parser.parse_args()
 
-
+# =====================================================
+# Utils
+# =====================================================
 def safe_name(s):
     return str(s).replace("/", "_").replace(" ", "_")
-# ===============================
+
+# =====================================================
 # Setup
-# ===============================
+# =====================================================
 os.makedirs(args.out_dir, exist_ok=True)
+
 random.seed(args.seed)
 np.random.seed(args.seed)
 torch.manual_seed(args.seed)
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-# ===============================
+# =====================================================
 # Allowed answers (UNCHANGED)
-# ===============================
+# =====================================================
 ALLOWED_ANSWERS = {
     "gender": ["male", "female"],
     "race": ["white", "black", "hispanic", "asian", "native american", "mixed race"],
@@ -61,13 +69,9 @@ ALLOWED_ANSWERS = {
         "very interested",
         "somewhat interested",
         "not very interested",
-        "not at all interested"
+        "not at all interested",
     ],
-    "vote_choice": [
-        "kamala harris",
-        "donald trump",
-        "someone else"
-    ],
+    "vote_choice": ["kamala harris", "donald trump", "someone else"],
     "ideology": [
         "extremely liberal",
         "liberal",
@@ -75,66 +79,70 @@ ALLOWED_ANSWERS = {
         "moderate",
         "slightly conservative",
         "conservative",
-        "extremely conservative"
-    ]
+        "extremely conservative",
+    ],
 }
 
-# ===============================
+# =====================================================
 # Load Interview Data
-# ===============================
+# =====================================================
 with open(args.data_path) as f:
     interviews = json.load(f)
 
 print(f"Loaded {len(interviews)} interview prompts")
 
-# ===============================
-# Load model
-# ===============================
+# =====================================================
+# Tokenizer (ONCE)
+# =====================================================
+tokenizer = AutoTokenizer.from_pretrained(args.model_name, use_fast=True)
+if tokenizer.pad_token is None:
+    tokenizer.pad_token = tokenizer.eos_token
+
+# =====================================================
+# Model load (ONCE, SAFE)
+# =====================================================
 print(f"Loading model: {args.model_name}")
-tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
     device_map="auto",
-    torch_dtype=torch.float16 if DEVICE == "cuda" else torch.float32
+    torch_dtype=torch.bfloat16 if DEVICE == "cuda" else torch.float32,
 )
-model.eval()
 
-# ===============================
-# LoRA (optional)
-# ===============================
+# =====================================================
+# LoRA (FIXED & REAL)
+# =====================================================
 if args.use_lora:
-    from peft import LoraConfig, get_peft_model, TaskType
+    from peft import LoraConfig, get_peft_model
+
+    # 🔑 Freeze base model
+    for p in model.parameters():
+        p.requires_grad = False
 
     lora_config = LoraConfig(
-        task_type=TaskType.CAUSAL_LM,
         r=16,
         lora_alpha=32,
+        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
         lora_dropout=0.05,
-        bias="none"
+        bias="none",
+        task_type="CAUSAL_LM",
     )
-    model = get_peft_model(model, lora_config)
-    print("LoRA enabled")
 
-# ===============================
-# Fine-tuning (ONCE)
-# ===============================
+    model = get_peft_model(model, lora_config)
+    model.print_trainable_parameters()
+
+# =====================================================
+# Fine-tuning dataset
+# =====================================================
 if args.fine_tune_data:
 
-    print("Starting fine-tuning...")
+    print("Preparing fine-tuning dataset...")
 
     def build_ft_text(item):
-        # Case 1: chat format
         if "messages" in item:
-            return "\n".join(
-                f"{m['role']}: {m['content']}"
-                for m in item["messages"]
-            )
-
-        # Case 2: completion format
+            return "\n".join(f"{m['role']}: {m['content']}" for m in item["messages"])
         if "prompt" in item and "completion" in item:
             return item["prompt"] + item["completion"]
-
         return None
 
     ft_samples = []
@@ -147,25 +155,46 @@ if args.fine_tune_data:
 
     dataset = Dataset.from_list(ft_samples)
 
-# ----------------------------------------
-# 1. Load tokenizer & model
-# ----------------------------------------
-tokenizer = AutoTokenizer.from_pretrained(
-    args.model_name,
-    use_fast=True,
-)
+    def tokenize_fn(examples):
+        return tokenizer(
+            examples["text"],
+            truncation=True,
+            padding="max_length",
+            max_length=args.max_seq_length,
+        )
 
-if tokenizer.pad_token is None:
-    tokenizer.pad_token = tokenizer.eos_token
+    tokenized_ds = dataset.map(tokenize_fn, batched=True)
 
-model = AutoModelForCausalLM.from_pretrained(
-    args.model_name,
-    device_map="auto",
-    torch_dtype=torch.bfloat16 if DEVICE=="cuda" else torch.float32
-)
+    # =====================================================
+    # Trainer (MEMORY SAFE)
+    # =====================================================
+    trainer = Trainer(
+        model=model,
+        args=TrainingArguments(
+            output_dir=os.path.join(args.out_dir, "ft_model"),
+            per_device_train_batch_size=args.ft_batch_size,
+            gradient_accumulation_steps=2,
+            num_train_epochs=args.ft_epochs,
+            learning_rate=1e-4,
+            logging_steps=50,
+            save_strategy="no",
+            seed=args.seed,
+            bf16=True if DEVICE == "cuda" else False,
+            optim="paged_adamw_8bit",  # 🔑 critical
+            report_to="none",
+        ),
+        train_dataset=tokenized_ds,
+        data_collator=DataCollatorForLanguageModeling(
+            tokenizer=tokenizer, mlm=False
+        ),
+    )
 
+    trainer.train()
+    print("Fine-tuning completed")
 
-
+# =====================================================
+# Option probability computation (UNCHANGED)
+# =====================================================
 def get_option_probs(prompt, options, tokenizer, model, device):
     input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
 
@@ -188,55 +217,13 @@ def get_option_probs(prompt, options, tokenizer, model, device):
             option_probs[option] = np.exp(logp)
 
     Z = sum(option_probs.values())
-    if Z > 0:
-        option_probs = {k: v / Z for k, v in option_probs.items()}
-    else:
-        option_probs = {k: 1 / len(options) for k in options}
+    return {k: v / Z for k, v in option_probs.items()} if Z > 0 else {
+        k: 1 / len(options) for k in options
+    }
 
-    return option_probs
-
-
-# ----------------------------------------
-# 2. Tokenization function
-# ----------------------------------------
-def tokenize_fn(examples):
-    return tokenizer(
-        examples["text"],
-        truncation=True,
-        padding="max_length",  # safe now
-        max_length=args.max_seq_length
-    )
-
-tokenized_ds = dataset.map(tokenize_fn, batched=True)
-
-# ----------------------------------------
-# 3. Trainer
-# ----------------------------------------
-trainer = Trainer(
-    model=model,
-    args=TrainingArguments(
-        output_dir=os.path.join(args.out_dir, "ft_model"),
-        per_device_train_batch_size=args.ft_batch_size,
-        num_train_epochs=args.ft_epochs,
-        learning_rate=1e-4,
-        logging_steps=50,
-        save_strategy="no",
-        seed=args.seed,
-        bf16=True if DEVICE == "cuda" else False
-    ),
-    train_dataset=tokenized_ds,
-    data_collator=DataCollatorForLanguageModeling(
-        tokenizer=tokenizer,
-        mlm=False
-    )
-)
-
-trainer.train()
-print("Fine-tuning completed")
-
-# ===============================
+# =====================================================
 # Inference (UNCHANGED LOGIC)
-# ===============================
+# =====================================================
 results = []
 
 for item in tqdm(interviews):
@@ -246,44 +233,27 @@ for item in tqdm(interviews):
     target = item["omitted_feature"]
     raw_value = item["features_raw"][target]
 
-    # -----------------------------
-    # Build prompt FIRST
-    # -----------------------------
     prompt = tokenizer.apply_chat_template(
         [
             {"role": "system", "content": system_msg},
-            {"role": "user", "content": user_msg}
+            {"role": "user", "content": user_msg},
         ],
         tokenize=False,
-        add_generation_prompt=True
+        add_generation_prompt=True,
     )
 
-    # -----------------------------
-    # Defaults
-    # -----------------------------
     option_probs = None
-
-    # -----------------------------
-    # Ground truth + option probs
-    # -----------------------------
     if target in ALLOWED_ANSWERS:
         try:
             ground_truth = ALLOWED_ANSWERS[target][int(raw_value) - 1]
             option_probs = get_option_probs(
-                prompt=prompt,
-                options=ALLOWED_ANSWERS[target],
-                tokenizer=tokenizer,
-                model=model,
-                device=model.device
+                prompt, ALLOWED_ANSWERS[target], tokenizer, model, model.device
             )
         except Exception:
             ground_truth = str(raw_value)
     else:
         ground_truth = str(raw_value)
 
-    # -----------------------------
-    # Generation
-    # -----------------------------
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
     with torch.no_grad():
@@ -292,47 +262,39 @@ for item in tqdm(interviews):
             max_new_tokens=8,
             temperature=0.7,
             do_sample=True,
-            pad_token_id=tokenizer.eos_token_id
+            pad_token_id=tokenizer.eos_token_id,
         )
 
     decoded = tokenizer.decode(
         outputs[0][inputs["input_ids"].shape[-1]:],
-        skip_special_tokens=True
+        skip_special_tokens=True,
     )
 
     pred_raw = decoded.strip()
     pred_norm = pred_raw.lower().strip()
+    valid = pred_norm in ALLOWED_ANSWERS.get(target, [pred_norm])
 
-    valid = True
-    if target in ALLOWED_ANSWERS:
-        valid = pred_norm in ALLOWED_ANSWERS[target]
+    results.append(
+        {
+            "election_year": args.election_year,
+            "model": args.model_name,
+            "omitted_feature": target,
+            "ground_truth": ground_truth,
+            "prompt": prompt,
+            "prediction_raw": pred_raw,
+            "prediction_norm": pred_norm,
+            "valid": valid,
+            "option_probs": option_probs,
+            "features_raw": item["features_raw"],
+        }
+    )
 
-    results.append({
-        "election_year": args.election_year,
-        "model": args.model_name,
-        "omitted_feature": target,
-        "ground_truth": ground_truth,
-        "prompt": prompt,
-        "prediction_raw": pred_raw,
-        "prediction_norm": pred_norm,
-        "valid": valid,
-        "option_probs": option_probs,   # now always defined
-        "features_raw": item["features_raw"]
-    })
-
-
-# ===============================
-# Save output (IDENTICAL)
-# ===============================
-
-
-    
-# out_pkl = Path(args.out_dir) / f"anes_{args.election_year}_{args.model_name.replace('/', '_')}_interview.pkl"
+# =====================================================
+# Save output (UNCHANGED)
+# =====================================================
 out_pkl = os.path.join(
     args.out_dir,
-    f"{safe_name(args.model_name)}_"
-    f"{args.election_year}_"
-    f"{safe_name(args.fine_tune_data)}_results.pkl"
+    f"{safe_name(args.model_name)}_{args.election_year}_{safe_name(args.fine_tune_data)}_results.pkl",
 )
 
 df = pd.DataFrame(results)
@@ -340,3 +302,350 @@ df.to_pickle(out_pkl)
 
 print(f"Saved results to: {out_pkl}")
 print(f"Total rows: {len(df)}")
+
+
+
+
+
+# import os
+# import json
+# import pickle
+# import random
+# import argparse
+# import numpy as np
+# import torch
+# import pandas as pd
+# from pathlib import Path
+# from tqdm import tqdm
+# from transformers import (
+#     AutoTokenizer,
+#     AutoModelForCausalLM,
+#     Trainer,
+#     TrainingArguments,
+#     DataCollatorForLanguageModeling
+# )
+# from datasets import Dataset
+
+# # ===============================
+# # Arguments
+# # ===============================
+# parser = argparse.ArgumentParser(
+#     description="Fine-tune (optional) + Evaluate LLM on ANES interview prompts"
+# )
+
+# parser.add_argument("--model_name", type=str, required=True)
+# parser.add_argument("--data_path", type=str, required=True)
+# parser.add_argument("--fine_tune_data", type=str, default=None)
+# parser.add_argument("--out_dir", type=str, default="./results")
+# parser.add_argument("--election_year", type=int, choices=[2020, 2024], required=True)
+# parser.add_argument("--ft_epochs", type=int, default=1)
+# parser.add_argument("--ft_batch_size", type=int, default=4)
+# parser.add_argument("--max_seq_length", type=int, default=192)
+# parser.add_argument("--seed", type=int, default=42)
+# parser.add_argument("--use_lora", action="store_true")
+
+# args = parser.parse_args()
+
+
+# def safe_name(s):
+#     return str(s).replace("/", "_").replace(" ", "_")
+# # ===============================
+# # Setup
+# # ===============================
+# os.makedirs(args.out_dir, exist_ok=True)
+# random.seed(args.seed)
+# np.random.seed(args.seed)
+# torch.manual_seed(args.seed)
+
+# DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+
+# # ===============================
+# # Allowed answers (UNCHANGED)
+# # ===============================
+# ALLOWED_ANSWERS = {
+#     "gender": ["male", "female"],
+#     "race": ["white", "black", "hispanic", "asian", "native american", "mixed race"],
+#     "church_attendance": ["yes", "no"],
+#     "pol_interest": [
+#         "very interested",
+#         "somewhat interested",
+#         "not very interested",
+#         "not at all interested"
+#     ],
+#     "vote_choice": [
+#         "kamala harris",
+#         "donald trump",
+#         "someone else"
+#     ],
+#     "ideology": [
+#         "extremely liberal",
+#         "liberal",
+#         "slightly liberal",
+#         "moderate",
+#         "slightly conservative",
+#         "conservative",
+#         "extremely conservative"
+#     ]
+# }
+
+# # ===============================
+# # Load Interview Data
+# # ===============================
+# with open(args.data_path) as f:
+#     interviews = json.load(f)
+
+# print(f"Loaded {len(interviews)} interview prompts")
+
+# # ===============================
+# # Load model
+# # ===============================
+# print(f"Loading model: {args.model_name}")
+# tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+
+# model = AutoModelForCausalLM.from_pretrained(
+#     args.model_name,
+#     device_map="auto",
+#     torch_dtype=torch.float16 if DEVICE == "cuda" else torch.float32
+# )
+# model.eval()
+
+# # ===============================
+# # LoRA (optional)
+# # ===============================
+# if args.use_lora:
+#     from peft import LoraConfig, get_peft_model, TaskType
+
+#     lora_config = LoraConfig(
+#         task_type=TaskType.CAUSAL_LM,
+#         r=16,
+#         lora_alpha=32,
+#         lora_dropout=0.05,
+#         bias="none"
+#     )
+#     model = get_peft_model(model, lora_config)
+#     print("LoRA enabled")
+
+# # ===============================
+# # Fine-tuning (ONCE)
+# # ===============================
+# if args.fine_tune_data:
+
+#     print("Starting fine-tuning...")
+
+#     def build_ft_text(item):
+#         # Case 1: chat format
+#         if "messages" in item:
+#             return "\n".join(
+#                 f"{m['role']}: {m['content']}"
+#                 for m in item["messages"]
+#             )
+
+#         # Case 2: completion format
+#         if "prompt" in item and "completion" in item:
+#             return item["prompt"] + item["completion"]
+
+#         return None
+
+#     ft_samples = []
+#     with open(args.fine_tune_data) as f:
+#         for line in f:
+#             item = json.loads(line)
+#             text = build_ft_text(item)
+#             if text:
+#                 ft_samples.append({"text": text + tokenizer.eos_token})
+
+#     dataset = Dataset.from_list(ft_samples)
+
+# # ----------------------------------------
+# # 1. Load tokenizer & model
+# # ----------------------------------------
+# tokenizer = AutoTokenizer.from_pretrained(
+#     args.model_name,
+#     use_fast=True,
+# )
+
+# if tokenizer.pad_token is None:
+#     tokenizer.pad_token = tokenizer.eos_token
+
+# model = AutoModelForCausalLM.from_pretrained(
+#     args.model_name,
+#     device_map="auto",
+#     torch_dtype=torch.bfloat16 if DEVICE=="cuda" else torch.float32
+# )
+
+
+
+# def get_option_probs(prompt, options, tokenizer, model, device):
+#     input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
+
+#     option_probs = {}
+#     with torch.no_grad():
+#         for option in options:
+#             option_ids = tokenizer.encode(option, add_special_tokens=False)
+#             logp = 0.0
+#             cur_ids = input_ids.clone()
+
+#             for tok in option_ids:
+#                 outputs = model(input_ids=cur_ids)
+#                 logits = outputs.logits[:, -1, :]
+#                 log_probs = torch.log_softmax(logits, dim=-1)
+#                 logp += log_probs[0, tok].item()
+#                 cur_ids = torch.cat(
+#                     [cur_ids, torch.tensor([[tok]], device=device)], dim=1
+#                 )
+
+#             option_probs[option] = np.exp(logp)
+
+#     Z = sum(option_probs.values())
+#     if Z > 0:
+#         option_probs = {k: v / Z for k, v in option_probs.items()}
+#     else:
+#         option_probs = {k: 1 / len(options) for k in options}
+
+#     return option_probs
+
+
+# # ----------------------------------------
+# # 2. Tokenization function
+# # ----------------------------------------
+# def tokenize_fn(examples):
+#     return tokenizer(
+#         examples["text"],
+#         truncation=True,
+#         padding="max_length",  # safe now
+#         max_length=args.max_seq_length
+#     )
+
+# tokenized_ds = dataset.map(tokenize_fn, batched=True)
+
+# # ----------------------------------------
+# # 3. Trainer
+# # ----------------------------------------
+# trainer = Trainer(
+#     model=model,
+#     args=TrainingArguments(
+#         output_dir=os.path.join(args.out_dir, "ft_model"),
+#         per_device_train_batch_size=args.ft_batch_size,
+#         num_train_epochs=args.ft_epochs,
+#         learning_rate=1e-4,
+#         logging_steps=50,
+#         save_strategy="no",
+#         seed=args.seed,
+#         bf16=True if DEVICE == "cuda" else False
+#     ),
+#     train_dataset=tokenized_ds,
+#     data_collator=DataCollatorForLanguageModeling(
+#         tokenizer=tokenizer,
+#         mlm=False
+#     )
+# )
+
+# trainer.train()
+# print("Fine-tuning completed")
+
+# # ===============================
+# # Inference (UNCHANGED LOGIC)
+# # ===============================
+# results = []
+
+# for item in tqdm(interviews):
+
+#     system_msg = item["messages"][0]["content"]
+#     user_msg = item["messages"][1]["content"]
+#     target = item["omitted_feature"]
+#     raw_value = item["features_raw"][target]
+
+#     # -----------------------------
+#     # Build prompt FIRST
+#     # -----------------------------
+#     prompt = tokenizer.apply_chat_template(
+#         [
+#             {"role": "system", "content": system_msg},
+#             {"role": "user", "content": user_msg}
+#         ],
+#         tokenize=False,
+#         add_generation_prompt=True
+#     )
+
+#     # -----------------------------
+#     # Defaults
+#     # -----------------------------
+#     option_probs = None
+
+#     # -----------------------------
+#     # Ground truth + option probs
+#     # -----------------------------
+#     if target in ALLOWED_ANSWERS:
+#         try:
+#             ground_truth = ALLOWED_ANSWERS[target][int(raw_value) - 1]
+#             option_probs = get_option_probs(
+#                 prompt=prompt,
+#                 options=ALLOWED_ANSWERS[target],
+#                 tokenizer=tokenizer,
+#                 model=model,
+#                 device=model.device
+#             )
+#         except Exception:
+#             ground_truth = str(raw_value)
+#     else:
+#         ground_truth = str(raw_value)
+
+#     # -----------------------------
+#     # Generation
+#     # -----------------------------
+#     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+
+#     with torch.no_grad():
+#         outputs = model.generate(
+#             **inputs,
+#             max_new_tokens=8,
+#             temperature=0.7,
+#             do_sample=True,
+#             pad_token_id=tokenizer.eos_token_id
+#         )
+
+#     decoded = tokenizer.decode(
+#         outputs[0][inputs["input_ids"].shape[-1]:],
+#         skip_special_tokens=True
+#     )
+
+#     pred_raw = decoded.strip()
+#     pred_norm = pred_raw.lower().strip()
+
+#     valid = True
+#     if target in ALLOWED_ANSWERS:
+#         valid = pred_norm in ALLOWED_ANSWERS[target]
+
+#     results.append({
+#         "election_year": args.election_year,
+#         "model": args.model_name,
+#         "omitted_feature": target,
+#         "ground_truth": ground_truth,
+#         "prompt": prompt,
+#         "prediction_raw": pred_raw,
+#         "prediction_norm": pred_norm,
+#         "valid": valid,
+#         "option_probs": option_probs,   # now always defined
+#         "features_raw": item["features_raw"]
+#     })
+
+
+# # ===============================
+# # Save output (IDENTICAL)
+# # ===============================
+
+
+    
+# # out_pkl = Path(args.out_dir) / f"anes_{args.election_year}_{args.model_name.replace('/', '_')}_interview.pkl"
+# out_pkl = os.path.join(
+#     args.out_dir,
+#     f"{safe_name(args.model_name)}_"
+#     f"{args.election_year}_"
+#     f"{safe_name(args.fine_tune_data)}_results.pkl"
+# )
+
+# df = pd.DataFrame(results)
+# df.to_pickle(out_pkl)
+
+# print(f"Saved results to: {out_pkl}")
+# print(f"Total rows: {len(df)}")
