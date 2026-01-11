@@ -244,12 +244,28 @@ for item in tqdm(interviews):
     system_msg = item["messages"][0]["content"]
     user_msg = item["messages"][1]["content"]
     target = item["omitted_feature"]
-
     raw_value = item["features_raw"][target]
-    
 
-    
+    # -----------------------------
+    # Build prompt FIRST
+    # -----------------------------
+    prompt = tokenizer.apply_chat_template(
+        [
+            {"role": "system", "content": system_msg},
+            {"role": "user", "content": user_msg}
+        ],
+        tokenize=False,
+        add_generation_prompt=True
+    )
 
+    # -----------------------------
+    # Defaults
+    # -----------------------------
+    option_probs = None
+
+    # -----------------------------
+    # Ground truth + option probs
+    # -----------------------------
     if target in ALLOWED_ANSWERS:
         try:
             ground_truth = ALLOWED_ANSWERS[target][int(raw_value) - 1]
@@ -264,17 +280,10 @@ for item in tqdm(interviews):
             ground_truth = str(raw_value)
     else:
         ground_truth = str(raw_value)
-        option_probs = None
 
-    prompt = tokenizer.apply_chat_template(
-        [
-            {"role": "system", "content": system_msg},
-            {"role": "user", "content": user_msg}
-        ],
-        tokenize=False,
-        add_generation_prompt=True
-    )
-
+    # -----------------------------
+    # Generation
+    # -----------------------------
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
     with torch.no_grad():
@@ -307,9 +316,10 @@ for item in tqdm(interviews):
         "prediction_raw": pred_raw,
         "prediction_norm": pred_norm,
         "valid": valid,
-        "option_probs": option_probs,
+        "option_probs": option_probs,   # now always defined
         "features_raw": item["features_raw"]
     })
+
 
 # ===============================
 # Save output (IDENTICAL)
