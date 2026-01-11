@@ -180,7 +180,7 @@ if args.fine_tune_data:
             save_strategy="no",
             seed=args.seed,
             bf16=True if DEVICE == "cuda" else False,
-            optim="paged_adamw_8bit",  # 🔑 critical
+            optim="adamw_torch",  
             report_to="none",
         ),
         train_dataset=tokenized_ds,
