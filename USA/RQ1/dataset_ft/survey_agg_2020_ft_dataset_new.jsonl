@@ -1,0 +1,198 @@
+{"messages": [{"role": "user", "content": "47% of Total voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "45% of Male voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "49% of Female voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "57% of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "47% of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "46% of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "43% of 65+ year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "40% of White people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "75% of Black people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "54% of Hispanic people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Democrat people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Republican people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Independent people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Clinton in 2016 voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Trump in 2016 voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in City voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Suburb voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Town voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Rural voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people that have Under $50K income voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $50-100K income voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $100K or more income voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "41% of Total voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "45% of Male voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "37% of Female voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "28% of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "32% of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "46% of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "52% of 65+ year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "50% of White people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "11% of Black people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "34% of Hispanic people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Democrat people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Republican people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Independent people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Clinton in 2016 voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Trump in 2016 voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in City voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Suburb voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Town voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Rural voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people that have Under $50K income voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $50-100K income voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $100K or more income voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "12% of Total voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "10% of Male voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "14% of Female voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "15% of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "22% of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "8% of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "6% of 65+ year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "11% of White people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "14% of Black people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "11% of Hispanic people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Democrat people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Republican people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Independent people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Clinton in 2016 voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Trump in 2016 voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in City voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Suburb voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Town voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Rural voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people that have Under $50K income voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $50-100K income voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $100K or more income voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Total voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Male voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Female voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of 65+ year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of White people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Black people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Hispanic people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "88% of Democrat people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "6% of Republican people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "34% of Independent people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "90% of people who voted for Clinton in 2016 voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "7% of people who voted for Trump in 2016 voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in City voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Suburb voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Town voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Rural voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people that have Under $50K income voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $50-100K income voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $100K or more income voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Total voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Male voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Female voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 65+ year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of White people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Black people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Hispanic people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "5% of Democrat people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "88% of Republican people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "44% of Independent people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "6% of people who voted for Clinton in 2016 voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "86% of people who voted for Trump in 2016 voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in City voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Suburb voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Town voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Rural voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people that have Under $50K income voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $50-100K income voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $100K or more income voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Total voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Male voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Female voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 65+ year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of White people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Black people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Hispanic people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "7% of Democrat people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "5% of Republican people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "21% of Independent people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "4% of people who voted for Clinton in 2016 voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "7% of people who voted for Trump in 2016 voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in City voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Suburb voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Town voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who live in Rural voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people that have Under $50K income voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $50-100K income voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people that have $100K or more income voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Total voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Male voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Female voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of 65+ year old people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of White people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Black people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Hispanic people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Democrat people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Republican people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Independent people voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Clinton in 2016 voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Trump in 2016 voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "66% of people who live in City voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "43% of people who live in Suburb voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "37% of people who live in Town voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "35% of people who live in Rural voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "50% of people that have Under $50K income voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "49% of people that have $50-100K income voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "46% of people that have $100K or more income voted for:"}, {"role": "assistant", "content": "Joe Biden"}]}
+{"messages": [{"role": "user", "content": "nan of Total voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Male voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Female voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 65+ year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of White people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Black people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Hispanic people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Democrat people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Republican people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Independent people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Clinton in 2016 voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Trump in 2016 voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "23% of people who live in City voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "45% of people who live in Suburb voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "50% of people who live in Town voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "53% of people who live in Rural voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "34% of people that have Under $50K income voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "43% of people that have $50-100K income voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "46% of people that have $100K or more income voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Total voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Male voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Female voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 65+ year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of White people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Black people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Hispanic people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Democrat people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Republican people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Independent people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Clinton in 2016 voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Trump in 2016 voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "11% of people who live in City voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "11% of people who live in Suburb voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "13% of people who live in Town voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "12% of people who live in Rural voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "16% of people that have Under $50K income voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "7% of people that have $50-100K income voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "8% of people that have $100K or more income voted for:"}, {"role": "assistant", "content": "Others"}]}

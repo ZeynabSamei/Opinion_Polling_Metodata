@@ -1,0 +1,102 @@
+{"messages": [{"role": "user", "content": "41% of Total voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "38% of Male voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "44% of Female voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "48% of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "43% of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "41% of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "35% of 65+ year old people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "36% of White people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "68% of Black people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "42% of Hispanic people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of Democrat people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of Republican people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of Independent people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of Lean Republican voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of Lean Democrat voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Biden in 2020 voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Trump in 2020 voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "43% of Total voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "47% of Male voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "39% of Female voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "31% of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "34% of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "46% of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "54% of 65+ year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "50% of White people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "11% of Black people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "39% of Hispanic people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Democrat people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Republican people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Independent people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Lean Republican voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Lean Democrat voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Biden in 2020 voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Trump in 2020 voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "15% of Total voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "15% of Male voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "17% of Female voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "21% of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "23% of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "13% of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "12% of 65+ year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "15% of White people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "21% of Black people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "18% of Hispanic people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Democrat people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Republican people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Independent people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Lean Republican voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Lean Democrat voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Biden in 2020 voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of people who voted for Trump in 2020 voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Total voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of Male voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of Female voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of 65+ year old people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of White people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of Black people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of Hispanic people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "86% of Democrat people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "2% of Republican people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "31% of Independent people voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "3% of Lean Republican voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "84% of Lean Democrat voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "80% of people who voted for Biden in 2020 voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "2% of people who voted for Trump in 2020 voted for:"}, {"role": "assistant", "content": "Kamala Harris"}]}
+{"messages": [{"role": "user", "content": "nan of Total voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Male voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Female voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of 65+ year old people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of White people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Black people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Hispanic people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "3% of Democrat people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "91% of Republican people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "37% of Independent people voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "89% of Lean Republican voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "3% of Lean Democrat voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "3% of people who voted for Biden in 2020 voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "89% of people who voted for Trump in 2020 voted for:"}, {"role": "assistant", "content": "Donald Trump"}]}
+{"messages": [{"role": "user", "content": "nan of Total voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Male voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Female voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 18-29 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 30-44 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 45-64 year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of 65+ year old people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of White people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Black people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "nan of Hispanic people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "12% of Democrat people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "5% of Republican people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "31% of Independent people voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "7% of Lean Republican voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "13% of Lean Democrat voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "18% of people who voted for Biden in 2020 voted for:"}, {"role": "assistant", "content": "Others"}]}
+{"messages": [{"role": "user", "content": "9% of people who voted for Trump in 2020 voted for:"}, {"role": "assistant", "content": "Others"}]}
