@@ -162,4 +162,123 @@ if args.fine_tune_data is not None:
         prompt = "\n".join(f"{m['role']}: {m['content']}" for m in item.get("messages", []))
         target = ""
         for m in item.get("messages", []):
-            if m["role"]
+            if m["role"] == "assistant":
+                target = m["content"]
+        ft_texts.append({"text": prompt + tokenizer.eos_token + target + tokenizer.eos_token})
+
+    dataset = Dataset.from_list(ft_texts)
+
+    def tokenize_fn(examples):
+        return tokenizer(examples["text"], truncation=True, padding="max_length", max_length=512)
+
+    tokenized_ds = dataset.map(tokenize_fn, batched=True)
+    data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
+
+    training_args = TrainingArguments(
+        output_dir=os.path.join(args.out_dir, "ft_model"),
+        per_device_train_batch_size=args.ft_batch_size,
+        num_train_epochs=args.ft_epochs,
+        logging_steps=50,
+        save_strategy="no",
+        fp16=True,
+        seed=args.seed
+    )
+
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        train_dataset=tokenized_ds,
+        tokenizer=tokenizer,
+        data_collator=data_collator
+    )
+
+    trainer.train()
+    print("Fine-tuning completed.")
+
+# =====================================================
+# Inference loop
+# =====================================================
+results = []
+
+for idx, entry in tqdm(enumerate(data), total=len(data)):
+    messages = entry.get("messages", [])
+    gt = extract_ground_truth(messages)
+
+    if gt is None or gt not in PARTIES:
+        continue
+
+    probs = get_party_probs(messages)
+    pred = max(probs, key=probs.get)
+
+    results.append({
+        "idx": idx,
+        "ground_truth": gt,
+        "predicted_party": pred,
+        "accuracy": int(pred == gt),
+        "mutual_information": mutual_information(probs, gt),
+        "probs": probs,
+        "messages": messages,
+    })
+
+    if (idx + 1) % args.save_every == 0:
+        pd.DataFrame(results).to_pickle(
+            os.path.join(
+                args.out_dir,
+                f"{args.model_name.replace('/', '_')}_{args.election_year}_party_partial.pkl"
+            )
+        )
+
+    time.sleep(args.sleep)
+
+df = pd.DataFrame(results)
+
+# =====================================================
+# Metrics
+# =====================================================
+anes = df["ground_truth"].map(party_to_numeric).to_numpy()
+gpt = df["predicted_party"].map(party_to_numeric).to_numpy()
+
+metrics = {
+    "accuracy": df["accuracy"].mean(),
+    "cohen_kappa": cohen_kappa_score(anes, gpt),
+    "proportion_agreement": np.mean(anes == gpt),
+    "mean_mutual_information": df["mutual_information"].mean(),
+}
+
+if ICC_AVAILABLE:
+    try:
+        df_long = (
+            pd.DataFrame({"anes": anes, "gpt": gpt})
+            .reset_index()
+            .melt(id_vars="index", var_name="rater", value_name="party")
+        )
+        icc = pg.intraclass_corr(
+            data=df_long,
+            targets="index",
+            raters="rater",
+            ratings="party"
+        )
+        metrics["ICC"] = icc.loc[icc["Type"] == "ICC2k", "ICC"].values[0]
+    except Exception:
+        metrics["ICC"] = None
+else:
+    metrics["ICC"] = None
+
+for k, v in metrics.items():
+    df[k] = v
+
+# =====================================================
+# Save outputs
+# =====================================================
+out_base = f"{args.model_name.replace('/', '_')}_{args.election_year}_party_final"
+out_pkl = os.path.join(args.out_dir, out_base + ".pkl")
+out_csv = os.path.join(args.out_dir, out_base + ".csv")
+
+df.to_pickle(out_pkl)
+df.to_csv(out_csv, index=False)
+
+print("\n=== Final Party Prediction Metrics ===")
+for k, v in metrics.items():
+    print(f"{k}: {v}")
+
+print(f"\nSaved results to:\n{out_pkl}\n{out_csv}")
