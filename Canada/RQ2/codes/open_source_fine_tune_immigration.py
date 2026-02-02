@@ -213,4 +213,70 @@ for idx, entry in tqdm(enumerate(data), total=len(data)):
         "ground_truth": gt,
         "predicted_immigration": pred,
         "accuracy": int(pred == gt),
-        "mutual_inform_
+        "mutual_information": mutual_information(probs, gt),
+        "probs": probs,
+        "messages": messages,
+    })
+
+    if (idx + 1) % args.save_every == 0:
+        pd.DataFrame(results).to_pickle(
+            os.path.join(
+                args.out_dir,
+                f"{args.model_name.replace('/', '_')}_{args.election_year}_immigration_partial.pkl"
+            )
+        )
+
+    time.sleep(args.sleep)
+
+df = pd.DataFrame(results)
+
+# =====================================================
+# Metrics
+# =====================================================
+human = df["ground_truth"].map(imm_to_numeric).to_numpy()
+model_preds = df["predicted_immigration"].map(imm_to_numeric).to_numpy()
+
+metrics = {
+    "accuracy": df["accuracy"].mean(),
+    "cohen_kappa": cohen_kappa_score(human, model_preds),
+    "proportion_agreement": np.mean(human == model_preds),
+    "mean_mutual_information": df["mutual_information"].mean(),
+}
+
+if ICC_AVAILABLE:
+    try:
+        df_long = (
+            pd.DataFrame({"human": human, "model": model_preds})
+            .reset_index()
+            .melt(id_vars="index", var_name="rater", value_name="rating")
+        )
+        icc = pg.intraclass_corr(
+            data=df_long,
+            targets="index",
+            raters="rater",
+            ratings="rating"
+        )
+        metrics["ICC"] = icc.loc[icc["Type"] == "ICC2k", "ICC"].values[0]
+    except Exception:
+        metrics["ICC"] = None
+else:
+    metrics["ICC"] = None
+
+for k, v in metrics.items():
+    df[k] = v
+
+# =====================================================
+# Save outputs
+# =====================================================
+out_base = f"{args.model_name.replace('/', '_')}_{args.election_year}_immigration_final"
+out_pkl = os.path.join(args.out_dir, out_base + ".pkl")
+out_csv = os.path.join(args.out_dir, out_base + ".csv")
+
+df.to_pickle(out_pkl)
+df.to_csv(out_csv, index=False)
+
+print("\n=== Immigration Attitude Prediction Metrics ===")
+for k, v in metrics.items():
+    print(f"{k}: {v}")
+
+print(f"\nSaved results to:\n{out_pkl}\n{out_csv}")
