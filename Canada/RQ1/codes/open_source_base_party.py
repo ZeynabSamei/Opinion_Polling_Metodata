@@ -46,6 +46,10 @@ np.random.seed(args.seed)
 torch.manual_seed(args.seed)
 
 
+print("CUDA available:", torch.cuda.is_available())
+print("CUDA device:", torch.cuda.get_device_name(0))
+
+
 # =====================================================
 # Party labels (MUST match dataset exactly)
 # =====================================================
@@ -79,11 +83,22 @@ print(f"Loading model: {args.model_name}")
 
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
+# Load model efficiently on GPU
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
-    device_map="auto",
-    torch_dtype=torch.float16
+    device_map="auto",       # Automatically put layers on GPU/CPU
+    torch_dtype=torch.float16, # Use FP16 for less memory and faster inference
+    offload_folder="offload"  # Temporary folder for CPU offloading
 )
+
+
+# tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+
+# model = AutoModelForCausalLM.from_pretrained(
+#     args.model_name,
+#     device_map="auto",
+#     torch_dtype=torch.float16
+# )
 
 # Pad token fix
 tokenizer.pad_token = tokenizer.eos_token
