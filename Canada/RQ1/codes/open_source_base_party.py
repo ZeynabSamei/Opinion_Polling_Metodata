@@ -112,7 +112,7 @@ def extract_ground_truth(messages):
             return normalize_party(m["content"])
     return None
 
-def get_party_probs(messages):
+def get_party_probs_batch(messages):
     """
     Deterministic token-level probability for each party using log-probabilities
     to avoid underflow when multiplying small probabilities.
