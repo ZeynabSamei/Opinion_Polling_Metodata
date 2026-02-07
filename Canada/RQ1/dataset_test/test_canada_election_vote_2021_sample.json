@@ -1,0 +1,372 @@
+[
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "NDP",
+      "vote_choice": "Jagmeet Singh",
+      "gender": 2,
+      "race": "White",
+      "age": 48.0,
+      "ideology": 3,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 48,
+      "ideology": "New Democratic",
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2021 Prime Minister Election. Output strictly one name of the candidate from this list:Justin Trudeau, Erin O'Toole, Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, Maxime Bernier"
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 48 years old. Ideologically, I support New Democratic party. My religion is None/Atheist. I am 8 out of 10 interested in politics. I sometimes discuss about politics. In the 2021 Canada Prime Minister election, I voted for "
+      },
+      {
+        "role": "assistant",
+        "content": "Jagmeet Singh"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "South Asian",
+      "age": 29.0,
+      "ideology": 1,
+      "pol_interest": 2,
+      "religion": 6,
+      "discuss_pol": 1.0
+    },
+    "features_text": {
+      "race": "South Asian",
+      "gender": "woman",
+      "age": 29,
+      "ideology": "Liberal",
+      "religion": "Muslim",
+      "pol_interest": 2,
+      "discuss_pol": "never"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2021 Prime Minister Election. Output strictly one name of the candidate from this list:Justin Trudeau, Erin O'Toole, Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, Maxime Bernier"
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am South Asian. I am a woman. I am 29 years old. Ideologically, I support Liberal party. My religion is Muslim. I am 2 out of 10 interested in politics. I never discuss about politics. In the 2021 Canada Prime Minister election, I voted for "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Bloc Qu\u00e9b\u00e9cois",
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 28.0,
+      "ideology": 1,
+      "pol_interest": 3,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 28,
+      "ideology": "Liberal",
+      "religion": "None/Atheist",
+      "pol_interest": 3,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2021 Prime Minister Election. Output strictly one name of the candidate from this list:Justin Trudeau, Erin O'Toole, Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, Maxime Bernier"
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 28 years old. Ideologically, I support Liberal party. My religion is None/Atheist. I am 3 out of 10 interested in politics. I sometimes discuss about politics. In the 2021 Canada Prime Minister election, I voted for "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Conservative Party",
+      "vote_choice": "Erin O'Toole",
+      "gender": 1,
+      "race": "White",
+      "age": 65.0,
+      "ideology": 2,
+      "pol_interest": 10,
+      "religion": 1,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 65,
+      "ideology": "Conservative",
+      "religion": "None/Atheist",
+      "pol_interest": 10,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2021 Prime Minister Election. Output strictly one name of the candidate from this list:Justin Trudeau, Erin O'Toole, Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, Maxime Bernier"
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 65 years old. Ideologically, I support Conservative party. My religion is None/Atheist. I am 10 out of 10 interested in politics. I often discuss about politics. In the 2021 Canada Prime Minister election, I voted for "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "NDP",
+      "vote_choice": "Jagmeet Singh",
+      "gender": 2,
+      "race": "White",
+      "age": 52.0,
+      "ideology": 3,
+      "pol_interest": 7,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 52,
+      "ideology": "New Democratic",
+      "religion": "Catholic",
+      "pol_interest": 7,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2021 Prime Minister Election. Output strictly one name of the candidate from this list:Justin Trudeau, Erin O'Toole, Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, Maxime Bernier"
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 52 years old. Ideologically, I support New Democratic party. My religion is Catholic. I am 7 out of 10 interested in politics. I sometimes discuss about politics. In the 2021 Canada Prime Minister election, I voted for "
+      },
+      {
+        "role": "assistant",
+        "content": "Jagmeet Singh"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 33.0,
+      "ideology": 1,
+      "pol_interest": 5,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 33,
+      "ideology": "Liberal",
+      "religion": "None/Atheist",
+      "pol_interest": 5,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2021 Prime Minister Election. Output strictly one name of the candidate from this list:Justin Trudeau, Erin O'Toole, Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, Maxime Bernier"
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 33 years old. Ideologically, I support Liberal party. My religion is None/Atheist. I am 5 out of 10 interested in politics. I sometimes discuss about politics. In the 2021 Canada Prime Minister election, I voted for "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 31.0,
+      "ideology": 1,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 31,
+      "ideology": "Liberal",
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2021 Prime Minister Election. Output strictly one name of the candidate from this list:Justin Trudeau, Erin O'Toole, Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, Maxime Bernier"
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 31 years old. Ideologically, I support Liberal party. My religion is None/Atheist. I am 6 out of 10 interested in politics. I sometimes discuss about politics. In the 2021 Canada Prime Minister election, I voted for "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Bloc Qu\u00e9b\u00e9cois",
+      "vote_choice": "Yves-Fran\u00e7ois Blanchet",
+      "gender": 2,
+      "race": "White",
+      "age": 63.0,
+      "ideology": 4,
+      "pol_interest": 5,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 63,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois",
+      "religion": "None/Atheist",
+      "pol_interest": 5,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2021 Prime Minister Election. Output strictly one name of the candidate from this list:Justin Trudeau, Erin O'Toole, Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, Maxime Bernier"
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 63 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois party. My religion is None/Atheist. I am 5 out of 10 interested in politics. I sometimes discuss about politics. In the 2021 Canada Prime Minister election, I voted for "
+      },
+      {
+        "role": "assistant",
+        "content": "Yves-Fran\u00e7ois Blanchet"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "vote_choice": "Erin O'Toole",
+      "gender": 1,
+      "race": "White",
+      "age": 57.0,
+      "ideology": 2,
+      "pol_interest": 6,
+      "religion": 2,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 57,
+      "ideology": "Conservative",
+      "religion": "Agnostic",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2021 Prime Minister Election. Output strictly one name of the candidate from this list:Justin Trudeau, Erin O'Toole, Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, Maxime Bernier"
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 57 years old. Ideologically, I support Conservative party. My religion is Agnostic. I am 6 out of 10 interested in politics. I sometimes discuss about politics. In the 2021 Canada Prime Minister election, I voted for "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "NDP",
+      "vote_choice": "Jagmeet Singh",
+      "gender": 2,
+      "race": "Southeast Asian",
+      "age": 22.0,
+      "ideology": 1,
+      "pol_interest": 2,
+      "religion": 16,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "Southeast Asian",
+      "gender": "woman",
+      "age": 22,
+      "ideology": "Liberal",
+      "religion": "Presbyterian",
+      "pol_interest": 2,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior. Your task is to analyze the demographic profile provided in the text and predict the vote choice in the 2021 Prime Minister Election. Output strictly one name of the candidate from this list:Justin Trudeau, Erin O'Toole, Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, Maxime Bernier"
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Southeast Asian. I am a woman. I am 22 years old. Ideologically, I support Liberal party. My religion is Presbyterian. I am 2 out of 10 interested in politics. I sometimes discuss about politics. In the 2021 Canada Prime Minister election, I voted for "
+      },
+      {
+        "role": "assistant",
+        "content": "Jagmeet Singh"
+      }
+    ]
+  }
+]
