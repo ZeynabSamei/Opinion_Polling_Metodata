@@ -30,8 +30,6 @@ typer[all]
 uvicorn[standard]==0.22.0
 wandb
 transformers
-torch
 accelerate
-random
 factor-analyzer>=0.4.0
-pingouin>=0.5.3 
+pingouin>=0.5.3
