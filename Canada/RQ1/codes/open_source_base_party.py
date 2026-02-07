@@ -116,45 +116,40 @@ def extract_ground_truth(messages):
     return None
 
 
-def get_party_probs_batch(messages_batch):
+def get_party_probs_batch(batch_messages):
     """
-    Vectorized batch computation of token-level likelihood for all parties.
-    Returns a list of dicts with party probabilities per sample.
+    Compute party probabilities for a batch of messages.
+    Batch size = len(batch_messages)
+    This is fully vectorized: one forward pass per party per sample.
     """
     batch_prompts = []
-    for messages in messages_batch:
+    for messages in batch_messages:
         clean_msgs = [m for m in messages if m["role"] != "assistant"]
         prompt = "\n".join(f"{m['role']}: {m['content']}" for m in clean_msgs)
         prompt += f"\nParty choice ({' or '.join(PARTIES)}):"
         batch_prompts.append(prompt)
 
-    # Tokenize batch
-    encodings = tokenizer(batch_prompts, return_tensors="pt", padding=True)
-    input_ids = encodings.input_ids.to(device)
-    attention_mask = encodings.attention_mask.to(device)
+    # Tokenize all prompts at once
+    encodings = tokenizer(batch_prompts, return_tensors="pt", padding=True).to(device)
 
-    batch_probs_list = []
-
+    batch_probs = []
     with torch.no_grad():
-        # Forward once for batch
-        outputs = model(input_ids=input_ids, attention_mask=attention_mask)
-        logits = outputs.logits  # shape: [batch, seq_len, vocab_size]
-
-        for b_idx, messages in enumerate(messages_batch):
+        # Forward pass for each party
+        for i, messages in enumerate(batch_messages):
+            prompt_ids = encodings.input_ids[i : i+1]  # 1 x seq_len
             probs = {}
             for party in PARTIES:
                 party_ids = tokenizer.encode(party, add_special_tokens=False)
+                cur_ids = prompt_ids.clone()
                 prob = 1.0
-                cur_input_ids = input_ids[b_idx:b_idx+1].clone()
 
+                # Forward pass all tokens in one go
                 for tok in party_ids:
-                    outputs_tok = model(input_ids=cur_input_ids)
-                    logits_tok = outputs_tok.logits[:, -1, :]
-                    token_probs = torch.softmax(logits_tok, dim=-1)
+                    outputs = model(input_ids=cur_ids)
+                    logits = outputs.logits[:, -1, :]
+                    token_probs = torch.softmax(logits, dim=-1)
                     prob *= token_probs[0, tok].item()
-                    cur_input_ids = torch.cat(
-                        [cur_input_ids, torch.tensor([[tok]], device=device)], dim=1
-                    )
+                    cur_ids = torch.cat([cur_ids, torch.tensor([[tok]], device=device)], dim=1)
 
                 probs[party] = prob
 
@@ -162,12 +157,12 @@ def get_party_probs_batch(messages_batch):
             if total > 0:
                 probs = {p: v / total for p, v in probs.items()}
             else:
-                # fallback uniform
                 probs = {p: 1 / len(PARTIES) for p in PARTIES}
 
-            batch_probs_list.append(probs)
+            batch_probs.append(probs)
 
-    return batch_probs_list
+    return batch_probs
+
 
 
 def mutual_information(probs, ground_truth, eps=1e-12):
