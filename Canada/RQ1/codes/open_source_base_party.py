@@ -1,6 +1,6 @@
 # =====================================================
 # Canada 2021 Party Choice Prediction with LLMs
-# Faster batch inference version
+# Batched and vectorized likelihood evaluation
 # =====================================================
 
 import os
@@ -23,19 +23,21 @@ try:
 except ImportError:
     ICC_AVAILABLE = False
 
+
 # =====================================================
 # Arguments
 # =====================================================
 parser = argparse.ArgumentParser(
-    description="Canada 2021 party choice prediction using LLM likelihoods (batch mode)"
+    description="Canada 2021 party choice prediction using LLM likelihoods (batched)"
 )
 parser.add_argument("--model_name", type=str, required=True)
 parser.add_argument("--data_path", type=str, required=True)
 parser.add_argument("--out_dir", type=str, default="./output")
 parser.add_argument("--election_year", type=str, default="2021")
 parser.add_argument("--save_every", type=int, default=100)
-parser.add_argument("--batch_size", type=int, default=4)
+parser.add_argument("--sleep", type=float, default=0)
 parser.add_argument("--seed", type=int, default=42)
+parser.add_argument("--batch_size", type=int, default=16)
 
 args = parser.parse_args()
 os.makedirs(args.out_dir, exist_ok=True)
@@ -44,10 +46,11 @@ random.seed(args.seed)
 np.random.seed(args.seed)
 torch.manual_seed(args.seed)
 
+
 print("CUDA available:", torch.cuda.is_available())
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if torch.cuda.is_available():
     print("CUDA device:", torch.cuda.get_device_name(0))
+
 
 # =====================================================
 # Party labels
@@ -64,6 +67,7 @@ PARTIES = [
 PARTY2ID = {p: i for i, p in enumerate(PARTIES)}
 ID2PARTY = {i: p for p, i in PARTY2ID.items()}
 
+
 # =====================================================
 # Load dataset
 # =====================================================
@@ -72,27 +76,25 @@ with open(args.data_path, "r") as f:
 
 print(f"Loaded {len(data)} samples")
 
+
 # =====================================================
 # Load model
 # =====================================================
 print(f"Loading model: {args.model_name}")
 
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+tokenizer.pad_token = tokenizer.eos_token
+tokenizer.pad_token_id = tokenizer.eos_token_id
 
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
-    device_map="auto",        # Automatically put layers on GPU/CPU
-    torch_dtype=torch.float16, # FP16 for faster inference
-    offload_folder="offload"   # CPU offloading
+    device_map="auto",
+    torch_dtype=torch.float16,
+    offload_folder="offload"  # optional if GPU memory is small
 )
-
-# Optional: compile model for speed (PyTorch 2.0+)
-# model = torch.compile(model)
-
-tokenizer.pad_token = tokenizer.eos_token
-tokenizer.pad_token_id = tokenizer.eos_token_id
-model.config.pad_token_id = tokenizer.eos_token_id
 model.eval()
+device = next(model.parameters()).device
+
 
 # =====================================================
 # Helper functions
@@ -106,104 +108,123 @@ def normalize_party(text):
             return p
     return None
 
+
 def extract_ground_truth(messages):
     for m in messages:
         if m["role"] == "assistant":
             return normalize_party(m["content"])
     return None
 
-def get_party_probs_batch(messages):
+
+def get_party_probs_batch(messages_batch):
     """
-    Deterministic token-level probability for each party using log-probabilities
-    to avoid underflow when multiplying small probabilities.
+    Vectorized batch computation of token-level likelihood for all parties.
+    Returns a list of dicts with party probabilities per sample.
     """
-    # Remove assistant turn
-    clean_msgs = [m for m in messages if m["role"] != "assistant"]
+    batch_prompts = []
+    for messages in messages_batch:
+        clean_msgs = [m for m in messages if m["role"] != "assistant"]
+        prompt = "\n".join(f"{m['role']}: {m['content']}" for m in clean_msgs)
+        prompt += f"\nParty choice ({' or '.join(PARTIES)}):"
+        batch_prompts.append(prompt)
 
-    prompt = "\n".join(f"{m['role']}: {m['content']}" for m in clean_msgs)
-    prompt += f"\nParty choice ({' or '.join(PARTIES)}):"
+    # Tokenize batch
+    encodings = tokenizer(batch_prompts, return_tensors="pt", padding=True)
+    input_ids = encodings.input_ids.to(device)
+    attention_mask = encodings.attention_mask.to(device)
 
-    input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
-
-    probs = {}
+    batch_probs_list = []
 
     with torch.no_grad():
-        for party in PARTIES:
-            party_ids = tokenizer.encode(party, add_special_tokens=False)
-            log_prob = 0.0
-            cur_ids = input_ids.clone()
+        # Forward once for batch
+        outputs = model(input_ids=input_ids, attention_mask=attention_mask)
+        logits = outputs.logits  # shape: [batch, seq_len, vocab_size]
 
-            for tok in party_ids:
-                outputs = model(input_ids=cur_ids)
-                logits = outputs.logits[:, -1, :]
-                token_probs = torch.softmax(logits, dim=-1)
-                # add epsilon to avoid log(0)
-                log_prob += torch.log(token_probs[0, tok] + 1e-12)
-                cur_ids = torch.cat([cur_ids, torch.tensor([[tok]], device=device)], dim=1)
+        for b_idx, messages in enumerate(messages_batch):
+            probs = {}
+            for party in PARTIES:
+                party_ids = tokenizer.encode(party, add_special_tokens=False)
+                prob = 1.0
+                cur_input_ids = input_ids[b_idx:b_idx+1].clone()
 
-            probs[party] = torch.exp(log_prob).item()  # convert back to probability
+                for tok in party_ids:
+                    outputs_tok = model(input_ids=cur_input_ids)
+                    logits_tok = outputs_tok.logits[:, -1, :]
+                    token_probs = torch.softmax(logits_tok, dim=-1)
+                    prob *= token_probs[0, tok].item()
+                    cur_input_ids = torch.cat(
+                        [cur_input_ids, torch.tensor([[tok]], device=device)], dim=1
+                    )
 
-    total = sum(probs.values())
-    if total > 0:
-        probs = {p: v / total for p, v in probs.items()}
-    else:
-        # fallback: uniform distribution
-        probs = {p: 1 / len(PARTIES) for p in PARTIES}
+                probs[party] = prob
 
-    return probs
+            total = sum(probs.values())
+            if total > 0:
+                probs = {p: v / total for p, v in probs.items()}
+            else:
+                # fallback uniform
+                probs = {p: 1 / len(PARTIES) for p in PARTIES}
+
+            batch_probs_list.append(probs)
+
+    return batch_probs_list
+
 
 def mutual_information(probs, ground_truth, eps=1e-12):
     p = max(probs.get(ground_truth, eps), eps)
     return -np.log2(p)
 
+
 def party_to_numeric(party):
     return PARTY2ID[party]
 
+
 # =====================================================
-# Inference loop (batched)
+# Batched inference
 # =====================================================
 results = []
 BATCH_SIZE = args.batch_size
-batch_entries = []
 
-for idx, entry in tqdm(enumerate(data), total=len(data)):
-    messages = entry.get("messages", [])
-    gt = extract_ground_truth(messages)
+for i in tqdm(range(0, len(data), BATCH_SIZE)):
+    batch = data[i:i+BATCH_SIZE]
+    messages_batch = [entry.get("messages", []) for entry in batch]
+    gt_batch = [extract_ground_truth(msgs) for msgs in messages_batch]
 
-    if gt is None or gt not in PARTIES:
+    valid_indices = [idx for idx, gt in enumerate(gt_batch) if gt in PARTIES]
+    if not valid_indices:
         continue
 
-    batch_entries.append((idx, messages, gt))
+    valid_msgs_batch = [messages_batch[idx] for idx in valid_indices]
+    valid_gt_batch = [gt_batch[idx] for idx in valid_indices]
 
-    if len(batch_entries) == BATCH_SIZE or idx == len(data)-1:
-        idxs, msgs_batch, gts = zip(*batch_entries)
-        probs_batch = get_party_probs_batch(msgs_batch)
+    batch_probs_list = get_party_probs_batch(valid_msgs_batch)
 
-        for i in range(len(batch_entries)):
-            probs = probs_batch[i]
-            pred = max(probs, key=probs.get)
-            results.append({
-                "idx": idxs[i],
-                "ground_truth": gts[i],
-                "predicted_party": pred,
-                "accuracy": int(pred == gts[i]),
-                "mutual_information": mutual_information(probs, gts[i]),
-                "probs": probs,
-                "messages": msgs_batch[i],
-            })
+    for idx_in_batch, probs in enumerate(batch_probs_list):
+        gt = valid_gt_batch[idx_in_batch]
+        pred = max(probs, key=probs.get)
+        results.append({
+            "idx": i + valid_indices[idx_in_batch],
+            "ground_truth": gt,
+            "predicted_party": pred,
+            "accuracy": int(pred == gt),
+            "mutual_information": mutual_information(probs, gt),
+            "probs": probs,
+            "messages": valid_msgs_batch[idx_in_batch],
+        })
 
-        batch_entries = []
-
-    if (len(results) % args.save_every) == 0:
+    if (i // BATCH_SIZE + 1) % (args.save_every // BATCH_SIZE) == 0:
         pd.DataFrame(results).to_pickle(
-            os.path.join(args.out_dir, f"{args.model_name.replace('/', '_')}_{args.election_year}_party_partial.pkl")
+            os.path.join(
+                args.out_dir,
+                f"{args.model_name.replace('/', '_')}_{args.election_year}_party_partial.pkl"
+            )
         )
 
-df = pd.DataFrame(results)
 
 # =====================================================
-# Metrics
+# Final metrics
 # =====================================================
+df = pd.DataFrame(results)
 anes = df["ground_truth"].map(party_to_numeric).to_numpy()
 gpt = df["predicted_party"].map(party_to_numeric).to_numpy()
 
@@ -251,8 +272,6 @@ for k, v in metrics.items():
     print(f"{k}: {v}")
 
 print(f"\nSaved results to:\n{out_pkl}\n{out_csv}")
-
-
 
 # # =====================================================
 # # Canada 2021 Party Choice Prediction with LLMs
