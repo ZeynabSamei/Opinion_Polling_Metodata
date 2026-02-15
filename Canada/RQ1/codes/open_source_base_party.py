@@ -54,13 +54,20 @@ print("CUDA device:", torch.cuda.get_device_name(0))
 # =====================================================
 # Party labels (MUST match dataset exactly)
 # =====================================================
+# PARTIES = [
+#     "Liberal Party",
+#     "Conservative Party",
+#     "NDP",
+#     "Bloc Québécois Party",
+#     "Green Party",
+#     "People's Party of Canada"
+# ]
+
 PARTIES = [
     "Liberal Party",
     "Conservative Party",
     "NDP",
-    "Bloc Québécois Party",
-    "Green Party",
-    "People's Party of Canada"
+    "Others"
 ]
 
 PARTIES_LOWER = [p.lower() for p in PARTIES]
