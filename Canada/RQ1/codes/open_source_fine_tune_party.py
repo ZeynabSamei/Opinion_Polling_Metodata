@@ -53,13 +53,20 @@ torch.manual_seed(args.seed)
 # =====================================================
 # Party labels
 # =====================================================
+# PARTIES = [
+#     "Liberal Party",
+#     "Conservative Party",
+#     "NDP",
+#     "Bloc Québécois Party",
+#     "Green Party",
+#     "People's Party of Canada"
+# ]
+
 PARTIES = [
     "Liberal Party",
     "Conservative Party",
     "NDP",
-    "Bloc Québécois Party",
-    "Green Party",
-    "People's Party of Canada"
+    "Others"
 ]
 
 PARTIES_LOWER = [p.lower() for p in PARTIES]
