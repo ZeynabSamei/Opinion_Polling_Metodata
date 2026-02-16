@@ -37,7 +37,7 @@
   {
     "features_raw": {
       "immigration": 2,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 1,
       "race": "White",
       "age": 52,
@@ -52,7 +52,7 @@
       "religion": "None/Atheist",
       "pol_interest": 5,
       "discuss_pol": "monthly",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -65,7 +65,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -387,7 +387,7 @@
   {
     "features_raw": {
       "immigration": 1,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "Japanese",
       "age": 58,
@@ -402,7 +402,7 @@
       "religion": "None/Atheist",
       "pol_interest": 6,
       "discuss_pol": "monthly",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -415,7 +415,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -527,7 +527,7 @@
   {
     "features_raw": {
       "immigration": 3,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "Indigenous",
       "age": 24,
@@ -542,7 +542,7 @@
       "religion": "Agnostic",
       "pol_interest": 5,
       "discuss_pol": " more than once a week",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -555,7 +555,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -632,7 +632,7 @@
   {
     "features_raw": {
       "immigration": 2,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "Chinese",
       "age": 59,
@@ -647,7 +647,7 @@
       "religion": "None/Atheist",
       "pol_interest": 6,
       "discuss_pol": "rarely",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -660,7 +660,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -702,7 +702,7 @@
   {
     "features_raw": {
       "immigration": 2,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 1,
       "race": "White",
       "age": 24,
@@ -717,7 +717,7 @@
       "religion": "Catholic",
       "pol_interest": 2,
       "discuss_pol": "rarely",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -730,7 +730,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -807,7 +807,7 @@
   {
     "features_raw": {
       "immigration": 2,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "White",
       "age": 25,
@@ -822,7 +822,7 @@
       "religion": "None/Atheist",
       "pol_interest": 6,
       "discuss_pol": "weekly",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -835,7 +835,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -1017,7 +1017,7 @@
   {
     "features_raw": {
       "immigration": 3,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "White",
       "age": 35,
@@ -1032,7 +1032,7 @@
       "religion": "None/Atheist",
       "pol_interest": 7,
       "discuss_pol": "more than once a month ",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -1045,7 +1045,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -1122,7 +1122,7 @@
   {
     "features_raw": {
       "immigration": 3,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "White",
       "age": 44,
@@ -1137,7 +1137,7 @@
       "religion": "None/Atheist",
       "pol_interest": 1,
       "discuss_pol": "rarely",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -1150,7 +1150,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -1437,7 +1437,7 @@
   {
     "features_raw": {
       "immigration": 3,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 1,
       "race": "White",
       "age": 43,
@@ -1452,7 +1452,7 @@
       "religion": "None/Atheist",
       "pol_interest": 8,
       "discuss_pol": "weekly",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -1465,14 +1465,14 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
   {
     "features_raw": {
       "immigration": 2,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 1,
       "race": "White",
       "age": 52,
@@ -1487,7 +1487,7 @@
       "religion": "Agnostic",
       "pol_interest": 2,
       "discuss_pol": "rarely",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -1500,7 +1500,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -1612,7 +1612,7 @@
   {
     "features_raw": {
       "immigration": 2,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "White",
       "age": 55,
@@ -1627,7 +1627,7 @@
       "religion": "Protestant",
       "pol_interest": 6,
       "discuss_pol": "rarely",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -1640,7 +1640,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -1822,7 +1822,7 @@
   {
     "features_raw": {
       "immigration": 1,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "White",
       "age": 29,
@@ -1837,7 +1837,7 @@
       "religion": "Lutheran",
       "pol_interest": 6,
       "discuss_pol": "more than once a month ",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -1850,7 +1850,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -1892,7 +1892,7 @@
   {
     "features_raw": {
       "immigration": 3,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "White",
       "age": 63,
@@ -1907,7 +1907,7 @@
       "religion": "None/Atheist",
       "pol_interest": 7,
       "discuss_pol": "rarely",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -1920,14 +1920,14 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
   {
     "features_raw": {
       "immigration": 3,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 1,
       "race": "White",
       "age": 48,
@@ -1942,7 +1942,7 @@
       "religion": "None/Atheist",
       "pol_interest": 10,
       "discuss_pol": " more than once a week",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -1955,7 +1955,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -2172,7 +2172,7 @@
   {
     "features_raw": {
       "immigration": 3,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 1,
       "race": "White",
       "age": 38,
@@ -2187,7 +2187,7 @@
       "religion": "Agnostic",
       "pol_interest": 8,
       "discuss_pol": " more than once a week",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -2200,14 +2200,14 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
   {
     "features_raw": {
       "immigration": 2,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "White",
       "age": 33,
@@ -2222,7 +2222,7 @@
       "religion": "None/Atheist",
       "pol_interest": 4,
       "discuss_pol": "monthly",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -2235,14 +2235,14 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
   {
     "features_raw": {
       "immigration": 2,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "South Asian",
       "age": 29,
@@ -2257,7 +2257,7 @@
       "religion": "None/Atheist",
       "pol_interest": 6,
       "discuss_pol": "rarely",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -2270,7 +2270,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -2347,7 +2347,7 @@
   {
     "features_raw": {
       "immigration": 3,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 1,
       "race": "White",
       "age": 33,
@@ -2362,7 +2362,7 @@
       "religion": "None/Atheist",
       "pol_interest": 1,
       "discuss_pol": "rarely",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -2375,14 +2375,14 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
   {
     "features_raw": {
       "immigration": 2,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "South Asian",
       "age": 29,
@@ -2397,7 +2397,7 @@
       "religion": "Sikh",
       "pol_interest": 6,
       "discuss_pol": "weekly",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -2410,7 +2410,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
@@ -2522,7 +2522,7 @@
   {
     "features_raw": {
       "immigration": 3,
-      "party_choice": "New Democratic Party",
+      "party_choice": "NDP",
       "gender": 2,
       "race": "White",
       "age": 28,
@@ -2537,7 +2537,7 @@
       "religion": "None/Atheist",
       "pol_interest": 3,
       "discuss_pol": "rarely",
-      "party_choice": "New Democratic Party"
+      "party_choice": "NDP"
     },
     "messages": [
       {
@@ -2550,7 +2550,7 @@
       },
       {
         "role": "assistant",
-        "content": "New Democratic Party"
+        "content": "NDP"
       }
     ]
   },
