@@ -1,0 +1,2802 @@
+[
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 24,
+      "pol_interest": 7,
+      "religion": 1,
+      "discuss_pol": 1
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 24,
+      "religion": "None/Atheist",
+      "pol_interest": 7,
+      "discuss_pol": "daily",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 24 years old. My religion is None/Atheist. I am 7 out of 10 interested in politics. I daily discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "New Democratic Party",
+      "gender": 1,
+      "race": "White",
+      "age": 52,
+      "pol_interest": 5,
+      "religion": 1,
+      "discuss_pol": 5
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 52,
+      "religion": "None/Atheist",
+      "pol_interest": 5,
+      "discuss_pol": "monthly",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 52 years old. My religion is None/Atheist. I am 5 out of 10 interested in politics. I monthly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "White",
+      "age": 83,
+      "pol_interest": 8,
+      "religion": 10,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 83,
+      "religion": "Catholic",
+      "pol_interest": 8,
+      "discuss_pol": "weekly",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 83 years old. My religion is Catholic. I am 8 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Minor Parties",
+      "gender": 1,
+      "race": "Other",
+      "age": 62,
+      "pol_interest": 7,
+      "religion": 10,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "Other",
+      "gender": "man",
+      "age": 62,
+      "religion": "Catholic",
+      "pol_interest": 7,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Other. I am a man. I am 62 years old. My religion is Catholic. I am 7 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "White",
+      "age": 70,
+      "pol_interest": 3,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 70,
+      "religion": "None/Atheist",
+      "pol_interest": 3,
+      "discuss_pol": "rarely",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 70 years old. My religion is None/Atheist. I am 3 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 77,
+      "pol_interest": 8,
+      "religion": 16,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 77,
+      "religion": "Presbyterian",
+      "pol_interest": 8,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 77 years old. My religion is Presbyterian. I am 8 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "South Asian",
+      "age": 50,
+      "pol_interest": -99,
+      "religion": 4,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "South Asian",
+      "gender": "man",
+      "age": 50,
+      "religion": "Hindu",
+      "pol_interest": -99,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am South Asian. I am a man. I am 50 years old. My religion is Hindu. I am -99 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 42,
+      "pol_interest": 9,
+      "religion": 1,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 42,
+      "religion": "None/Atheist",
+      "pol_interest": 9,
+      "discuss_pol": "weekly",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 42 years old. My religion is None/Atheist. I am 9 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 51,
+      "pol_interest": 6,
+      "religion": 10,
+      "discuss_pol": 5
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 51,
+      "religion": "Catholic",
+      "pol_interest": 6,
+      "discuss_pol": "monthly",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 51 years old. My religion is Catholic. I am 6 out of 10 interested in politics. I monthly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "Black",
+      "age": 40,
+      "pol_interest": 7,
+      "religion": 1,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "Black",
+      "gender": "man",
+      "age": 40,
+      "religion": "None/Atheist",
+      "pol_interest": 7,
+      "discuss_pol": "weekly",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Black. I am a man. I am 40 years old. My religion is None/Atheist. I am 7 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 2,
+      "race": "White",
+      "age": 50,
+      "pol_interest": 10,
+      "religion": 2,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 50,
+      "religion": "Agnostic",
+      "pol_interest": 10,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 50 years old. My religion is Agnostic. I am 10 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 1,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "Japanese",
+      "age": 58,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 5
+    },
+    "features_text": {
+      "race": "Japanese",
+      "gender": "woman",
+      "age": 58,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "monthly",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Japanese. I am a woman. I am 58 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I monthly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 1,
+      "race": "White",
+      "age": 37,
+      "pol_interest": 8,
+      "religion": 20,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 37,
+      "religion": "Salvation Army",
+      "pol_interest": 8,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 37 years old. My religion is Salvation Army. I am 8 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "White",
+      "age": 78,
+      "pol_interest": 6,
+      "religion": 10,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 78,
+      "religion": "Catholic",
+      "pol_interest": 6,
+      "discuss_pol": "rarely",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 78 years old. My religion is Catholic. I am 6 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 1,
+      "race": "White",
+      "age": 34,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 34,
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 34 years old. My religion is None/Atheist. I am 8 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "Indigenous",
+      "age": 24,
+      "pol_interest": 5,
+      "religion": 2,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "Indigenous",
+      "gender": "woman",
+      "age": 24,
+      "religion": "Agnostic",
+      "pol_interest": 5,
+      "discuss_pol": " more than once a week",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Indigenous. I am a woman. I am 24 years old. My religion is Agnostic. I am 5 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "White",
+      "age": 67,
+      "pol_interest": 7,
+      "religion": 10,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 67,
+      "religion": "Catholic",
+      "pol_interest": 7,
+      "discuss_pol": "rarely",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 67 years old. My religion is Catholic. I am 7 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 1,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 47,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 47,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 47 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "Chinese",
+      "age": 59,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "Chinese",
+      "gender": "woman",
+      "age": 59,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "rarely",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Chinese. I am a woman. I am 59 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "White",
+      "age": 41,
+      "pol_interest": 4,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 41,
+      "religion": "None/Atheist",
+      "pol_interest": 4,
+      "discuss_pol": "rarely",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 41 years old. My religion is None/Atheist. I am 4 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "New Democratic Party",
+      "gender": 1,
+      "race": "White",
+      "age": 24,
+      "pol_interest": 2,
+      "religion": 10,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 24,
+      "religion": "Catholic",
+      "pol_interest": 2,
+      "discuss_pol": "rarely",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 24 years old. My religion is Catholic. I am 2 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 1,
+      "race": "White",
+      "age": 55,
+      "pol_interest": 7,
+      "religion": 1,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 55,
+      "religion": "None/Atheist",
+      "pol_interest": 7,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 55 years old. My religion is None/Atheist. I am 7 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "South Asian",
+      "age": 24,
+      "pol_interest": 5,
+      "religion": 5,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "South Asian",
+      "gender": "man",
+      "age": 24,
+      "religion": "Jewish",
+      "pol_interest": 5,
+      "discuss_pol": "rarely",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am South Asian. I am a man. I am 24 years old. My religion is Jewish. I am 5 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "White",
+      "age": 25,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 25,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "weekly",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 25 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 2,
+      "race": "White",
+      "age": 24,
+      "pol_interest": 7,
+      "religion": 10,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 24,
+      "religion": "Catholic",
+      "pol_interest": 7,
+      "discuss_pol": "weekly",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 24 years old. My religion is Catholic. I am 7 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Liberal Party",
+      "gender": 2,
+      "race": "White",
+      "age": 31,
+      "pol_interest": 4,
+      "religion": 10,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 31,
+      "religion": "Catholic",
+      "pol_interest": 4,
+      "discuss_pol": "rarely",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 31 years old. My religion is Catholic. I am 4 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 39,
+      "pol_interest": 5,
+      "religion": 10,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 39,
+      "religion": "Catholic",
+      "pol_interest": 5,
+      "discuss_pol": "rarely",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 39 years old. My religion is Catholic. I am 5 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 1,
+      "race": "South Asian",
+      "age": 29,
+      "pol_interest": 6,
+      "religion": 3,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "South Asian",
+      "gender": "man",
+      "age": 29,
+      "religion": "Buddhist",
+      "pol_interest": 6,
+      "discuss_pol": "weekly",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am South Asian. I am a man. I am 29 years old. My religion is Buddhist. I am 6 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "gender": 2,
+      "race": "White",
+      "age": 70,
+      "pol_interest": 4,
+      "religion": 8,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 70,
+      "religion": "Anglican",
+      "pol_interest": 4,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 70 years old. My religion is Anglican. I am 4 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "White",
+      "age": 35,
+      "pol_interest": 7,
+      "religion": 1,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 35,
+      "religion": "None/Atheist",
+      "pol_interest": 7,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 35 years old. My religion is None/Atheist. I am 7 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Liberal Party",
+      "gender": 2,
+      "race": "Filipino",
+      "age": 53,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "Filipino",
+      "gender": "woman",
+      "age": 53,
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Filipino. I am a woman. I am 53 years old. My religion is None/Atheist. I am 8 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "White",
+      "age": 56,
+      "pol_interest": 3,
+      "religion": 1,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 56,
+      "religion": "None/Atheist",
+      "pol_interest": 3,
+      "discuss_pol": "weekly",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 56 years old. My religion is None/Atheist. I am 3 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "White",
+      "age": 44,
+      "pol_interest": 1,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 44,
+      "religion": "None/Atheist",
+      "pol_interest": 1,
+      "discuss_pol": "rarely",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 44 years old. My religion is None/Atheist. I am 1 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 2,
+      "race": "White",
+      "age": 45,
+      "pol_interest": 8,
+      "religion": 10,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 45,
+      "religion": "Catholic",
+      "pol_interest": 8,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 45 years old. My religion is Catholic. I am 8 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 2,
+      "race": "White",
+      "age": 45,
+      "pol_interest": 5,
+      "religion": 2,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 45,
+      "religion": "Agnostic",
+      "pol_interest": 5,
+      "discuss_pol": "rarely",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 45 years old. My religion is Agnostic. I am 5 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "White",
+      "age": 65,
+      "pol_interest": 10,
+      "religion": 10,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 65,
+      "religion": "Catholic",
+      "pol_interest": 10,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 65 years old. My religion is Catholic. I am 10 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Liberal Party",
+      "gender": 2,
+      "race": "White",
+      "age": 66,
+      "pol_interest": 3,
+      "religion": 1,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 66,
+      "religion": "None/Atheist",
+      "pol_interest": 3,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 66 years old. My religion is None/Atheist. I am 3 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 46,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 46,
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": "weekly",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 46 years old. My religion is None/Atheist. I am 8 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Liberal Party",
+      "gender": 2,
+      "race": "White",
+      "age": 58,
+      "pol_interest": 1,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 58,
+      "religion": "None/Atheist",
+      "pol_interest": 1,
+      "discuss_pol": "rarely",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 58 years old. My religion is None/Atheist. I am 1 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "South Asian",
+      "age": 48,
+      "pol_interest": 9,
+      "religion": 4,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "South Asian",
+      "gender": "man",
+      "age": 48,
+      "religion": "Hindu",
+      "pol_interest": 9,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am South Asian. I am a man. I am 48 years old. My religion is Hindu. I am 9 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "White",
+      "age": 57,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 57,
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 57 years old. My religion is None/Atheist. I am 8 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "New Democratic Party",
+      "gender": 1,
+      "race": "White",
+      "age": 43,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 43,
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": "weekly",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 43 years old. My religion is None/Atheist. I am 8 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "New Democratic Party",
+      "gender": 1,
+      "race": "White",
+      "age": 52,
+      "pol_interest": 2,
+      "religion": 2,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 52,
+      "religion": "Agnostic",
+      "pol_interest": 2,
+      "discuss_pol": "rarely",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 52 years old. My religion is Agnostic. I am 2 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "White",
+      "age": 73,
+      "pol_interest": 7,
+      "religion": 10,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 73,
+      "religion": "Catholic",
+      "pol_interest": 7,
+      "discuss_pol": "weekly",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 73 years old. My religion is Catholic. I am 7 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 1,
+      "race": "Southeast Asian",
+      "age": 20,
+      "pol_interest": 6,
+      "religion": 4,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "Southeast Asian",
+      "gender": "man",
+      "age": 20,
+      "religion": "Hindu",
+      "pol_interest": 6,
+      "discuss_pol": "weekly",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Southeast Asian. I am a man. I am 20 years old. My religion is Hindu. I am 6 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "gender": 2,
+      "race": "White",
+      "age": 19,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 19,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 19 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "White",
+      "age": 55,
+      "pol_interest": 6,
+      "religion": 17,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 55,
+      "religion": "Protestant",
+      "pol_interest": 6,
+      "discuss_pol": "rarely",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 55 years old. My religion is Protestant. I am 6 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 23,
+      "pol_interest": 4,
+      "religion": 1,
+      "discuss_pol": 5
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 23,
+      "religion": "None/Atheist",
+      "pol_interest": 4,
+      "discuss_pol": "monthly",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 23 years old. My religion is None/Atheist. I am 4 out of 10 interested in politics. I monthly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "Chinese",
+      "age": 56,
+      "pol_interest": 7,
+      "religion": 3,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "Chinese",
+      "gender": "man",
+      "age": 56,
+      "religion": "Buddhist",
+      "pol_interest": 7,
+      "discuss_pol": "weekly",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Chinese. I am a man. I am 56 years old. My religion is Buddhist. I am 7 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 69,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 1
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 69,
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": "daily",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 69 years old. My religion is None/Atheist. I am 8 out of 10 interested in politics. I daily discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 2,
+      "race": "White",
+      "age": 83,
+      "pol_interest": 8,
+      "religion": 8,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 83,
+      "religion": "Anglican",
+      "pol_interest": 8,
+      "discuss_pol": "weekly",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 83 years old. My religion is Anglican. I am 8 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 30,
+      "pol_interest": 5,
+      "religion": 1,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 30,
+      "religion": "None/Atheist",
+      "pol_interest": 5,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 30 years old. My religion is None/Atheist. I am 5 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 1,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "White",
+      "age": 29,
+      "pol_interest": 6,
+      "religion": 13,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 29,
+      "religion": "Lutheran",
+      "pol_interest": 6,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 29 years old. My religion is Lutheran. I am 6 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "White",
+      "age": 73,
+      "pol_interest": 7,
+      "religion": 10,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 73,
+      "religion": "Catholic",
+      "pol_interest": 7,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 73 years old. My religion is Catholic. I am 7 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "White",
+      "age": 63,
+      "pol_interest": 7,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 63,
+      "religion": "None/Atheist",
+      "pol_interest": 7,
+      "discuss_pol": "rarely",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 63 years old. My religion is None/Atheist. I am 7 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "New Democratic Party",
+      "gender": 1,
+      "race": "White",
+      "age": 48,
+      "pol_interest": 10,
+      "religion": 1,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 48,
+      "religion": "None/Atheist",
+      "pol_interest": 10,
+      "discuss_pol": " more than once a week",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 48 years old. My religion is None/Atheist. I am 10 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "White",
+      "age": 57,
+      "pol_interest": 7,
+      "religion": 3,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 57,
+      "religion": "Buddhist",
+      "pol_interest": 7,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 57 years old. My religion is Buddhist. I am 7 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "White",
+      "age": 67,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 67,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "rarely",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 67 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "White",
+      "age": 29,
+      "pol_interest": 2,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 29,
+      "religion": "None/Atheist",
+      "pol_interest": 2,
+      "discuss_pol": "rarely",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 29 years old. My religion is None/Atheist. I am 2 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Minor Parties",
+      "gender": 2,
+      "race": "Chinese",
+      "age": 18,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 5
+    },
+    "features_text": {
+      "race": "Chinese",
+      "gender": "woman",
+      "age": 18,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "monthly",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Chinese. I am a woman. I am 18 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I monthly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Minor Parties",
+      "gender": 1,
+      "race": "White",
+      "age": 36,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 36,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "rarely",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 36 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 2,
+      "race": "White",
+      "age": 55,
+      "pol_interest": 9,
+      "religion": 17,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 55,
+      "religion": "Protestant",
+      "pol_interest": 9,
+      "discuss_pol": "weekly",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 55 years old. My religion is Protestant. I am 9 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "New Democratic Party",
+      "gender": 1,
+      "race": "White",
+      "age": 38,
+      "pol_interest": 8,
+      "religion": 2,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 38,
+      "religion": "Agnostic",
+      "pol_interest": 8,
+      "discuss_pol": " more than once a week",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 38 years old. My religion is Agnostic. I am 8 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "White",
+      "age": 33,
+      "pol_interest": 4,
+      "religion": 1,
+      "discuss_pol": 5
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 33,
+      "religion": "None/Atheist",
+      "pol_interest": 4,
+      "discuss_pol": "monthly",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 33 years old. My religion is None/Atheist. I am 4 out of 10 interested in politics. I monthly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "South Asian",
+      "age": 29,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "South Asian",
+      "gender": "woman",
+      "age": 29,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "rarely",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am South Asian. I am a woman. I am 29 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "White",
+      "age": 41,
+      "pol_interest": 9,
+      "religion": 1,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 41,
+      "religion": "None/Atheist",
+      "pol_interest": 9,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 41 years old. My religion is None/Atheist. I am 9 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Liberal Party",
+      "gender": 2,
+      "race": "West Asian",
+      "age": 35,
+      "pol_interest": 5,
+      "religion": 6,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "West Asian",
+      "gender": "woman",
+      "age": 35,
+      "religion": "Muslim",
+      "pol_interest": 5,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am West Asian. I am a woman. I am 35 years old. My religion is Muslim. I am 5 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "New Democratic Party",
+      "gender": 1,
+      "race": "White",
+      "age": 33,
+      "pol_interest": 1,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 33,
+      "religion": "None/Atheist",
+      "pol_interest": 1,
+      "discuss_pol": "rarely",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 33 years old. My religion is None/Atheist. I am 1 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "South Asian",
+      "age": 29,
+      "pol_interest": 6,
+      "religion": 7,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "South Asian",
+      "gender": "woman",
+      "age": 29,
+      "religion": "Sikh",
+      "pol_interest": 6,
+      "discuss_pol": "weekly",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am South Asian. I am a woman. I am 29 years old. My religion is Sikh. I am 6 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 2,
+      "race": "White",
+      "age": 39,
+      "pol_interest": 1,
+      "religion": 17,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 39,
+      "religion": "Protestant",
+      "pol_interest": 1,
+      "discuss_pol": "weekly",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 39 years old. My religion is Protestant. I am 1 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 1,
+      "party_choice": "Minor Parties",
+      "gender": 1,
+      "race": "Other",
+      "age": 60,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "Other",
+      "gender": "man",
+      "age": 60,
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Minor Parties"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Other. I am a man. I am 60 years old. My religion is None/Atheist. I am 8 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Minor Parties"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "White",
+      "age": 39,
+      "pol_interest": 4,
+      "religion": 1,
+      "discuss_pol": 5
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 39,
+      "religion": "None/Atheist",
+      "pol_interest": 4,
+      "discuss_pol": "monthly",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 39 years old. My religion is None/Atheist. I am 4 out of 10 interested in politics. I monthly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "New Democratic Party",
+      "gender": 2,
+      "race": "White",
+      "age": 28,
+      "pol_interest": 3,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 28,
+      "religion": "None/Atheist",
+      "pol_interest": 3,
+      "discuss_pol": "rarely",
+      "party_choice": "New Democratic Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 28 years old. My religion is None/Atheist. I am 3 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "New Democratic Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 2,
+      "race": "White",
+      "age": 41,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 41,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "weekly",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 41 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "White",
+      "age": 56,
+      "pol_interest": 7,
+      "religion": 2,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 56,
+      "religion": "Agnostic",
+      "pol_interest": 7,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 56 years old. My religion is Agnostic. I am 7 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Liberal Party",
+      "gender": 2,
+      "race": "White",
+      "age": 76,
+      "pol_interest": 8,
+      "religion": 17,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 76,
+      "religion": "Protestant",
+      "pol_interest": 8,
+      "discuss_pol": "weekly",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 76 years old. My religion is Protestant. I am 8 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Liberal Party",
+      "gender": 1,
+      "race": "White",
+      "age": 60,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 3
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 60,
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": "weekly",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 60 years old. My religion is None/Atheist. I am 8 out of 10 interested in politics. I weekly discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Liberal Party",
+      "gender": 2,
+      "race": "White",
+      "age": 55,
+      "pol_interest": 8,
+      "religion": 10,
+      "discuss_pol": 2
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 55,
+      "religion": "Catholic",
+      "pol_interest": 8,
+      "discuss_pol": " more than once a week",
+      "party_choice": "Liberal Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 55 years old. My religion is Catholic. I am 8 out of 10 interested in politics. I  more than once a week discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Liberal Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 3,
+      "party_choice": "Conservative Party",
+      "gender": 2,
+      "race": "White",
+      "age": 80,
+      "pol_interest": 8,
+      "religion": 2,
+      "discuss_pol": 4
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 80,
+      "religion": "Agnostic",
+      "pol_interest": 8,
+      "discuss_pol": "more than once a month ",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 80 years old. My religion is Agnostic. I am 8 out of 10 interested in politics. I more than once a month  discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "immigration": 2,
+      "party_choice": "Conservative Party",
+      "gender": 1,
+      "race": "White",
+      "age": 69,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 6
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 69,
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "rarely",
+      "party_choice": "Conservative Party"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are performing a 4-class classification task for the 2024 Canadian federal election.\nBased only on the demographic profile, predict the most likely party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nDo NOT default to 'Minor Parties' due to uncertainty.\nReturn exactly one label and nothing else."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 69 years old. My religion is None/Atheist. I am 6 out of 10 interested in politics. I rarely discuss about politics with family and friends. If a federal election were held today, I would vote for the party: "
+      },
+      {
+        "role": "assistant",
+        "content": "Conservative Party"
+      }
+    ]
+  }
+]
