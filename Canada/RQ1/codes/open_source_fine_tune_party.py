@@ -66,7 +66,7 @@ PARTIES = [
     "Liberal Party",
     "Conservative Party",
     "NDP",
-    "Others"
+    "Minor Parties"
 ]
 
 PARTIES_LOWER = [p.lower() for p in PARTIES]
