@@ -160,8 +160,11 @@ def party_to_numeric(party):
 # =====================================================
 if args.fine_tune_data is not None:
     print("Starting fine-tuning ...")
+    # with open(args.fine_tune_data, "r") as f:
+    #     ft_data = json.load(f)
+
     with open(args.fine_tune_data, "r") as f:
-        ft_data = json.load(f)
+        ft_data = [json.loads(line) for line in f if line.strip()]
     print(f"Loaded {len(ft_data)} fine-tune samples")
 
     ft_texts = []
