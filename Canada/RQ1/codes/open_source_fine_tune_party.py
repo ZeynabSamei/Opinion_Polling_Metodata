@@ -18,7 +18,7 @@ from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments, DataCollatorForLanguageModeling
 from sklearn.metrics import cohen_kappa_score
 from datasets import Dataset
-
+import gc
 from peft import LoraConfig, get_peft_model
 
 # Optional ICC
@@ -88,6 +88,8 @@ print(f"Loaded {len(data)} samples")
 # =====================================================
 print(f"Loading model: {args.model_name}")
 
+
+
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
 # model = AutoModelForCausalLM.from_pretrained(
@@ -110,6 +112,20 @@ model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
     torch_dtype=torch.float16
 ).to("cuda")
+
+
+
+# -----------------------------------------------------
+# 🔥 CLEAN BEFORE APPLYING LoRA (IMPORTANT)
+# -----------------------------------------------------
+
+gc.collect()
+torch.cuda.empty_cache()
+torch.cuda.ipc_collect()
+
+
+
+
 
 # Add LoRA
 peft_config = LoraConfig(
@@ -204,7 +220,7 @@ if args.fine_tune_data is not None:
     dataset = Dataset.from_list(ft_texts)
 
     def tokenize_fn(examples):
-        return tokenizer(examples["text"], truncation=True, padding="max_length", max_length=512)
+        return tokenizer(examples["text"], truncation=True, padding="max_length", max_length=256)
 
     tokenized_ds = dataset.map(tokenize_fn, batched=True)
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
