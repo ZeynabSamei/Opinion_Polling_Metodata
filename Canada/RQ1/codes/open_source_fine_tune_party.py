@@ -184,15 +184,18 @@ if args.fine_tune_data is not None:
     tokenized_ds = dataset.map(tokenize_fn, batched=True)
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
 
+
     training_args = TrainingArguments(
-        output_dir=os.path.join(args.out_dir, "ft_model"),
-        per_device_train_batch_size=args.ft_batch_size,
-        num_train_epochs=args.ft_epochs,
-        logging_steps=50,
-        save_strategy="no",
-        fp16=True,
-        seed=args.seed
-    )
+    output_dir=os.path.join(args.out_dir, "ft_model"),
+    per_device_train_batch_size=args.ft_batch_size,
+    num_train_epochs=args.ft_epochs,
+    logging_steps=50,
+    save_strategy="no",
+    fp16=True,
+    seed=args.seed,
+    report_to="none"   # ← ADD THIS
+)
+
 
     trainer = Trainer(
         model=model,
