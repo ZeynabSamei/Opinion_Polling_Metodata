@@ -23,7 +23,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -59,7 +59,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -95,7 +95,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -131,7 +131,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -167,7 +167,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -203,7 +203,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -239,7 +239,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -275,7 +275,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -311,7 +311,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -347,7 +347,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -383,7 +383,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -419,7 +419,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -455,7 +455,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -491,7 +491,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -527,7 +527,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -563,7 +563,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -599,7 +599,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -635,7 +635,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -671,7 +671,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -707,7 +707,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -743,7 +743,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -779,7 +779,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -815,7 +815,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -851,7 +851,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -887,7 +887,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -923,7 +923,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -959,7 +959,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -995,7 +995,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1031,7 +1031,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1067,7 +1067,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1103,7 +1103,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1139,7 +1139,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1175,7 +1175,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1211,7 +1211,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1247,7 +1247,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1283,7 +1283,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1319,7 +1319,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1355,7 +1355,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1391,7 +1391,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1427,7 +1427,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1463,7 +1463,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1499,7 +1499,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1535,7 +1535,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1571,7 +1571,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1607,7 +1607,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1643,7 +1643,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1679,7 +1679,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1715,7 +1715,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1751,7 +1751,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1787,7 +1787,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1823,7 +1823,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1859,7 +1859,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1895,7 +1895,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1931,7 +1931,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -1967,7 +1967,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2003,7 +2003,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2039,7 +2039,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2075,7 +2075,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2111,7 +2111,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2147,7 +2147,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2183,7 +2183,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2219,7 +2219,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2255,7 +2255,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2291,7 +2291,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2327,7 +2327,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2363,7 +2363,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2399,7 +2399,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2435,7 +2435,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2471,7 +2471,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2507,7 +2507,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2543,7 +2543,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2579,7 +2579,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2615,7 +2615,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2651,7 +2651,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2687,7 +2687,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2723,7 +2723,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2759,7 +2759,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2795,7 +2795,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2831,7 +2831,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
@@ -2867,7 +2867,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
+        "content": "You are an expert political analyst specializing in Canada elections and voting behavior.Your task is to analyze the demographic profile provided in the text and predict the party choice in 2021.\n\nValid output labels:\n- Liberal Party\n- Conservative Party\n- NDP\n- Minor Parties\n\n'Minor Parties' includes Bloc Qu\u00e9b\u00e9cois, Green Party, and People's Party of Canada.\n\nReturn exactly one label and nothing else."
       },
       {
         "role": "user",
