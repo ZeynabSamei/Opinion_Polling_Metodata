@@ -272,7 +272,7 @@ if args.fine_tune_data is not None:
         logging_steps=50,
         save_strategy="no",
         fp16=False,
-        seed=args.seed
+        seed=args.seed,
         bf16=torch.cuda.is_bf16_supported()
     )
 
