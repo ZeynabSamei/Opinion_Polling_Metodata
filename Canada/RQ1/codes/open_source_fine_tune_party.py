@@ -252,23 +252,43 @@ if args.fine_tune_data is not None:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model.to(device)
 
-    # Training arguments
-    training_args = TrainingArguments(
+    # # Training arguments
+    # training_args = TrainingArguments(
+    #     output_dir=os.path.join(args.out_dir, "ft_model"),
+    #     per_device_train_batch_size=args.ft_batch_size,
+    #     num_train_epochs=args.ft_epochs,
+    #     logging_steps=50,
+    #     save_strategy="no",
+    #     fp16=False,   # only enable if CUDA
+    #     seed=args.seed,
+    #     report_to="none"
+    # )
+
+
+       training_args = TrainingArguments(
         output_dir=os.path.join(args.out_dir, "ft_model"),
         per_device_train_batch_size=args.ft_batch_size,
         num_train_epochs=args.ft_epochs,
         logging_steps=50,
         save_strategy="no",
-        fp16=torch.cuda.is_available(),   # only enable if CUDA
-        seed=args.seed,
-        report_to="none"
+        fp16=True,
+        seed=args.seed
     )
 
     # Initialize Trainer (tokenizer argument removed)
-    trainer = Trainer(
+    # trainer = Trainer(
+    #     model=model,
+    #     args=training_args,
+    #     train_dataset=tokenized_ds,
+    #     data_collator=data_collator
+    # )
+
+
+  trainer = Trainer(
         model=model,
         args=training_args,
         train_dataset=tokenized_ds,
+        tokenizer=tokenizer,
         data_collator=data_collator
     )
 
