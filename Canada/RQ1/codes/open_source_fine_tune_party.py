@@ -93,7 +93,7 @@ print(f"Loading model: {args.model_name}")
 
 
 
-
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
