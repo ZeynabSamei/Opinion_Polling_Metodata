@@ -92,26 +92,26 @@ print(f"Loading model: {args.model_name}")
 
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
-# model = AutoModelForCausalLM.from_pretrained(
-#     args.model_name,
-#     # device_map="auto",
-#     torch_dtype=torch.float16
-# )
-
-# # Pad token fix
-# tokenizer.pad_token = tokenizer.eos_token
-# tokenizer.pad_token_id = tokenizer.eos_token_id
-# model.config.pad_token_id = tokenizer.eos_token_id
-# model.eval()
-
-# device = next(model.parameters()).device
-
-
-# Load model normally
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
+    # device_map="auto",
     torch_dtype=torch.float16
-).to("cuda")
+)
+
+# Pad token fix
+tokenizer.pad_token = tokenizer.eos_token
+tokenizer.pad_token_id = tokenizer.eos_token_id
+model.config.pad_token_id = tokenizer.eos_token_id
+model.eval()
+
+device = next(model.parameters()).device
+
+
+# # Load model normally
+# model = AutoModelForCausalLM.from_pretrained(
+#     args.model_name,
+#     torch_dtype=torch.float16
+# ).to("cuda")
 
 
 
@@ -119,26 +119,26 @@ model = AutoModelForCausalLM.from_pretrained(
 # 🔥 CLEAN BEFORE APPLYING LoRA (IMPORTANT)
 # -----------------------------------------------------
 
-gc.collect()
-torch.cuda.empty_cache()
-torch.cuda.ipc_collect()
+# gc.collect()
+# torch.cuda.empty_cache()
+# torch.cuda.ipc_collect()
 
 
 
 
 
-# Add LoRA
-peft_config = LoraConfig(
-    r=8,
-    lora_alpha=16,
-    target_modules=["q_proj", "v_proj"],
-    lora_dropout=0.05,
-    bias="none",
-    task_type="CAUSAL_LM"
-)
+# # Add LoRA
+# peft_config = LoraConfig(
+#     r=8,
+#     lora_alpha=16,
+#     target_modules=["q_proj", "v_proj"],
+#     lora_dropout=0.05,
+#     bias="none",
+#     task_type="CAUSAL_LM"
+# )
 
-model = get_peft_model(model, peft_config)
-model.print_trainable_parameters()
+# model = get_peft_model(model, peft_config)
+# model.print_trainable_parameters()
 
 
 
@@ -226,29 +226,29 @@ if args.fine_tune_data is not None:
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
 
 
-#     training_args = TrainingArguments(
-#     output_dir=os.path.join(args.out_dir, "ft_model"),
-#     per_device_train_batch_size=args.ft_batch_size,
-#     num_train_epochs=args.ft_epochs,
-#     logging_steps=50,
-#     save_strategy="no",
-#     fp16=True,
-#     seed=args.seed,
-#     report_to="none"   # ← ADD THIS
-# )
-
-
     training_args = TrainingArguments(
     output_dir=os.path.join(args.out_dir, "ft_model"),
-    per_device_train_batch_size=2,  # reduce
-    gradient_accumulation_steps=4,  # simulate larger batch
+    per_device_train_batch_size=args.ft_batch_size,
     num_train_epochs=args.ft_epochs,
-    logging_steps=10,
+    logging_steps=50,
     save_strategy="no",
     fp16=True,
     seed=args.seed,
-    report_to="none"
+    report_to="none"   # ← ADD THIS
 )
+
+
+#     training_args = TrainingArguments(
+#     output_dir=os.path.join(args.out_dir, "ft_model"),
+#     per_device_train_batch_size=2,  # reduce
+#     gradient_accumulation_steps=4,  # simulate larger batch
+#     num_train_epochs=args.ft_epochs,
+#     logging_steps=10,
+#     save_strategy="no",
+#     fp16=True,
+#     seed=args.seed,
+#     report_to="none"
+# )
 
 
 
