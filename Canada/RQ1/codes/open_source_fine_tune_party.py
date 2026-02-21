@@ -90,6 +90,11 @@ print(f"Loading model: {args.model_name}")
 
 
 
+
+
+
+
+
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
 # model = AutoModelForCausalLM.from_pretrained(
@@ -101,6 +106,7 @@ tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
+    device_map="auto",       # automatically puts layers on GPUs
     dtype=torch.float16
 )
 
@@ -238,9 +244,9 @@ if args.fine_tune_data is not None:
     num_train_epochs=args.ft_epochs,
     logging_steps=50,
     save_strategy="no",
-    fp16=True,
+    fp16=torch.cuda.is_available(),  # <- only enable if CUDA
     seed=args.seed,
-    report_to="none"   # ← ADD THIS
+    report_to="none"
 )
 
 
