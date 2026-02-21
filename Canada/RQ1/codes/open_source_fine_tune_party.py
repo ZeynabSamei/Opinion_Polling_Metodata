@@ -276,21 +276,13 @@ if args.fine_tune_data is not None:
     )
 
     # Initialize Trainer (tokenizer argument removed)
-    # trainer = Trainer(
-    #     model=model,
-    #     args=training_args,
-    #     train_dataset=tokenized_ds,
-    #     data_collator=data_collator
-    # )
-
-
     trainer = Trainer(
         model=model,
         args=training_args,
         train_dataset=tokenized_ds,
-        tokenizer=tokenizer,
         data_collator=data_collator
     )
+
 
     # Train
     trainer.train()
