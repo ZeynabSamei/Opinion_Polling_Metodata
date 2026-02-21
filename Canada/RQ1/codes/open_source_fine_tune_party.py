@@ -284,7 +284,7 @@ if args.fine_tune_data is not None:
     # )
 
 
-  trainer = Trainer(
+    trainer = Trainer(
         model=model,
         args=training_args,
         train_dataset=tokenized_ds,
