@@ -97,26 +97,21 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
-# model = AutoModelForCausalLM.from_pretrained(
-#     args.model_name,
-#     # device_map="auto",
-#     torch_dtype=torch.float16
-# )
-
 
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
     device_map="auto",       # automatically puts layers on GPUs
     dtype=torch.float16
-)
+).to("cuda")
 
 # Pad token fix
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.pad_token_id = tokenizer.eos_token_id
 model.config.pad_token_id = tokenizer.eos_token_id
 model.eval()
+device = model.device if hasattr(model, "device") else next(model.parameters()).device
 
-device = next(model.parameters()).device
+# device = next(model.parameters()).device
 
 
 # # Load model normally
@@ -211,15 +206,18 @@ def party_to_numeric(party):
 # =====================================================
 # Fine-tuning (optional)
 # =====================================================
+# =====================================================
+# Fine-tuning (optional)
+# =====================================================
 if args.fine_tune_data is not None:
     print("Starting fine-tuning ...")
-    # with open(args.fine_tune_data, "r") as f:
-    #     ft_data = json.load(f)
 
+    # Load fine-tune JSONL
     with open(args.fine_tune_data, "r") as f:
         ft_data = [json.loads(line) for line in f if line.strip()]
     print(f"Loaded {len(ft_data)} fine-tune samples")
 
+    # Prepare text for causal LM
     ft_texts = []
     for item in ft_data:
         prompt = "\n".join(f"{m['role']}: {m['content']}" for m in item.get("messages", []))
@@ -237,52 +235,98 @@ if args.fine_tune_data is not None:
     tokenized_ds = dataset.map(tokenize_fn, batched=True)
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
 
+    # LoRA setup (optional)
+    # Uncomment if you want LoRA fine-tuning
+    # peft_config = LoraConfig(
+    #     r=8,
+    #     lora_alpha=16,
+    #     target_modules=["q_proj", "v_proj"],
+    #     lora_dropout=0.05,
+    #     bias="none",
+    #     task_type="CAUSAL_LM"
+    # )
+    # model = get_peft_model(model, peft_config)
+    # model.print_trainable_parameters()
 
+    # Make sure model is on correct device
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model.to(device)
+
+    # Training arguments
     training_args = TrainingArguments(
-    output_dir=os.path.join(args.out_dir, "ft_model"),
-    per_device_train_batch_size=args.ft_batch_size,
-    num_train_epochs=args.ft_epochs,
-    logging_steps=50,
-    save_strategy="no",
-    fp16=torch.cuda.is_available(),  # <- only enable if CUDA
-    seed=args.seed,
-    report_to="none"
-)
+        output_dir=os.path.join(args.out_dir, "ft_model"),
+        per_device_train_batch_size=args.ft_batch_size,
+        num_train_epochs=args.ft_epochs,
+        logging_steps=50,
+        save_strategy="no",
+        fp16=torch.cuda.is_available(),   # only enable if CUDA
+        seed=args.seed,
+        report_to="none"
+    )
+
+    # Initialize Trainer (tokenizer argument removed)
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        train_dataset=tokenized_ds,
+        data_collator=data_collator
+    )
+
+    # Train
+    trainer.train()
+    print("Fine-tuning completed.")
+
+
+
+# if args.fine_tune_data is not None:
+#     print("Starting fine-tuning ...")
+#     # with open(args.fine_tune_data, "r") as f:
+#     #     ft_data = json.load(f)
+
+#     with open(args.fine_tune_data, "r") as f:
+#         ft_data = [json.loads(line) for line in f if line.strip()]
+#     print(f"Loaded {len(ft_data)} fine-tune samples")
+
+#     ft_texts = []
+#     for item in ft_data:
+#         prompt = "\n".join(f"{m['role']}: {m['content']}" for m in item.get("messages", []))
+#         target = ""
+#         for m in item.get("messages", []):
+#             if m["role"] == "assistant":
+#                 target = m["content"]
+#         ft_texts.append({"text": prompt + tokenizer.eos_token + target + tokenizer.eos_token})
+
+#     dataset = Dataset.from_list(ft_texts)
+
+#     def tokenize_fn(examples):
+#         return tokenizer(examples["text"], truncation=True, padding="max_length", max_length=256)
+
+#     tokenized_ds = dataset.map(tokenize_fn, batched=True)
+#     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
 
 
 #     training_args = TrainingArguments(
 #     output_dir=os.path.join(args.out_dir, "ft_model"),
-#     per_device_train_batch_size=2,  # reduce
-#     gradient_accumulation_steps=4,  # simulate larger batch
+#     per_device_train_batch_size=args.ft_batch_size,
 #     num_train_epochs=args.ft_epochs,
-#     logging_steps=10,
+#     logging_steps=50,
 #     save_strategy="no",
-#     fp16=True,
+#     fp16=torch.cuda.is_available(),  # <- only enable if CUDA
 #     seed=args.seed,
 #     report_to="none"
 # )
 
 
+#     trainer = Trainer(
+#     model=model,
+#     args=training_args,
+#     train_dataset=tokenized_ds,
+#     data_collator=data_collator
+#     )
 
-    trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=tokenized_ds,
-    data_collator=data_collator
-    )
 
-    
-
-    # trainer = Trainer(
-    #     model=model,
-    #     args=training_args,
-    #     train_dataset=tokenized_ds,
-    #     tokenizer=tokenizer,
-    #     data_collator=data_collator
-    # )
-
-    trainer.train()
-    print("Fine-tuning completed.")
+#     trainer.train()
+#     print("Fine-tuning completed.")
 
 # =====================================================
 # Inference loop
