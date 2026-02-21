@@ -90,9 +90,6 @@ print(f"Loading model: {args.model_name}")
 
 
 
-
-
-
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
@@ -102,7 +99,7 @@ model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
     device_map="auto",       # automatically puts layers on GPUs
     dtype=torch.float16
-).to("cuda")
+)
 
 # Pad token fix
 tokenizer.pad_token = tokenizer.eos_token
@@ -110,7 +107,7 @@ tokenizer.pad_token_id = tokenizer.eos_token_id
 model.config.pad_token_id = tokenizer.eos_token_id
 model.eval()
 device = model.device if hasattr(model, "device") else next(model.parameters()).device
-
+model.gradient_checkpointing_enable()
 # device = next(model.parameters()).device
 
 
