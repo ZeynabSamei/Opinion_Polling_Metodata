@@ -271,8 +271,9 @@ if args.fine_tune_data is not None:
         num_train_epochs=args.ft_epochs,
         logging_steps=50,
         save_strategy="no",
-        fp16=True,
+        fp16=False,
         seed=args.seed
+        bf16=torch.cuda.is_bf16_supported()
     )
 
     # Initialize Trainer (tokenizer argument removed)
