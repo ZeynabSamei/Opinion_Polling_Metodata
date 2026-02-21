@@ -92,10 +92,16 @@ print(f"Loading model: {args.model_name}")
 
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
+# model = AutoModelForCausalLM.from_pretrained(
+#     args.model_name,
+#     # device_map="auto",
+#     torch_dtype=torch.float16
+# )
+
+
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
-    # device_map="auto",
-    torch_dtype=torch.float16
+    dtype=torch.float16
 )
 
 # Pad token fix
@@ -253,12 +259,21 @@ if args.fine_tune_data is not None:
 
 
     trainer = Trainer(
-        model=model,
-        args=training_args,
-        train_dataset=tokenized_ds,
-        tokenizer=tokenizer,
-        data_collator=data_collator
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_ds,
+    data_collator=data_collator
     )
+
+    
+
+    # trainer = Trainer(
+    #     model=model,
+    #     args=training_args,
+    #     train_dataset=tokenized_ds,
+    #     tokenizer=tokenizer,
+    #     data_collator=data_collator
+    # )
 
     trainer.train()
     print("Fine-tuning completed.")
