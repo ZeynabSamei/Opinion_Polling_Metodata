@@ -96,9 +96,9 @@ tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
     # device_map="auto",       # Automatically put layers on GPU/CPU
-    torch_dtype=torch.float16, # Use FP16 for less memory and faster inference
+    dtype=torch.bfloat16, # Use FP16 for less memory and faster inference
     # offload_folder="offload"  # Temporary folder for CPU offloading
-)
+).cuda()
 
 
 # tokenizer = AutoTokenizer.from_pretrained(args.model_name)
