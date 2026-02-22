@@ -49,15 +49,20 @@ torch.manual_seed(args.seed)
 # =====================================================
 # Candidates (Canada 2021 leaders)
 # =====================================================
+# CANDIDATES = [
+#     "Justin Trudeau",
+#     "Erin O'Toole",
+#     "Jagmeet Singh",
+#     "Yves-François Blanchet",
+#     "Annamie Paul",
+#     "Maxime Bernier",
+# ]
+
 CANDIDATES = [
     "Justin Trudeau",
     "Erin O'Toole",
-    "Jagmeet Singh",
-    "Yves-François Blanchet",
-    "Annamie Paul",
-    "Maxime Bernier",
+    "Others"
 ]
-
 CANDIDATES_LOWER = [c.lower() for c in CANDIDATES]
 VOTE2ID = {c: i for i, c in enumerate(CANDIDATES)}
 ID2VOTE = {i: c for c, i in VOTE2ID.items()}
