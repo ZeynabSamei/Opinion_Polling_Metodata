@@ -67,6 +67,7 @@ PARTIES = [
     "Liberal Party",
     "Conservative Party",
     "NDP",
+    "Bloc Québécois",
     "Minor Parties"
 ]
 
