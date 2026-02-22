@@ -95,9 +95,9 @@ tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 # Load model efficiently on GPU
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
-    device_map="auto",       # Automatically put layers on GPU/CPU
+    # device_map="auto",       # Automatically put layers on GPU/CPU
     torch_dtype=torch.float16, # Use FP16 for less memory and faster inference
-    offload_folder="offload"  # Temporary folder for CPU offloading
+    # offload_folder="offload"  # Temporary folder for CPU offloading
 )
 
 
