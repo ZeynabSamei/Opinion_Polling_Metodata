@@ -93,13 +93,19 @@ print(f"Loading model: {args.model_name}")
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
 # Load model efficiently on GPU
+# model = AutoModelForCausalLM.from_pretrained(
+#     args.model_name,
+#     # device_map="auto",       # Automatically put layers on GPU/CPU
+#     dtype=torch.bfloat16, # Use FP16 for less memory and faster inference
+#     # offload_folder="offload"  # Temporary folder for CPU offloading
+# ).cuda()
+
+
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
-    # device_map="auto",       # Automatically put layers on GPU/CPU
-    dtype=torch.bfloat16, # Use FP16 for less memory and faster inference
-    # offload_folder="offload"  # Temporary folder for CPU offloading
-).cuda()
-
+    device_map="auto",
+    torch_dtype=torch.float16
+)
 
 # tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
