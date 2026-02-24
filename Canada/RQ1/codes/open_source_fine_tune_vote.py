@@ -18,6 +18,7 @@ from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments, DataCollatorForLanguageModeling
 from sklearn.metrics import cohen_kappa_score
 from datasets import Dataset
+from datasets import load_dataset
 
 # Optional ICC
 try:
@@ -56,10 +57,7 @@ torch.manual_seed(args.seed)
 CANDIDATES = [
     "Justin Trudeau",
     "Erin O'Toole",
-    "Jagmeet Singh",
-    "Yves-François Blanchet",
-    "Annamie Paul",
-    "Maxime Bernier",
+    "Others"
 ]
 
 CANDIDATES_LOWER = [c.lower() for c in CANDIDATES]
@@ -149,10 +147,17 @@ def vote_to_numeric(vote):
 # =====================================================
 # Fine-tuning step (optional)
 # =====================================================
-if args.fine_tune_data is not None:
-    print("Starting fine-tuning ...")
-    with open(args.fine_tune_data, "r") as f:
-        ft_data = json.load(f)
+
+ft_data = []
+with open(args.fine_tune_data, "r") as f:
+    for line in f:
+        ft_data.append(json.loads(line))
+
+# if args.fine_tune_data is not None:
+#     print("Starting fine-tuning ...")
+#     with open(args.fine_tune_data, "r") as f:
+#         ft_data = json.load(f)
+    
     print(f"Loaded {len(ft_data)} fine-tune samples")
 
     ft_texts = []
