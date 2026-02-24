@@ -38,13 +38,13 @@ FT_EPOCHS = 1
 FT_BATCH_SIZE = 2
 
 # Dataset for evaluation (JSON)
-DATA_PATH = "dataset_test/test_canada_election_vote_2021_3class.json"
+DATA_PATH = "dataset_test/test_canada_election_vote_2021_3class_sample.json"
 
 # Fine-tune datasets
 FINE_TUNE_FILES = [
     "dataset_ft/agg_ft_vote.jsonl",
-    "dataset_ft/individual_ft_vote_sample2.jsonl",
-    "dataset_ft/tweets_ft_vote_sample2.jsonl",
+    "dataset_ft/individual_ft_vote.jsonl",
+    "dataset_ft/tweets_ft_vote_sample.jsonl",
 ]
 
 # Models to run
