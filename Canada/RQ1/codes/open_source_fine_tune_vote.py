@@ -191,12 +191,13 @@ with open(args.fine_tune_data, "r") as f:
         model=model,
         args=training_args,
         train_dataset=tokenized_ds,
-        tokenizer=tokenizer,
+        # tokenizer=tokenizer,
         data_collator=data_collator
     )
 
     trainer.train()
     print("Fine-tuning completed.")
+
 
 # =====================================================
 # Inference loop
