@@ -42,7 +42,7 @@ DATA_PATH = "dataset_test/test_canada_election_vote_2021_3class.json"
 
 # Fine-tune datasets
 FINE_TUNE_FILES = [
-    "dataset_ft/agg_ft_vote_sample2.jsonl",
+    "dataset_ft/agg_ft_vote.jsonl",
     "dataset_ft/individual_ft_vote_sample2.jsonl",
     "dataset_ft/tweets_ft_vote_sample2.jsonl",
 ]
