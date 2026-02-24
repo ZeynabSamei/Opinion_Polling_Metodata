@@ -1,0 +1,2522 @@
+[
+  {
+    "features_raw": {
+      "party_choice": 2.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 75.0,
+      "ideology": 2,
+      "pol_interest": 3,
+      "religion": 18,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 75,
+      "ideology": "Conservative Party",
+      "religion": "United Church of Canada",
+      "pol_interest": 3,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 75 years old. Ideologically, I support Conservative Party party. My religion is United Church of Canada. I am 3 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 7.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 2,
+      "race": "White",
+      "age": 64.0,
+      "ideology": 1,
+      "pol_interest": 8,
+      "religion": 17,
+      "discuss_pol": 4.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 64,
+      "ideology": "Liberal Party",
+      "religion": "Protestant",
+      "pol_interest": 8,
+      "discuss_pol": "all the time"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 64 years old. Ideologically, I support Liberal Party party. My religion is Protestant. I am 8 out of 10 interested in politics. I all the time discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 1.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 75.0,
+      "ideology": 1,
+      "pol_interest": 7,
+      "religion": 1,
+      "discuss_pol": 1.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 75,
+      "ideology": "Liberal Party",
+      "religion": "None/Atheist",
+      "pol_interest": 7,
+      "discuss_pol": "never"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 75 years old. Ideologically, I support Liberal Party party. My religion is None/Atheist. I am 7 out of 10 interested in politics. I never discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 5.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 37.0,
+      "ideology": 3,
+      "pol_interest": 7,
+      "religion": 17,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 37,
+      "ideology": "NDP",
+      "religion": "Protestant",
+      "pol_interest": 7,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 37 years old. Ideologically, I support NDP party. My religion is Protestant. I am 7 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 1.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 69.0,
+      "ideology": 1,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 69,
+      "ideology": "Liberal Party",
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 69 years old. Ideologically, I support Liberal Party party. My religion is None/Atheist. I am 8 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 3.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 22.0,
+      "ideology": 3,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 22,
+      "ideology": "NDP",
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 22 years old. Ideologically, I support NDP party. My religion is None/Atheist. I am 8 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 4.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 67.0,
+      "ideology": 4,
+      "pol_interest": 3,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 67,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "Catholic",
+      "pol_interest": 3,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 67 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is Catholic. I am 3 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 2.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 51.0,
+      "ideology": 1,
+      "pol_interest": 8,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 51,
+      "ideology": "Liberal Party",
+      "religion": "Catholic",
+      "pol_interest": 8,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 51 years old. Ideologically, I support Liberal Party party. My religion is Catholic. I am 8 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 2.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 2,
+      "race": "Asian",
+      "age": 22.0,
+      "ideology": 2,
+      "pol_interest": 4,
+      "religion": 19,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "Asian",
+      "gender": "woman",
+      "age": 22,
+      "ideology": "Conservative Party",
+      "religion": "Christian Reformed",
+      "pol_interest": 4,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Asian. I am a woman. I am 22 years old. Ideologically, I support Conservative Party party. My religion is Christian Reformed. I am 4 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 6.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 33.0,
+      "ideology": 2,
+      "pol_interest": 9,
+      "religion": 10,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 33,
+      "ideology": "Conservative Party",
+      "religion": "Catholic",
+      "pol_interest": 9,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 33 years old. Ideologically, I support Conservative Party party. My religion is Catholic. I am 9 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 6.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 58.0,
+      "ideology": 3,
+      "pol_interest": 3,
+      "religion": 9,
+      "discuss_pol": 1.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 58,
+      "ideology": "NDP",
+      "religion": "Baptist",
+      "pol_interest": 3,
+      "discuss_pol": "never"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 58 years old. Ideologically, I support NDP party. My religion is Baptist. I am 3 out of 10 interested in politics. I never discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 5.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 20.0,
+      "ideology": 3,
+      "pol_interest": 3,
+      "religion": 8,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 20,
+      "ideology": "NDP",
+      "religion": "Anglican",
+      "pol_interest": 3,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 20 years old. Ideologically, I support NDP party. My religion is Anglican. I am 3 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 1.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 1,
+      "race": "White",
+      "age": 43.0,
+      "ideology": 1,
+      "pol_interest": 9,
+      "religion": 18,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 43,
+      "ideology": "Liberal Party",
+      "religion": "United Church of Canada",
+      "pol_interest": 9,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 43 years old. Ideologically, I support Liberal Party party. My religion is United Church of Canada. I am 9 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 3.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 26.0,
+      "ideology": 5,
+      "pol_interest": 2,
+      "religion": 1,
+      "discuss_pol": 1.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 26,
+      "ideology": "Green Party",
+      "religion": "None/Atheist",
+      "pol_interest": 2,
+      "discuss_pol": "never"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 26 years old. Ideologically, I support Green Party party. My religion is None/Atheist. I am 2 out of 10 interested in politics. I never discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 7.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 68.0,
+      "ideology": 2,
+      "pol_interest": 8,
+      "religion": 10,
+      "discuss_pol": 1.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 68,
+      "ideology": "Conservative Party",
+      "religion": "Catholic",
+      "pol_interest": 8,
+      "discuss_pol": "never"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 68 years old. Ideologically, I support Conservative Party party. My religion is Catholic. I am 8 out of 10 interested in politics. I never discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 3.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 33.0,
+      "ideology": 3,
+      "pol_interest": 5,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 33,
+      "ideology": "NDP",
+      "religion": "None/Atheist",
+      "pol_interest": 5,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 33 years old. Ideologically, I support NDP party. My religion is None/Atheist. I am 5 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 3.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "Asian",
+      "age": 41.0,
+      "ideology": 3,
+      "pol_interest": 9,
+      "religion": 1,
+      "discuss_pol": 1.0
+    },
+    "features_text": {
+      "race": "Asian",
+      "gender": "woman",
+      "age": 41,
+      "ideology": "NDP",
+      "religion": "None/Atheist",
+      "pol_interest": 9,
+      "discuss_pol": "never"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Asian. I am a woman. I am 41 years old. Ideologically, I support NDP party. My religion is None/Atheist. I am 9 out of 10 interested in politics. I never discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 4.0,
+      "vote_choice": "Others",
+      "gender": 4,
+      "race": "White",
+      "age": 31.0,
+      "ideology": 4,
+      "pol_interest": 8,
+      "religion": 10,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "Another gender",
+      "age": 31,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "Catholic",
+      "pol_interest": 8,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a Another gender. I am 31 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is Catholic. I am 8 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 5.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 41.0,
+      "ideology": 1,
+      "pol_interest": 8,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 41,
+      "ideology": "Liberal Party",
+      "religion": "Catholic",
+      "pol_interest": 8,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 41 years old. Ideologically, I support Liberal Party party. My religion is Catholic. I am 8 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 5.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 46.0,
+      "ideology": 3,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 1.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 46,
+      "ideology": "NDP",
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": "never"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 46 years old. Ideologically, I support NDP party. My religion is None/Atheist. I am 8 out of 10 interested in politics. I never discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 1.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 1,
+      "race": "White",
+      "age": 49.0,
+      "ideology": 3,
+      "pol_interest": 4,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 49,
+      "ideology": "NDP",
+      "religion": "None/Atheist",
+      "pol_interest": 4,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 49 years old. Ideologically, I support NDP party. My religion is None/Atheist. I am 4 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 2.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 1,
+      "race": "Other",
+      "age": 71.0,
+      "ideology": 2,
+      "pol_interest": 9,
+      "religion": 17,
+      "discuss_pol": 4.0
+    },
+    "features_text": {
+      "race": "Other",
+      "gender": "man",
+      "age": 71,
+      "ideology": "Conservative Party",
+      "religion": "Protestant",
+      "pol_interest": 9,
+      "discuss_pol": "all the time"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Other. I am a man. I am 71 years old. Ideologically, I support Conservative Party party. My religion is Protestant. I am 9 out of 10 interested in politics. I all the time discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 3.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 61.0,
+      "ideology": 3,
+      "pol_interest": 5,
+      "religion": 18,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 61,
+      "ideology": "NDP",
+      "religion": "United Church of Canada",
+      "pol_interest": 5,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 61 years old. Ideologically, I support NDP party. My religion is United Church of Canada. I am 5 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 2.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 39.0,
+      "ideology": 2,
+      "pol_interest": 7,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 39,
+      "ideology": "Conservative Party",
+      "religion": "None/Atheist",
+      "pol_interest": 7,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 39 years old. Ideologically, I support Conservative Party party. My religion is None/Atheist. I am 7 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 7.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "Other",
+      "age": 36.0,
+      "ideology": 2,
+      "pol_interest": 6,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "Other",
+      "gender": "woman",
+      "age": 36,
+      "ideology": "Conservative Party",
+      "religion": "Catholic",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Other. I am a woman. I am 36 years old. Ideologically, I support Conservative Party party. My religion is Catholic. I am 6 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 5.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "Asian",
+      "age": 33.0,
+      "ideology": 5,
+      "pol_interest": 5,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "Asian",
+      "gender": "woman",
+      "age": 33,
+      "ideology": "Green Party",
+      "religion": "Catholic",
+      "pol_interest": 5,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Asian. I am a woman. I am 33 years old. Ideologically, I support Green Party party. My religion is Catholic. I am 5 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 6.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 1,
+      "race": "White",
+      "age": 51.0,
+      "ideology": 6,
+      "pol_interest": 8,
+      "religion": 2,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 51,
+      "ideology": "Other",
+      "religion": "Agnostic",
+      "pol_interest": 8,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 51 years old. Ideologically, I support Other party. My religion is Agnostic. I am 8 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 7.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 19.0,
+      "ideology": 5,
+      "pol_interest": 2,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 19,
+      "ideology": "Green Party",
+      "religion": "None/Atheist",
+      "pol_interest": 2,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 19 years old. Ideologically, I support Green Party party. My religion is None/Atheist. I am 2 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 4.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 41.0,
+      "ideology": 3,
+      "pol_interest": 8,
+      "religion": 2,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 41,
+      "ideology": "NDP",
+      "religion": "Agnostic",
+      "pol_interest": 8,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 41 years old. Ideologically, I support NDP party. My religion is Agnostic. I am 8 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 3.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 35.0,
+      "ideology": 3,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 35,
+      "ideology": "NDP",
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 35 years old. Ideologically, I support NDP party. My religion is None/Atheist. I am 6 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 4.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 73.0,
+      "ideology": 4,
+      "pol_interest": 10,
+      "religion": 2,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 73,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "Agnostic",
+      "pol_interest": 10,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 73 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is Agnostic. I am 10 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 6.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 63.0,
+      "ideology": 6,
+      "pol_interest": 10,
+      "religion": 1,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 63,
+      "ideology": "Other",
+      "religion": "None/Atheist",
+      "pol_interest": 10,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 63 years old. Ideologically, I support Other party. My religion is None/Atheist. I am 10 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 1.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 76.0,
+      "ideology": 5,
+      "pol_interest": 9,
+      "religion": 8,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 76,
+      "ideology": "Green Party",
+      "religion": "Anglican",
+      "pol_interest": 9,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 76 years old. Ideologically, I support Green Party party. My religion is Anglican. I am 9 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 5.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 46.0,
+      "ideology": 5,
+      "pol_interest": 8,
+      "religion": 3,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 46,
+      "ideology": "Green Party",
+      "religion": "Buddhist",
+      "pol_interest": 8,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 46 years old. Ideologically, I support Green Party party. My religion is Buddhist. I am 8 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 3.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 54.0,
+      "ideology": 3,
+      "pol_interest": 7,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 54,
+      "ideology": "NDP",
+      "religion": "None/Atheist",
+      "pol_interest": 7,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 54 years old. Ideologically, I support NDP party. My religion is None/Atheist. I am 7 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 6.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 1,
+      "race": "Other",
+      "age": 66.0,
+      "ideology": 6,
+      "pol_interest": 7,
+      "religion": 15,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "Other",
+      "gender": "man",
+      "age": 66,
+      "ideology": "Other",
+      "religion": "Pentecostal / Fundamentalist/ Evangelical",
+      "pol_interest": 7,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Other. I am a man. I am 66 years old. Ideologically, I support Other party. My religion is Pentecostal / Fundamentalist/ Evangelical. I am 7 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 2.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 1,
+      "race": "Other",
+      "age": 80.0,
+      "ideology": 2,
+      "pol_interest": 10,
+      "religion": 15,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "Other",
+      "gender": "man",
+      "age": 80,
+      "ideology": "Conservative Party",
+      "religion": "Pentecostal / Fundamentalist/ Evangelical",
+      "pol_interest": 10,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Other. I am a man. I am 80 years old. Ideologically, I support Conservative Party party. My religion is Pentecostal / Fundamentalist/ Evangelical. I am 10 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 1.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 67.0,
+      "ideology": 1,
+      "pol_interest": 5,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 67,
+      "ideology": "Liberal Party",
+      "religion": "Catholic",
+      "pol_interest": 5,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 67 years old. Ideologically, I support Liberal Party party. My religion is Catholic. I am 5 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 7.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 64.0,
+      "ideology": 1,
+      "pol_interest": 3,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 64,
+      "ideology": "Liberal Party",
+      "religion": "Catholic",
+      "pol_interest": 3,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 64 years old. Ideologically, I support Liberal Party party. My religion is Catholic. I am 3 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 7.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 1,
+      "race": "White",
+      "age": 77.0,
+      "ideology": 1,
+      "pol_interest": 9,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 77,
+      "ideology": "Liberal Party",
+      "religion": "Catholic",
+      "pol_interest": 9,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 77 years old. Ideologically, I support Liberal Party party. My religion is Catholic. I am 9 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 7.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 66.0,
+      "ideology": 1,
+      "pol_interest": 9,
+      "religion": 1,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 66,
+      "ideology": "Liberal Party",
+      "religion": "None/Atheist",
+      "pol_interest": 9,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 66 years old. Ideologically, I support Liberal Party party. My religion is None/Atheist. I am 9 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 6.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 74.0,
+      "ideology": 4,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 74,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 74 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is None/Atheist. I am 8 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 3.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 52.0,
+      "ideology": 3,
+      "pol_interest": 8,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 52,
+      "ideology": "NDP",
+      "religion": "Catholic",
+      "pol_interest": 8,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 52 years old. Ideologically, I support NDP party. My religion is Catholic. I am 8 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 6.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 1,
+      "race": "White",
+      "age": 50.0,
+      "ideology": 2,
+      "pol_interest": 9,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 50,
+      "ideology": "Conservative Party",
+      "religion": "None/Atheist",
+      "pol_interest": 9,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 50 years old. Ideologically, I support Conservative Party party. My religion is None/Atheist. I am 9 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 5.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 19.0,
+      "ideology": 5,
+      "pol_interest": 3,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 19,
+      "ideology": "Green Party",
+      "religion": "None/Atheist",
+      "pol_interest": 3,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 19 years old. Ideologically, I support Green Party party. My religion is None/Atheist. I am 3 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 5.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "Southeast Asian",
+      "age": 21.0,
+      "ideology": 5,
+      "pol_interest": 6,
+      "religion": 19,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "Southeast Asian",
+      "gender": "woman",
+      "age": 21,
+      "ideology": "Green Party",
+      "religion": "Christian Reformed",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Southeast Asian. I am a woman. I am 21 years old. Ideologically, I support Green Party party. My religion is Christian Reformed. I am 6 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 2.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 2,
+      "race": "White",
+      "age": 69.0,
+      "ideology": 2,
+      "pol_interest": 6,
+      "religion": 13,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 69,
+      "ideology": "Conservative Party",
+      "religion": "Lutheran",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 69 years old. Ideologically, I support Conservative Party party. My religion is Lutheran. I am 6 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 7.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 33.0,
+      "ideology": 2,
+      "pol_interest": 3,
+      "religion": 1,
+      "discuss_pol": 1.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 33,
+      "ideology": "Conservative Party",
+      "religion": "None/Atheist",
+      "pol_interest": 3,
+      "discuss_pol": "never"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 33 years old. Ideologically, I support Conservative Party party. My religion is None/Atheist. I am 3 out of 10 interested in politics. I never discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 6.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 1,
+      "race": "White",
+      "age": 61.0,
+      "ideology": 6,
+      "pol_interest": 5,
+      "religion": 13,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 61,
+      "ideology": "Other",
+      "religion": "Lutheran",
+      "pol_interest": 5,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 61 years old. Ideologically, I support Other party. My religion is Lutheran. I am 5 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 4.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "Other",
+      "age": 35.0,
+      "ideology": 4,
+      "pol_interest": 8,
+      "religion": 1,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "Other",
+      "gender": "man",
+      "age": 35,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "None/Atheist",
+      "pol_interest": 8,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Other. I am a man. I am 35 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is None/Atheist. I am 8 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 4.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 44.0,
+      "ideology": 4,
+      "pol_interest": 10,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 44,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "None/Atheist",
+      "pol_interest": 10,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 44 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is None/Atheist. I am 10 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 7.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 58.0,
+      "ideology": 2,
+      "pol_interest": 4,
+      "religion": 2,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 58,
+      "ideology": "Conservative Party",
+      "religion": "Agnostic",
+      "pol_interest": 4,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 58 years old. Ideologically, I support Conservative Party party. My religion is Agnostic. I am 4 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 7.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 70.0,
+      "ideology": 1,
+      "pol_interest": 9,
+      "religion": 17,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 70,
+      "ideology": "Liberal Party",
+      "religion": "Protestant",
+      "pol_interest": 9,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 70 years old. Ideologically, I support Liberal Party party. My religion is Protestant. I am 9 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 6.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 2,
+      "race": "White",
+      "age": 59.0,
+      "ideology": 1,
+      "pol_interest": 2,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 59,
+      "ideology": "Liberal Party",
+      "religion": "None/Atheist",
+      "pol_interest": 2,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 59 years old. Ideologically, I support Liberal Party party. My religion is None/Atheist. I am 2 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 1.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 2,
+      "race": "White",
+      "age": 28.0,
+      "ideology": 2,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 28,
+      "ideology": "Conservative Party",
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 28 years old. Ideologically, I support Conservative Party party. My religion is None/Atheist. I am 6 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 1.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 34.0,
+      "ideology": 1,
+      "pol_interest": 3,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 34,
+      "ideology": "Liberal Party",
+      "religion": "Catholic",
+      "pol_interest": 3,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 34 years old. Ideologically, I support Liberal Party party. My religion is Catholic. I am 3 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 3.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 29.0,
+      "ideology": 3,
+      "pol_interest": 5,
+      "religion": 10,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 29,
+      "ideology": "NDP",
+      "religion": "Catholic",
+      "pol_interest": 5,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 29 years old. Ideologically, I support NDP party. My religion is Catholic. I am 5 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 4.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 75.0,
+      "ideology": 4,
+      "pol_interest": 9,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 75,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "None/Atheist",
+      "pol_interest": 9,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 75 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is None/Atheist. I am 9 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 1.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "White",
+      "age": 42.0,
+      "ideology": 1,
+      "pol_interest": 6,
+      "religion": 10,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 42,
+      "ideology": "Liberal Party",
+      "religion": "Catholic",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 42 years old. Ideologically, I support Liberal Party party. My religion is Catholic. I am 6 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 4.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 59.0,
+      "ideology": 4,
+      "pol_interest": 4,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 59,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "None/Atheist",
+      "pol_interest": 4,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 59 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is None/Atheist. I am 4 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 6.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "Other",
+      "age": 74.0,
+      "ideology": 6,
+      "pol_interest": 10,
+      "religion": 17,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "Other",
+      "gender": "man",
+      "age": 74,
+      "ideology": "Other",
+      "religion": "Protestant",
+      "pol_interest": 10,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Other. I am a man. I am 74 years old. Ideologically, I support Other party. My religion is Protestant. I am 10 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 5.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 51.0,
+      "ideology": 4,
+      "pol_interest": 8,
+      "religion": 10,
+      "discuss_pol": 1.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 51,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "Catholic",
+      "pol_interest": 8,
+      "discuss_pol": "never"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 51 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is Catholic. I am 8 out of 10 interested in politics. I never discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 5.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 58.0,
+      "ideology": 5,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 58,
+      "ideology": "Green Party",
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 58 years old. Ideologically, I support Green Party party. My religion is None/Atheist. I am 6 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 2.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 1,
+      "race": "White",
+      "age": 71.0,
+      "ideology": 2,
+      "pol_interest": 8,
+      "religion": 2,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 71,
+      "ideology": "Conservative Party",
+      "religion": "Agnostic",
+      "pol_interest": 8,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 71 years old. Ideologically, I support Conservative Party party. My religion is Agnostic. I am 8 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 2.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 1,
+      "race": "Other",
+      "age": 50.0,
+      "ideology": 2,
+      "pol_interest": 7,
+      "religion": 10,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "Other",
+      "gender": "man",
+      "age": 50,
+      "ideology": "Conservative Party",
+      "religion": "Catholic",
+      "pol_interest": 7,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Other. I am a man. I am 50 years old. Ideologically, I support Conservative Party party. My religion is Catholic. I am 7 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 3.0,
+      "vote_choice": "Others",
+      "gender": 2,
+      "race": "White",
+      "age": 25.0,
+      "ideology": 3,
+      "pol_interest": 6,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "woman",
+      "age": 25,
+      "ideology": "NDP",
+      "religion": "None/Atheist",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a woman. I am 25 years old. Ideologically, I support NDP party. My religion is None/Atheist. I am 6 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 4.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 74.0,
+      "ideology": 4,
+      "pol_interest": 5,
+      "religion": 10,
+      "discuss_pol": 3.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 74,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "Catholic",
+      "pol_interest": 5,
+      "discuss_pol": "often"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 74 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is Catholic. I am 5 out of 10 interested in politics. I often discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 4.0,
+      "vote_choice": "Others",
+      "gender": 1,
+      "race": "White",
+      "age": 40.0,
+      "ideology": 4,
+      "pol_interest": 6,
+      "religion": 2,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "White",
+      "gender": "man",
+      "age": 40,
+      "ideology": "Bloc Qu\u00e9b\u00e9cois Party",
+      "religion": "Agnostic",
+      "pol_interest": 6,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am White. I am a man. I am 40 years old. Ideologically, I support Bloc Qu\u00e9b\u00e9cois Party party. My religion is Agnostic. I am 6 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Others"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 1.0,
+      "vote_choice": "Justin Trudeau",
+      "gender": 2,
+      "race": "South Asian",
+      "age": 51.0,
+      "ideology": 1,
+      "pol_interest": 5,
+      "religion": 4,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "South Asian",
+      "gender": "woman",
+      "age": 51,
+      "ideology": "Liberal Party",
+      "religion": "Hindu",
+      "pol_interest": 5,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am South Asian. I am a woman. I am 51 years old. Ideologically, I support Liberal Party party. My religion is Hindu. I am 5 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Justin Trudeau"
+      }
+    ]
+  },
+  {
+    "features_raw": {
+      "party_choice": 2.0,
+      "vote_choice": "Erin O'Toole",
+      "gender": 1,
+      "race": "Indigenous",
+      "age": 46.0,
+      "ideology": 2,
+      "pol_interest": 7,
+      "religion": 1,
+      "discuss_pol": 2.0
+    },
+    "features_text": {
+      "race": "Indigenous",
+      "gender": "man",
+      "age": 46,
+      "ideology": "Conservative Party",
+      "religion": "None/Atheist",
+      "pol_interest": 7,
+      "discuss_pol": "sometimes"
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are an expert political analyst specializing in Canadian elections and voting behavior. Your task is to analyze the provided demographic profile and predict the individual's vote choice in the 2021 Canadian federal election for Prime Minister.\n\nYou MUST output exactly one of the following three labels:\n1. Justin Trudeau\n2. Erin O'Toole\n3. Others\n\n'Others' includes Jagmeet Singh, Yves-Fran\u00e7ois Blanchet, Annamie Paul, and Maxime Bernier.\n\nOutput only the label text exactly as written above. Do not provide explanations, reasoning, or additional text."
+      },
+      {
+        "role": "user",
+        "content": "Racially, I am Indigenous. I am a man. I am 46 years old. Ideologically, I support Conservative Party party. My religion is None/Atheist. I am 7 out of 10 interested in politics. I sometimes discuss about politics. If the 2021 Canada Prime Minister election were held today, I would vote for: "
+      },
+      {
+        "role": "assistant",
+        "content": "Erin O'Toole"
+      }
+    ]
+  }
+]
