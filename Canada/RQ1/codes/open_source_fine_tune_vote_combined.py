@@ -38,7 +38,7 @@ FT_EPOCHS = 1
 FT_BATCH_SIZE = 2
 
 # Dataset for evaluation (JSON)
-DATA_PATH = "dataset_test/test_canada_election_vote_2021_3class_sample.json"
+DATA_PATH = "dataset_test/test_canada_election_vote_2021_3class.json"
 
 # Fine-tune datasets
 FINE_TUNE_FILES = [
