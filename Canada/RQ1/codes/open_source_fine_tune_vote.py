@@ -179,6 +179,7 @@ with open(args.fine_tune_data, "r") as f:
 
     training_args = TrainingArguments(
         output_dir=os.path.join(args.out_dir, "ft_model"),
+        gradient_accumulation_steps=4,  
         per_device_train_batch_size=args.ft_batch_size,
         num_train_epochs=args.ft_epochs,
         logging_steps=50,
