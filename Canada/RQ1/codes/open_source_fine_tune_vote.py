@@ -78,10 +78,16 @@ print(f"Loaded {len(data)} samples")
 print(f"Loading model: {args.model_name}")
 
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+# model = AutoModelForCausalLM.from_pretrained(
+#     args.model_name,
+#     device_map="auto",
+#     torch_dtype=torch.float16
+# )
+
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
     device_map="auto",
-    torch_dtype=torch.float16
+    dtype=torch.bfloat16
 )
 
 # Pad token fix
@@ -184,7 +190,8 @@ with open(args.fine_tune_data, "r") as f:
         num_train_epochs=args.ft_epochs,
         logging_steps=50,
         save_strategy="no",
-        fp16=True,
+        fp16=False,
+        bf16=True,
         seed=args.seed
     )
 
