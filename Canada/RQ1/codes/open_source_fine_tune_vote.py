@@ -90,6 +90,10 @@ model = AutoModelForCausalLM.from_pretrained(
     dtype=torch.bfloat16
 )
 
+
+model.gradient_checkpointing_enable()
+model.config.use_cache = False
+
 # Pad token fix
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.pad_token_id = tokenizer.eos_token_id
@@ -178,7 +182,7 @@ with open(args.fine_tune_data, "r") as f:
     dataset = Dataset.from_list(ft_texts)
 
     def tokenize_fn(examples):
-        return tokenizer(examples["text"], truncation=True, padding="max_length", max_length=512)
+        return tokenizer(examples["text"], truncation=True, padding="max_length", max_length=256)
 
     tokenized_ds = dataset.map(tokenize_fn, batched=True)
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
@@ -186,7 +190,7 @@ with open(args.fine_tune_data, "r") as f:
     training_args = TrainingArguments(
         output_dir=os.path.join(args.out_dir, "ft_model"),
         per_device_train_batch_size=args.ft_batch_size,
-        gradient_accumulation_steps=4,          # <--- add this
+        gradient_accumulation_steps=8,          # <--- add this
         num_train_epochs=args.ft_epochs,
         logging_steps=50,
         save_strategy="no",
