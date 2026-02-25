@@ -47,8 +47,8 @@ DATA_PATH = "dataset_test/test_canada_election_party_2021_3class.json"
 
 # Fine-tune datasets
 FINE_TUNE_FILES = [
-    # "dataset_ft/agg_ft_party_2021_3class.jsonl",
-    # "dataset_ft/individual_ft_party_3class.jsonl",
+    "dataset_ft/agg_ft_party_2021_3class.jsonl",
+    "dataset_ft/individual_ft_party_3class.jsonl",
     "dataset_ft/tweets_ft_party_sample.jsonl",
 ]
 
@@ -56,7 +56,7 @@ FINE_TUNE_FILES = [
 MODELS = [
     # "meta-llama/Llama-3.1-70B-Instruct",
     # "meta-llama/Llama-3.1-8B-Instruct",
-    "Qwen/Qwen2.5-7B-Instruct",
+    # "Qwen/Qwen2.5-7B-Instruct",
     "Qwen/Qwen2.5-14B-Instruct",
 ]
 
