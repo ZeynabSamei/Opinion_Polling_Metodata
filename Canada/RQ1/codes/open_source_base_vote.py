@@ -32,9 +32,8 @@ except ImportError:
 parser = argparse.ArgumentParser(
     description="Canada 2021 vote prediction using LLM likelihoods"
 )
-parser.add_argument("--model_name", type=str, required=True)
 parser.add_argument("--data_path", type=str, required=True)
-parser.add_argument("--out_dir", type=str, default="./result")
+parser.add_argument("--out_dir", type=str, default="./output")
 parser.add_argument("--election_year", type=str, default="2021")
 parser.add_argument("--save_every", type=int, default=100)
 parser.add_argument("--sleep", type=float, default=0.0)
@@ -52,6 +51,16 @@ if torch.cuda.is_available():
     torch.backends.cuda.matmul.allow_tf32 = True
     torch.backends.cudnn.allow_tf32 = True
     torch.set_float32_matmul_precision("high")
+
+
+# =====================================================
+# Models
+# =====================================================
+MODELS = [
+    "meta-llama/Llama-3.1-8B-Instruct",
+    "Qwen/Qwen2.5-7B-Instruct",
+    "Qwen/Qwen2.5-14B-Instruct",
+]
 
 
 # =====================================================
@@ -74,40 +83,6 @@ with open(args.data_path, "r") as f:
     data = json.load(f)
 
 print(f"Loaded {len(data)} samples")
-
-
-# =====================================================
-# Load model
-# =====================================================
-print(f"Loading model: {args.model_name}")
-
-tokenizer = AutoTokenizer.from_pretrained(args.model_name)
-if tokenizer.pad_token is None:
-    tokenizer.pad_token = tokenizer.eos_token
-tokenizer.pad_token_id = tokenizer.eos_token_id
-
-try:
-    model = AutoModelForCausalLM.from_pretrained(
-        args.model_name,
-        device_map="auto",
-        torch_dtype=torch.bfloat16,
-        attn_implementation="flash_attention_2",
-    )
-except Exception:
-    model = AutoModelForCausalLM.from_pretrained(
-        args.model_name,
-        device_map="auto",
-        torch_dtype=torch.bfloat16,
-    )
-
-model.config.pad_token_id = tokenizer.pad_token_id
-model.config.use_cache = True
-model.eval()
-
-device = next(model.parameters()).device
-candidate_token_ids = [
-    tokenizer.encode(candidate, add_special_tokens=False) for candidate in CANDIDATES
-]
 
 
 # =====================================================
@@ -139,7 +114,14 @@ def build_prompt(messages):
     return prompt
 
 
-def get_vote_probs_batched(prompts):
+def get_vote_probs_batched(
+    prompts,
+    model,
+    tokenizer,
+    device,
+    candidate_token_ids,
+    max_prompt_length,
+):
     """
     Deterministic token-level probability of each candidate, computed in batch.
     Produces candidate-normalized probabilities equivalent to the original method.
@@ -152,7 +134,7 @@ def get_vote_probs_batched(prompts):
         return_tensors="pt",
         padding=True,
         truncation=True,
-        max_length=args.max_prompt_length,
+        max_length=max_prompt_length,
         add_special_tokens=False,
     )
     prompt_input_ids = enc.input_ids.to(device)
@@ -225,7 +207,6 @@ def vote_to_numeric(vote):
 # =====================================================
 # Inference loop (batched)
 # =====================================================
-results = []
 valid_entries = []
 
 for idx, entry in enumerate(data):
@@ -237,95 +218,143 @@ for idx, entry in enumerate(data):
 
     valid_entries.append((idx, messages, gt, build_prompt(messages)))
 
-n_batches = (len(valid_entries) + args.eval_batch_size - 1) // args.eval_batch_size
-for batch_idx in tqdm(range(n_batches), total=n_batches):
-    start = batch_idx * args.eval_batch_size
-    chunk = valid_entries[start : start + args.eval_batch_size]
 
-    prompts = [x[3] for x in chunk]
-    prob_list = get_vote_probs_batched(prompts)
+for model_name in MODELS:
+    print(f"\n=== Loading model: {model_name} ===")
 
-    for (idx, messages, gt, _prompt), probs in zip(chunk, prob_list):
-        pred = max(probs, key=probs.get)
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.pad_token_id = tokenizer.eos_token_id
 
-        results.append(
-            {
-                "idx": idx,
-                "ground_truth": gt,
-                "predicted_vote": pred,
-                "accuracy": int(pred == gt),
-                "mutual_information": mutual_information(probs, gt),
-                "probs": probs,
-                "messages": messages,
-            }
+    try:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            device_map="auto",
+            torch_dtype=torch.bfloat16,
+            attn_implementation="flash_attention_2",
+        )
+    except Exception:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            device_map="auto",
+            torch_dtype=torch.bfloat16,
         )
 
-        if (idx + 1) % args.save_every == 0:
-            pd.DataFrame(results).to_pickle(
-                os.path.join(
-                    args.out_dir,
-                    f"{args.model_name.replace('/', '_')}_{args.election_year}_partial.pkl",
-                )
+    model.config.pad_token_id = tokenizer.pad_token_id
+    model.config.use_cache = True
+    model.eval()
+
+    device = next(model.parameters()).device
+    candidate_token_ids = [
+        tokenizer.encode(candidate, add_special_tokens=False) for candidate in CANDIDATES
+    ]
+
+    results = []
+    n_batches = (len(valid_entries) + args.eval_batch_size - 1) // args.eval_batch_size
+    for batch_idx in tqdm(
+        range(n_batches),
+        total=n_batches,
+        desc=f"Inference {model_name}",
+    ):
+        start = batch_idx * args.eval_batch_size
+        chunk = valid_entries[start : start + args.eval_batch_size]
+
+        prompts = [x[3] for x in chunk]
+        prob_list = get_vote_probs_batched(
+            prompts=prompts,
+            model=model,
+            tokenizer=tokenizer,
+            device=device,
+            candidate_token_ids=candidate_token_ids,
+            max_prompt_length=args.max_prompt_length,
+        )
+
+        for (idx, messages, gt, _prompt), probs in zip(chunk, prob_list):
+            pred = max(probs, key=probs.get)
+
+            results.append(
+                {
+                    "idx": idx,
+                    "ground_truth": gt,
+                    "predicted_vote": pred,
+                    "accuracy": int(pred == gt),
+                    "mutual_information": mutual_information(probs, gt),
+                    "probs": probs,
+                    "messages": messages,
+                }
             )
 
-        if args.sleep > 0:
-            time.sleep(args.sleep)
+            if (idx + 1) % args.save_every == 0:
+                pd.DataFrame(results).to_pickle(
+                    os.path.join(
+                        args.out_dir,
+                        f"{model_name.replace('/', '_')}_{args.election_year}_partial.pkl",
+                    )
+                )
 
-df = pd.DataFrame(results)
+            if args.sleep > 0:
+                time.sleep(args.sleep)
 
+    df = pd.DataFrame(results)
+    if df.empty:
+        print(f"No valid rows for model {model_name}; skipping metrics and save.")
+        continue
 
-# =====================================================
-# Metrics
-# =====================================================
-anes_votes = df["ground_truth"].map(vote_to_numeric).to_numpy()
-gpt_votes = df["predicted_vote"].map(vote_to_numeric).to_numpy()
+    # =====================================================
+    # Metrics
+    # =====================================================
+    anes_votes = df["ground_truth"].map(vote_to_numeric).to_numpy()
+    gpt_votes = df["predicted_vote"].map(vote_to_numeric).to_numpy()
 
-metrics = {
-    "accuracy": df["accuracy"].mean(),
-    "cohen_kappa": cohen_kappa_score(anes_votes, gpt_votes),
-    "proportion_agreement": np.mean(anes_votes == gpt_votes),
-    "mean_mutual_information": df["mutual_information"].mean(),
-}
+    metrics = {
+        "accuracy": df["accuracy"].mean(),
+        "cohen_kappa": cohen_kappa_score(anes_votes, gpt_votes),
+        "proportion_agreement": np.mean(anes_votes == gpt_votes),
+        "mean_mutual_information": df["mutual_information"].mean(),
+    }
 
-if ICC_AVAILABLE:
-    try:
-        df_long = (
-            pd.DataFrame({"anes": anes_votes, "gpt": gpt_votes})
-            .reset_index()
-            .melt(id_vars="index", var_name="rater", value_name="vote")
-        )
-        icc = pg.intraclass_corr(
-            data=df_long,
-            targets="index",
-            raters="rater",
-            ratings="vote",
-        )
-        metrics["ICC"] = icc.loc[icc["Type"] == "ICC2k", "ICC"].values[0]
-    except Exception:
+    if ICC_AVAILABLE:
+        try:
+            df_long = (
+                pd.DataFrame({"anes": anes_votes, "gpt": gpt_votes})
+                .reset_index()
+                .melt(id_vars="index", var_name="rater", value_name="vote")
+            )
+            icc = pg.intraclass_corr(
+                data=df_long,
+                targets="index",
+                raters="rater",
+                ratings="vote",
+            )
+            metrics["ICC"] = icc.loc[icc["Type"] == "ICC2k", "ICC"].values[0]
+        except Exception:
+            metrics["ICC"] = None
+    else:
         metrics["ICC"] = None
-else:
-    metrics["ICC"] = None
 
-for k, v in metrics.items():
-    df[k] = v
+    for k, v in metrics.items():
+        df[k] = v
 
+    # =====================================================
+    # Save final outputs
+    # =====================================================
+    out_base = f"{model_name.replace('/', '_')}_{args.election_year}_final"
+    out_pkl = os.path.join(args.out_dir, out_base + ".pkl")
+    out_csv = os.path.join(args.out_dir, out_base + ".csv")
 
-# =====================================================
-# Save final outputs
-# =====================================================
-out_base = f"{args.model_name.replace('/', '_')}_{args.election_year}_final"
-out_pkl = os.path.join(args.out_dir, out_base + ".pkl")
-out_csv = os.path.join(args.out_dir, out_base + ".csv")
+    df.to_pickle(out_pkl)
+    df.to_csv(out_csv, index=False)
 
-df.to_pickle(out_pkl)
-df.to_csv(out_csv, index=False)
+    print("\n=== Final Metrics ===")
+    for k, v in metrics.items():
+        print(f"{k}: {v}")
 
-print("\n=== Final Metrics ===")
-for k, v in metrics.items():
-    print(f"{k}: {v}")
+    print(f"\nSaved results to:\n{out_pkl}\n{out_csv}")
 
-print(f"\nSaved results to:\n{out_pkl}\n{out_csv}")
-
+    del model
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
 
 # # =====================================================
