@@ -246,10 +246,20 @@ for model_name in MODELS:
     for ft_file in FINE_TUNE_FILES:
         print(f"\n--- Fine-tuning with dataset: {ft_file} ---")
         ft_data = []
-        with open(ft_file, "r") as f:
-            for line in f:
-                ft_data.append(json.loads(line))
-        print(f"Loaded {len(ft_data)} fine-tune samples")
+
+        ft_data = []
+        bad_lines = 0
+
+        with open(ft_file, "r", encoding="utf-8") as f:
+            for line_no, line in enumerate(f, 1):
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    ft_data.append(json.loads(line))
+                except json.JSONDecodeError as e:
+                    bad_lines += 1
+                    print(f"[WARN] Skipping bad JSON at {ft_file}:{line_no} -> {e}")
 
         if len(ft_data) > 0:
             # Prepare dataset
