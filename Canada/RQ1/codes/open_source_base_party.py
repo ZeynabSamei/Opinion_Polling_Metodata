@@ -34,7 +34,7 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument("--model_name", type=str, required=True)
 parser.add_argument("--data_path", type=str, required=True)
-parser.add_argument("--out_dir", type=str, default="./output")
+parser.add_argument("--out_dir", type=str, default="./result")
 parser.add_argument("--election_year", type=str, default="2021")
 parser.add_argument("--save_every", type=int, default=100)
 parser.add_argument("--sleep", type=float, default=0.0)
