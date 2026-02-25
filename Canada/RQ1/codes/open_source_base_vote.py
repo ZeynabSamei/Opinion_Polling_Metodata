@@ -1,6 +1,6 @@
 # =====================================================
 # Canada 2021 Election Vote Prediction with LLMs
-# Deterministic token-level probability evaluation
+# Deterministic token-level probability evaluation (batched + fast)
 # =====================================================
 
 import os
@@ -11,6 +11,7 @@ import random
 import numpy as np
 import pandas as pd
 import torch
+import torch.nn.functional as F
 
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -19,6 +20,7 @@ from sklearn.metrics import cohen_kappa_score
 # Optional ICC
 try:
     import pingouin as pg
+
     ICC_AVAILABLE = True
 except ImportError:
     ICC_AVAILABLE = False
@@ -35,8 +37,10 @@ parser.add_argument("--data_path", type=str, required=True)
 parser.add_argument("--out_dir", type=str, default="./output")
 parser.add_argument("--election_year", type=str, default="2021")
 parser.add_argument("--save_every", type=int, default=100)
-parser.add_argument("--sleep", type=float, default=0.1)
+parser.add_argument("--sleep", type=float, default=0.0)
 parser.add_argument("--seed", type=int, default=42)
+parser.add_argument("--eval_batch_size", type=int, default=24)
+parser.add_argument("--max_prompt_length", type=int, default=512)
 
 args = parser.parse_args()
 os.makedirs(args.out_dir, exist_ok=True)
@@ -44,24 +48,19 @@ os.makedirs(args.out_dir, exist_ok=True)
 random.seed(args.seed)
 np.random.seed(args.seed)
 torch.manual_seed(args.seed)
+if torch.cuda.is_available():
+    torch.backends.cuda.matmul.allow_tf32 = True
+    torch.backends.cudnn.allow_tf32 = True
+    torch.set_float32_matmul_precision("high")
 
 
 # =====================================================
 # Candidates (Canada 2021 leaders)
 # =====================================================
-# CANDIDATES = [
-#     "Justin Trudeau",
-#     "Erin O'Toole",
-#     "Jagmeet Singh",
-#     "Yves-François Blanchet",
-#     "Annamie Paul",
-#     "Maxime Bernier",
-# ]
-
 CANDIDATES = [
     "Justin Trudeau",
     "Erin O'Toole",
-    "Others"
+    "Others",
 ]
 CANDIDATES_LOWER = [c.lower() for c in CANDIDATES]
 VOTE2ID = {c: i for i, c in enumerate(CANDIDATES)}
@@ -83,20 +82,32 @@ print(f"Loaded {len(data)} samples")
 print(f"Loading model: {args.model_name}")
 
 tokenizer = AutoTokenizer.from_pretrained(args.model_name)
-
-model = AutoModelForCausalLM.from_pretrained(
-    args.model_name,
-    device_map="auto",
-    torch_dtype=torch.float16
-)
-
-# Pad token fix
-tokenizer.pad_token = tokenizer.eos_token
+if tokenizer.pad_token is None:
+    tokenizer.pad_token = tokenizer.eos_token
 tokenizer.pad_token_id = tokenizer.eos_token_id
-model.config.pad_token_id = tokenizer.eos_token_id
+
+try:
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model_name,
+        device_map="auto",
+        torch_dtype=torch.bfloat16,
+        attn_implementation="flash_attention_2",
+    )
+except Exception:
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model_name,
+        device_map="auto",
+        torch_dtype=torch.bfloat16,
+    )
+
+model.config.pad_token_id = tokenizer.pad_token_id
+model.config.use_cache = True
 model.eval()
 
 device = next(model.parameters()).device
+candidate_token_ids = [
+    tokenizer.encode(candidate, add_special_tokens=False) for candidate in CANDIDATES
+]
 
 
 # =====================================================
@@ -121,45 +132,85 @@ def extract_ground_truth(messages):
     return None
 
 
-def get_vote_probs(messages):
-    """
-    Deterministic token-level probability of each candidate.
-    Matches likelihood-based evaluation in the paper.
-    """
-    # Remove assistant messages
+def build_prompt(messages):
     clean_msgs = [m for m in messages if m["role"] != "assistant"]
-
     prompt = "\n".join(f"{m['role']}: {m['content']}" for m in clean_msgs)
     prompt += f"\nVote choice ({' or '.join(CANDIDATES)}):"
+    return prompt
 
-    input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
 
-    probs = {}
+def get_vote_probs_batched(prompts):
+    """
+    Deterministic token-level probability of each candidate, computed in batch.
+    Produces candidate-normalized probabilities equivalent to the original method.
+    """
+    if not prompts:
+        return []
 
-    with torch.no_grad():
-        for candidate in CANDIDATES:
-            cand_ids = tokenizer.encode(candidate, add_special_tokens=False)
-            prob = 1.0
-            cur_ids = input_ids.clone()
+    enc = tokenizer(
+        prompts,
+        return_tensors="pt",
+        padding=True,
+        truncation=True,
+        max_length=args.max_prompt_length,
+        add_special_tokens=False,
+    )
+    prompt_input_ids = enc.input_ids.to(device)
+    prompt_attention_mask = enc.attention_mask.to(device)
+    prompt_lengths = prompt_attention_mask.sum(dim=1).tolist()
 
-            for tok in cand_ids:
-                outputs = model(input_ids=cur_ids)
-                logits = outputs.logits[:, -1, :]
-                token_probs = torch.softmax(logits, dim=-1)
-                prob *= token_probs[0, tok].item()
-                cur_ids = torch.cat(
-                    [cur_ids, torch.tensor([[tok]], device=device)], dim=1
-                )
+    seqs = []
+    seq_prompt_lens = []
+    seq_cand_lens = []
 
-            probs[candidate] = prob
+    for i, p_len in enumerate(prompt_lengths):
+        prompt_tokens = prompt_input_ids[i, :p_len]
+        for cand_ids in candidate_token_ids:
+            cand_tensor = torch.tensor(cand_ids, dtype=torch.long, device=device)
+            seq = torch.cat([prompt_tokens, cand_tensor], dim=0)
+            seqs.append(seq)
+            seq_prompt_lens.append(int(p_len))
+            seq_cand_lens.append(len(cand_ids))
 
-    total = sum(probs.values())
-    if total > 0:
-        probs = {c: p / total for c, p in probs.items()}
-    else:
-        probs = {c: 1 / len(CANDIDATES) for c in CANDIDATES}
+    max_len = max(s.size(0) for s in seqs)
+    n_seq = len(seqs)
 
-    return probs
+    input_ids = torch.full(
+        (n_seq, max_len),
+        fill_value=tokenizer.pad_token_id,
+        dtype=torch.long,
+        device=device,
+    )
+    attention_mask = torch.zeros((n_seq, max_len), dtype=torch.long, device=device)
+
+    for i, seq in enumerate(seqs):
+        l = seq.size(0)
+        input_ids[i, :l] = seq
+        attention_mask[i, :l] = 1
+
+    with torch.inference_mode():
+        outputs = model(input_ids=input_ids, attention_mask=attention_mask)
+        log_probs = F.log_softmax(outputs.logits, dim=-1)
+
+    seq_logps = []
+    for i in range(n_seq):
+        p_len = seq_prompt_lens[i]
+        c_len = seq_cand_lens[i]
+        lp = torch.tensor(0.0, device=device)
+
+        for k in range(c_len):
+            logit_pos = p_len - 1 + k
+            token_id = input_ids[i, p_len + k]
+            lp = lp + log_probs[i, logit_pos, token_id]
+        seq_logps.append(lp)
+
+    seq_logps = torch.stack(seq_logps).view(len(prompts), len(CANDIDATES))
+    cand_probs = torch.softmax(seq_logps, dim=1).detach().cpu().numpy()
+
+    out = []
+    for row in cand_probs:
+        out.append({c: float(row[j]) for j, c in enumerate(CANDIDATES)})
+    return out
 
 
 def mutual_information(probs, ground_truth, eps=1e-12):
@@ -172,39 +223,53 @@ def vote_to_numeric(vote):
 
 
 # =====================================================
-# Inference loop
+# Inference loop (batched)
 # =====================================================
 results = []
+valid_entries = []
 
-for idx, entry in tqdm(enumerate(data), total=len(data)):
+for idx, entry in enumerate(data):
     messages = entry.get("messages", [])
     gt = extract_ground_truth(messages)
 
     if gt is None or gt not in CANDIDATES:
         continue
 
-    probs = get_vote_probs(messages)
-    pred = max(probs, key=probs.get)
+    valid_entries.append((idx, messages, gt, build_prompt(messages)))
 
-    results.append({
-        "idx": idx,
-        "ground_truth": gt,
-        "predicted_vote": pred,
-        "accuracy": int(pred == gt),
-        "mutual_information": mutual_information(probs, gt),
-        "probs": probs,
-        "messages": messages,
-    })
+n_batches = (len(valid_entries) + args.eval_batch_size - 1) // args.eval_batch_size
+for batch_idx in tqdm(range(n_batches), total=n_batches):
+    start = batch_idx * args.eval_batch_size
+    chunk = valid_entries[start : start + args.eval_batch_size]
 
-    if (idx + 1) % args.save_every == 0:
-        pd.DataFrame(results).to_pickle(
-            os.path.join(
-                args.out_dir,
-                f"{args.model_name.replace('/', '_')}_{args.election_year}_partial.pkl"
-            )
+    prompts = [x[3] for x in chunk]
+    prob_list = get_vote_probs_batched(prompts)
+
+    for (idx, messages, gt, _prompt), probs in zip(chunk, prob_list):
+        pred = max(probs, key=probs.get)
+
+        results.append(
+            {
+                "idx": idx,
+                "ground_truth": gt,
+                "predicted_vote": pred,
+                "accuracy": int(pred == gt),
+                "mutual_information": mutual_information(probs, gt),
+                "probs": probs,
+                "messages": messages,
+            }
         )
 
-    time.sleep(args.sleep)
+        if (idx + 1) % args.save_every == 0:
+            pd.DataFrame(results).to_pickle(
+                os.path.join(
+                    args.out_dir,
+                    f"{args.model_name.replace('/', '_')}_{args.election_year}_partial.pkl",
+                )
+            )
+
+        if args.sleep > 0:
+            time.sleep(args.sleep)
 
 df = pd.DataFrame(results)
 
@@ -233,7 +298,7 @@ if ICC_AVAILABLE:
             data=df_long,
             targets="index",
             raters="rater",
-            ratings="vote"
+            ratings="vote",
         )
         metrics["ICC"] = icc.loc[icc["Type"] == "ICC2k", "ICC"].values[0]
     except Exception:
@@ -260,3 +325,268 @@ for k, v in metrics.items():
     print(f"{k}: {v}")
 
 print(f"\nSaved results to:\n{out_pkl}\n{out_csv}")
+
+
+
+# # =====================================================
+# # Canada 2021 Election Vote Prediction with LLMs
+# # Deterministic token-level probability evaluation
+# # =====================================================
+
+# import os
+# import time
+# import json
+# import argparse
+# import random
+# import numpy as np
+# import pandas as pd
+# import torch
+
+# from tqdm import tqdm
+# from transformers import AutoTokenizer, AutoModelForCausalLM
+# from sklearn.metrics import cohen_kappa_score
+
+# # Optional ICC
+# try:
+#     import pingouin as pg
+#     ICC_AVAILABLE = True
+# except ImportError:
+#     ICC_AVAILABLE = False
+
+
+# # =====================================================
+# # Arguments
+# # =====================================================
+# parser = argparse.ArgumentParser(
+#     description="Canada 2021 vote prediction using LLM likelihoods"
+# )
+# parser.add_argument("--model_name", type=str, required=True)
+# parser.add_argument("--data_path", type=str, required=True)
+# parser.add_argument("--out_dir", type=str, default="./output")
+# parser.add_argument("--election_year", type=str, default="2021")
+# parser.add_argument("--save_every", type=int, default=100)
+# parser.add_argument("--sleep", type=float, default=0.1)
+# parser.add_argument("--seed", type=int, default=42)
+
+# args = parser.parse_args()
+# os.makedirs(args.out_dir, exist_ok=True)
+
+# random.seed(args.seed)
+# np.random.seed(args.seed)
+# torch.manual_seed(args.seed)
+
+
+# # =====================================================
+# # Candidates (Canada 2021 leaders)
+# # =====================================================
+# # CANDIDATES = [
+# #     "Justin Trudeau",
+# #     "Erin O'Toole",
+# #     "Jagmeet Singh",
+# #     "Yves-François Blanchet",
+# #     "Annamie Paul",
+# #     "Maxime Bernier",
+# # ]
+
+# CANDIDATES = [
+#     "Justin Trudeau",
+#     "Erin O'Toole",
+#     "Others"
+# ]
+# CANDIDATES_LOWER = [c.lower() for c in CANDIDATES]
+# VOTE2ID = {c: i for i, c in enumerate(CANDIDATES)}
+# ID2VOTE = {i: c for c, i in VOTE2ID.items()}
+
+
+# # =====================================================
+# # Load dataset
+# # =====================================================
+# with open(args.data_path, "r") as f:
+#     data = json.load(f)
+
+# print(f"Loaded {len(data)} samples")
+
+
+# # =====================================================
+# # Load model
+# # =====================================================
+# print(f"Loading model: {args.model_name}")
+
+# tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+
+# model = AutoModelForCausalLM.from_pretrained(
+#     args.model_name,
+#     device_map="auto",
+#     torch_dtype=torch.float16
+# )
+
+# # Pad token fix
+# tokenizer.pad_token = tokenizer.eos_token
+# tokenizer.pad_token_id = tokenizer.eos_token_id
+# model.config.pad_token_id = tokenizer.eos_token_id
+# model.eval()
+
+# device = next(model.parameters()).device
+
+
+# # =====================================================
+# # Helper functions
+# # =====================================================
+# def normalize_vote(text):
+#     """Extract candidate name from generated text."""
+#     if text is None:
+#         return None
+#     text = text.lower()
+#     for c in CANDIDATES:
+#         if c.lower() in text:
+#             return c
+#     return None
+
+
+# def extract_ground_truth(messages):
+#     """Ground truth is stored in assistant turn."""
+#     for m in messages:
+#         if m["role"] == "assistant":
+#             return normalize_vote(m["content"])
+#     return None
+
+
+# def get_vote_probs(messages):
+#     """
+#     Deterministic token-level probability of each candidate.
+#     Matches likelihood-based evaluation in the paper.
+#     """
+#     # Remove assistant messages
+#     clean_msgs = [m for m in messages if m["role"] != "assistant"]
+
+#     prompt = "\n".join(f"{m['role']}: {m['content']}" for m in clean_msgs)
+#     prompt += f"\nVote choice ({' or '.join(CANDIDATES)}):"
+
+#     input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
+
+#     probs = {}
+
+#     with torch.no_grad():
+#         for candidate in CANDIDATES:
+#             cand_ids = tokenizer.encode(candidate, add_special_tokens=False)
+#             prob = 1.0
+#             cur_ids = input_ids.clone()
+
+#             for tok in cand_ids:
+#                 outputs = model(input_ids=cur_ids)
+#                 logits = outputs.logits[:, -1, :]
+#                 token_probs = torch.softmax(logits, dim=-1)
+#                 prob *= token_probs[0, tok].item()
+#                 cur_ids = torch.cat(
+#                     [cur_ids, torch.tensor([[tok]], device=device)], dim=1
+#                 )
+
+#             probs[candidate] = prob
+
+#     total = sum(probs.values())
+#     if total > 0:
+#         probs = {c: p / total for c, p in probs.items()}
+#     else:
+#         probs = {c: 1 / len(CANDIDATES) for c in CANDIDATES}
+
+#     return probs
+
+
+# def mutual_information(probs, ground_truth, eps=1e-12):
+#     p = max(probs.get(ground_truth, eps), eps)
+#     return -np.log2(p)
+
+
+# def vote_to_numeric(vote):
+#     return VOTE2ID[vote]
+
+
+# # =====================================================
+# # Inference loop
+# # =====================================================
+# results = []
+
+# for idx, entry in tqdm(enumerate(data), total=len(data)):
+#     messages = entry.get("messages", [])
+#     gt = extract_ground_truth(messages)
+
+#     if gt is None or gt not in CANDIDATES:
+#         continue
+
+#     probs = get_vote_probs(messages)
+#     pred = max(probs, key=probs.get)
+
+#     results.append({
+#         "idx": idx,
+#         "ground_truth": gt,
+#         "predicted_vote": pred,
+#         "accuracy": int(pred == gt),
+#         "mutual_information": mutual_information(probs, gt),
+#         "probs": probs,
+#         "messages": messages,
+#     })
+
+#     if (idx + 1) % args.save_every == 0:
+#         pd.DataFrame(results).to_pickle(
+#             os.path.join(
+#                 args.out_dir,
+#                 f"{args.model_name.replace('/', '_')}_{args.election_year}_partial.pkl"
+#             )
+#         )
+
+#     time.sleep(args.sleep)
+
+# df = pd.DataFrame(results)
+
+
+# # =====================================================
+# # Metrics
+# # =====================================================
+# anes_votes = df["ground_truth"].map(vote_to_numeric).to_numpy()
+# gpt_votes = df["predicted_vote"].map(vote_to_numeric).to_numpy()
+
+# metrics = {
+#     "accuracy": df["accuracy"].mean(),
+#     "cohen_kappa": cohen_kappa_score(anes_votes, gpt_votes),
+#     "proportion_agreement": np.mean(anes_votes == gpt_votes),
+#     "mean_mutual_information": df["mutual_information"].mean(),
+# }
+
+# if ICC_AVAILABLE:
+#     try:
+#         df_long = (
+#             pd.DataFrame({"anes": anes_votes, "gpt": gpt_votes})
+#             .reset_index()
+#             .melt(id_vars="index", var_name="rater", value_name="vote")
+#         )
+#         icc = pg.intraclass_corr(
+#             data=df_long,
+#             targets="index",
+#             raters="rater",
+#             ratings="vote"
+#         )
+#         metrics["ICC"] = icc.loc[icc["Type"] == "ICC2k", "ICC"].values[0]
+#     except Exception:
+#         metrics["ICC"] = None
+# else:
+#     metrics["ICC"] = None
+
+# for k, v in metrics.items():
+#     df[k] = v
+
+
+# # =====================================================
+# # Save final outputs
+# # =====================================================
+# out_base = f"{args.model_name.replace('/', '_')}_{args.election_year}_final"
+# out_pkl = os.path.join(args.out_dir, out_base + ".pkl")
+# out_csv = os.path.join(args.out_dir, out_base + ".csv")
+
+# df.to_pickle(out_pkl)
+# df.to_csv(out_csv, index=False)
+
+# print("\n=== Final Metrics ===")
+# for k, v in metrics.items():
+#     print(f"{k}: {v}")
+
+# print(f"\nSaved results to:\n{out_pkl}\n{out_csv}")
