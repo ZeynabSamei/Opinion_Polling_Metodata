@@ -30,7 +30,7 @@ except ImportError:
 # Arguments
 # =====================================================
 parser = argparse.ArgumentParser(
-    description="Canada 2021 vote prediction using LLM likelihoods"
+    description="Canada 2021 party prediction using LLM likelihoods"
 )
 parser.add_argument("--model_name", type=str, required=True)
 parser.add_argument("--data_path", type=str, required=True)
