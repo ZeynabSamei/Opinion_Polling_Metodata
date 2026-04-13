@@ -1,6 +1,6 @@
 # =====================================================
 # Canada 2021 Election Vote Prediction with LLMs
-# Deterministic option-token probability evaluation
+# Direct next-token option scoring
 # =====================================================
 
 import os
@@ -75,7 +75,6 @@ OPTION_TO_VOTE = {
     "B": "Erin O'Toole",
     "C": "Others",
 }
-VOTE_TO_OPTION = {v: k for k, v in OPTION_TO_VOTE.items()}
 VOTE2ID = {c: i for i, c in enumerate(CANDIDATES)}
 
 
@@ -157,6 +156,10 @@ def get_option_probs_batched(
     option_token_ids,
     max_prompt_length,
 ):
+    """
+    Score A/B/C from the next-token distribution only.
+    This is preferred when each option is represented by a single token.
+    """
     if not prompts:
         return []
 
@@ -169,67 +172,30 @@ def get_option_probs_batched(
         add_special_tokens=False,
     )
 
-    prompt_input_ids = enc.input_ids.to(device)
-    prompt_attention_mask = enc.attention_mask.to(device)
-    prompt_lengths = prompt_attention_mask.sum(dim=1).tolist()
-
-    seqs = []
-    seq_prompt_lens = []
-    seq_option_lens = []
-
-    for i, p_len in enumerate(prompt_lengths):
-        prompt_tokens = prompt_input_ids[i, :p_len]
-        for tok_ids in option_token_ids:
-            opt_tensor = torch.tensor(tok_ids, dtype=torch.long, device=device)
-            seq = torch.cat([prompt_tokens, opt_tensor], dim=0)
-            seqs.append(seq)
-            seq_prompt_lens.append(int(p_len))
-            seq_option_lens.append(len(tok_ids))
-
-    max_len = max(s.size(0) for s in seqs)
-    n_seq = len(seqs)
-
-    input_ids = torch.full(
-        (n_seq, max_len),
-        fill_value=tokenizer.pad_token_id,
-        dtype=torch.long,
-        device=device,
-    )
-    attention_mask = torch.zeros((n_seq, max_len), dtype=torch.long, device=device)
-
-    for i, seq in enumerate(seqs):
-        l = seq.size(0)
-        input_ids[i, :l] = seq
-        attention_mask[i, :l] = 1
+    input_ids = enc.input_ids.to(device)
+    attention_mask = enc.attention_mask.to(device)
+    prompt_lengths = attention_mask.sum(dim=1)
 
     with torch.inference_mode():
         outputs = model(input_ids=input_ids, attention_mask=attention_mask)
-        log_probs = F.log_softmax(outputs.logits, dim=-1)
-
-    seq_scores = []
-    for i in range(n_seq):
-        p_len = seq_prompt_lens[i]
-        o_len = seq_option_lens[i]
-        lp = torch.tensor(0.0, device=device)
-
-        for k in range(o_len):
-            logit_pos = p_len - 1 + k
-            token_id = input_ids[i, p_len + k]
-            lp = lp + log_probs[i, logit_pos, token_id]
-
-        lp = lp / o_len
-        seq_scores.append(lp)
-
-    seq_scores = torch.stack(seq_scores).view(len(prompts), len(OPTION_TO_VOTE))
-    option_probs = torch.softmax(seq_scores, dim=1).detach().cpu().numpy()
+        logits = outputs.logits
 
     out = []
     option_keys = list(OPTION_TO_VOTE.keys())
-    for row in option_probs:
-        probs = {}
-        for j, opt in enumerate(option_keys):
-            probs[OPTION_TO_VOTE[opt]] = float(row[j])
+
+    for i in range(input_ids.size(0)):
+        last_pos = int(prompt_lengths[i].item()) - 1
+        next_token_logits = logits[i, last_pos]
+
+        opt_logits = torch.stack([next_token_logits[tok_id] for tok_id in option_token_ids])
+        opt_probs = torch.softmax(opt_logits, dim=0).detach().cpu().numpy()
+
+        probs = {
+            OPTION_TO_VOTE[option_keys[j]]: float(opt_probs[j])
+            for j in range(len(option_keys))
+        }
         out.append(probs)
+
     return out
 
 
@@ -289,12 +255,20 @@ for model_name in MODELS:
 
     device = next(model.parameters()).device
 
-    # Score single-letter options instead of label strings
+    # Direct next-token scoring requires each option to be one token.
+    # Prefer " A"/" B"/" C" first; if not, test alternatives like "1"/"2"/"3".
     option_keys = ["A", "B", "C"]
-    option_token_ids = [
-        tokenizer.encode(" " + opt, add_special_tokens=False)
-        for opt in option_keys
-    ]
+    option_token_ids = []
+
+    for opt in option_keys:
+        tok_ids = tokenizer.encode(" " + opt, add_special_tokens=False)
+        print(f"{model_name} option {opt} tokenization: {tok_ids}")
+        if len(tok_ids) != 1:
+            raise ValueError(
+                f"Option '{opt}' is not a single token for {model_name}. "
+                "Use a different option scheme such as 1/2/3."
+            )
+        option_token_ids.append(tok_ids[0])
 
     results = []
     n_batches = (len(valid_entries) + args.eval_batch_size - 1) // args.eval_batch_size
@@ -396,7 +370,6 @@ for model_name in MODELS:
     del model
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
-
 
 
 # # =====================================================
