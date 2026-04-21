@@ -103,11 +103,33 @@ def extract_ground_truth(messages):
     return None
 
 
+
+
 def build_prompt(messages):
-    clean_msgs = [m for m in messages if m["role"] != "assistant"]
-    prompt = "\n".join(f"{m['role']}: {m['content']}" for m in clean_msgs)
-    prompt += f"\nVote choice ({' or '.join(CANDIDATES)}):"
+    user_text = None
+    for m in messages:
+        if m["role"] == "user":
+            user_text = m["content"]
+            break
+
+    if user_text is None:
+        return None
+
+    system_text = (
+        "You are an expert political analyst specializing in Canadian elections and voting behavior. "
+        "Predict the party choice in the 2021 Canadian party election.\n\n"
+        "Choose exactly one of the following labels:\n"
+        "Liberal Party\n"
+        "Conservative Party\n"
+        "Minor Parties\n\n"
+        "Minor Parties' includes New Democratic Party(NDP), Bloc Québécois, Green Party, and People's Party of Canada.\n\n"
+        "Answer with only one label exactly as written above."
+    )
+
+    prompt = f"system: {system_text}\nuser: {user_text}"
     return prompt
+
+
 
 
 def mutual_information(probs, ground_truth, eps=1e-12):
