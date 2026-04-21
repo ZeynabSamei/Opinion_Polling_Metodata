@@ -188,7 +188,8 @@ def get_option_probs_batched(
         next_token_logits = logits[i, last_pos]
 
         opt_logits = torch.stack([next_token_logits[tok_id] for tok_id in option_token_ids])
-        opt_probs = torch.softmax(opt_logits, dim=0).detach().cpu().numpy()
+        # opt_probs = torch.softmax(opt_logits, dim=0).detach().cpu().numpy()
+        opt_probs = torch.softmax(opt_logits, dim=0).detach().float().cpu().numpy()
 
         probs = {
             OPTION_TO_VOTE[option_keys[j]]: float(opt_probs[j])
