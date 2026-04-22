@@ -64,13 +64,13 @@ MODELS = [
 # =====================================================
 # Labels
 # =====================================================
-IMMIGRATION_CHOICES = [
+CANDIDATES = [
     "More immigrants",
     "Fewer immigrants",
     "About the same number of immigrants as now"
 ]
 
-VOTE2ID = {c: i for i, c in enumerate(IMMIGRATION_CHOICES)}
+VOTE2ID = {c: i for i, c in enumerate(CANDIDATES)}
 
 
 # =====================================================
