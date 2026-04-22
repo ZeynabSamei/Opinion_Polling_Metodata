@@ -344,7 +344,7 @@ for model_name in MODELS:
     for k, v in metrics.items():
         df[k] = v
 
-    out_base = f"{model_name.replace('/', '_')}_{args.election_year}_final"
+    out_base = f"{model_name.replace('/', '_')}_{args.election_year}_final_party"
     out_pkl = os.path.join(args.out_dir, out_base + ".pkl")
     out_csv = os.path.join(args.out_dir, out_base + ".csv")
 
