@@ -116,14 +116,14 @@ def build_prompt_messages(messages):
         return None
 
     system_text = (
-        "You are an expert political analyst specializing in Canadian elections and voting behavior. "
-        "Predict the party choice in the 2021 Canadian party election.\n\n"
-        "Choose exactly one of the following labels:\n"
-        "Liberal Party\n"
-        "Conservative Party\n"
-        "Minor Parties\n\n"
-        "Minor Parties' includes New Democratic Party(NDP), Bloc Québécois, Green Party, and People's Party of Canada.\n\n"
-        "Answer with only one label exactly as written above."
+        "You are an expert political analyst specializing in Canadian elections."
+        "Your task is to analyze a person's profile and predict their most likely party choice in the 2021 Canadian federal election."
+        "Valid output labels\n:"
+        "- Liberal Party\n"
+        "- Conservative Party\n"
+        "- Minor Parties\n\n"
+        "'Minor Parties' includes New Democratic Party(NDP), Bloc Quebecois, Green Party, and People's Party of Canada.\n\n"
+        "Return exactly one label and nothing else."
     )
 
     return [
