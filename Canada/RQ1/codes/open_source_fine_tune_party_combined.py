@@ -43,12 +43,12 @@ MAX_PROMPT_LENGTH = 512
 
 
 # Dataset for evaluation (JSON)
-DATA_PATH = "dataset_test/test_canada_election_party_2021_3class.json"
+DATA_PATH = "dataset_test/test_canada_election_party_2021_3class_new.json"
 
 # Fine-tune datasets
 FINE_TUNE_FILES = [
-    # "dataset_ft/agg_ft_party_2021_3class.jsonl",
-    # "dataset_ft/individual_ft_party_3class.jsonl",
+    "dataset_ft/agg_ft_party_2021_3class.jsonl",
+    "dataset_ft/individual_ft_party_3class.jsonl",
     "dataset_ft/tweets_ft_party_sample.jsonl",
 ]
 
