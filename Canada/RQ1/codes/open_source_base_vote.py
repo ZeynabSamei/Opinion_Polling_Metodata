@@ -116,14 +116,25 @@ def build_prompt_messages(messages):
     if user_text is None:
         return None
 
+    # system_text = (
+    #     "You are an expert political analyst specializing in Canadian elections and voting behavior. "
+    #     "Predict the individual's vote choice in the 2021 Canadian federal election.\n\n"
+    #     "Choose exactly one of the following labels:\n"
+    #     "Justin Trudeau\n"
+    #     "Erin O'Toole\n"
+    #     "Others\n\n"
+    #     "Answer with only one label exactly as written above."
+    # )
+
     system_text = (
-        "You are an expert political analyst specializing in Canadian elections and voting behavior. "
-        "Predict the individual's vote choice in the 2021 Canadian federal election.\n\n"
-        "Choose exactly one of the following labels:\n"
-        "Justin Trudeau\n"
-        "Erin O'Toole\n"
-        "Others\n\n"
-        "Answer with only one label exactly as written above."
+        "You are a classifier that predicts vote choice in the 2021 Canadian federal election."
+        "Your task is to analyze the provided demographic profile and predict the individual's vote choice "
+        "in the 2021 Canadian federal election for Prime Minister.\n\n"
+        "Output exactly one label:\n"
+        "1. Justin Trudeau\n"
+        "2. Erin O'Toole\n"
+        "3. Others\n\n"
+        "Do not output anything else."    
     )
 
     return [
@@ -344,7 +355,7 @@ for model_name in MODELS:
     for k, v in metrics.items():
         df[k] = v
 
-    out_base = f"{model_name.replace('/', '_')}_{args.election_year}_final"
+    out_base = f"{model_name.replace('/', '_')}_{args.election_year}_final_vote"
     out_pkl = os.path.join(args.out_dir, out_base + ".pkl")
     out_csv = os.path.join(args.out_dir, out_base + ".csv")
 
