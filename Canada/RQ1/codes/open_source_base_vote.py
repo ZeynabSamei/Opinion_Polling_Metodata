@@ -127,14 +127,12 @@ def build_prompt_messages(messages):
     # )
 
     system_text = (
-        "You are a classifier that predicts vote choice in the 2021 Canadian federal election."
-        "Your task is to analyze the provided demographic profile and predict the individual's vote choice "
-        "in the 2021 Canadian federal election for Prime Minister.\n\n"
+        "You are a classifier that predicts vote choice in the 2021 Canadian federal election.\n\n"
         "Output exactly one label:\n"
-        "1. Justin Trudeau\n"
-        "2. Erin O'Toole\n"
-        "3. Others\n\n"
-        "Do not output anything else."    
+        "- Justin Trudeau\n"
+        "- Erin O'Toole\n"
+        "- Others\n\n"
+        "Do not output anything else."
     )
 
     return [
