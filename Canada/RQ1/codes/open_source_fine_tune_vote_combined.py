@@ -44,16 +44,16 @@ MAX_PROMPT_LENGTH = 512
 DATA_PATH = "dataset_test/test_canada_election_vote_2021_3class.json"
 
 FINE_TUNE_FILES = [
-    "dataset_ft/agg_ft_vote.jsonl",
-    "dataset_ft/agg_ft_vote_2020_v2.jsonl",
+    # "dataset_ft/agg_ft_vote.jsonl",
+    # "dataset_ft/agg_ft_vote_2020_v2.jsonl",
     "dataset_ft/individual_ft_vote.jsonl",
-    "dataset_ft/tweets_ft_vote_sample.jsonl",
+    # "dataset_ft/tweets_ft_vote_sample.jsonl",
 ]
 
 MODELS = [
-    # "meta-llama/Llama-3.1-8B-Instruct",
+    "meta-llama/Llama-3.1-8B-Instruct",
     # "meta-llama/Llama-3.1-70B-Instruct",
-    # "Qwen/Qwen2.5-7B-Instruct",
+    "Qwen/Qwen2.5-7B-Instruct",
     "Qwen/Qwen2.5-14B-Instruct",
 ]
 
