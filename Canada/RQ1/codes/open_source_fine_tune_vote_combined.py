@@ -45,15 +45,16 @@ DATA_PATH = "dataset_test/test_canada_election_vote_2021_3class.json"
 
 FINE_TUNE_FILES = [
     "dataset_ft/agg_ft_vote.jsonl",
+    "dataset_ft/agg_ft_vote_2020_v2.jsonl",
     "dataset_ft/individual_ft_vote.jsonl",
     "dataset_ft/tweets_ft_vote_sample.jsonl",
 ]
 
 MODELS = [
-    # "meta-llama/Llama-3.1-8B-Instruct",
-    "meta-llama/Llama-3.1-70B-Instruct",
-    # "Qwen/Qwen2.5-7B-Instruct",
-    # "Qwen/Qwen2.5-14B-Instruct",
+    "meta-llama/Llama-3.1-8B-Instruct",
+    # "meta-llama/Llama-3.1-70B-Instruct",
+    "Qwen/Qwen2.5-7B-Instruct",
+    "Qwen/Qwen2.5-14B-Instruct",
 ]
 
 CANDIDATES = ["Justin Trudeau", "Erin O'Toole", "Others"]
@@ -102,14 +103,13 @@ def build_prompt(messages):
         return None
 
     system_text = (
-        "You are an expert political analyst specializing in Canadian elections and voting behavior. "
-        "Predict the individual's vote choice in the 2021 Canadian federal election.\n\n"
-        "Choose exactly one of the following labels:\n"
-        "Justin Trudeau\n"
-        "Erin O'Toole\n"
-        "Others\n\n"
-        "Answer with only one label exactly as written above."
-    )
+        "You are a classifier that predicts vote choice in the 2021 Canadian federal election.\n\n"
+        "Output exactly one label:\n"
+        "- Justin Trudeau\n"
+        "- Erin O'Toole\n"
+        "- Others\n\n"
+        "Do not output anything else."
+     )
 
     prompt = f"system: {system_text}\nuser: {user_text}"
     return prompt
