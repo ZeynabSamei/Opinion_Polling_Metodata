@@ -117,7 +117,7 @@ def build_prompt_messages(messages):
         return None
 
 
-  system_text = (
+    system_text = (
         "You are a political behavior model that predicts voting choice based on demographic profiles.\n\n"
     
         "Task:\n"
