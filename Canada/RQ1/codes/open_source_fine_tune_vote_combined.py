@@ -102,14 +102,40 @@ def build_prompt(messages):
     if user_text is None:
         return None
 
+    # system_text = (
+    #     "You are a classifier that predicts vote choice in the 2021 Canadian federal election.\n\n"
+    #     "Output exactly one label:\n"
+    #     "- Justin Trudeau\n"
+    #     "- Erin O'Toole\n"
+    #     "- Others\n\n"
+    #     "Do not output anything else."
+    #  )
+
     system_text = (
-        "You are a classifier that predicts vote choice in the 2021 Canadian federal election.\n\n"
-        "Output exactly one label:\n"
-        "- Justin Trudeau\n"
-        "- Erin O'Toole\n"
-        "- Others\n\n"
-        "Do not output anything else."
-     )
+        "You are a political behavior model that predicts voting choice based on demographic profiles.\n\n"
+    
+        "Task:\n"
+        "Given a person's demographic and political attributes, predict their MOST LIKELY vote choice "
+        "in the 2021 Canadian federal election.\n\n"
+    
+        "Rules:\n"
+        "- You must choose ONLY ONE label.\n"
+        "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
+        "Justin Trudeau\n"
+        "Erin O'Toole\n"
+        "Others\n\n"
+    
+        "Definition:\n"
+        "'Others' includes Jagmeet Singh, Yves-François Blanchet, Annamie Paul, and Maxime Bernier.\n\n"
+    
+        "Important:\n"
+        "- Base your decision on typical voting patterns, demographics, and political alignment.\n"
+        "- Do NOT explain your reasoning.\n"
+        "- Do NOT repeat the input.\n"
+        "- Output ONLY the label."
+    )
+        
+
 
     prompt = f"system: {system_text}\nuser: {user_text}"
     return prompt
