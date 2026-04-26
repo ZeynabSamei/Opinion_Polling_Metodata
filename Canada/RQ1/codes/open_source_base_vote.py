@@ -117,17 +117,28 @@ def build_prompt_messages(messages):
         return None
 
 
-    system_text = (
-
-        "You are an expert political analyst specializing in Canadian elections and voting behavior. "
-        "Your task is to analyze the provided demographic profile and predict the individual's vote choice "
-        "in the 2021 Canadian federal election for Prime Minister.\n\n"
-        "You MUST output exactly one of the following three labels:\n"
-        "1. Justin Trudeau\n"
-        "2. Erin O'Toole\n"
-        "3. Others\n\n"
+  system_text = (
+        "You are a political behavior model that predicts voting choice based on demographic profiles.\n\n"
+    
+        "Task:\n"
+        "Given a person's demographic and political attributes, predict their MOST LIKELY vote choice "
+        "in the 2021 Canadian federal election.\n\n"
+    
+        "Rules:\n"
+        "- You must choose ONLY ONE label.\n"
+        "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
+        "Justin Trudeau\n"
+        "Erin O'Toole\n"
+        "Others\n\n"
+    
+        "Definition:\n"
         "'Others' includes Jagmeet Singh, Yves-François Blanchet, Annamie Paul, and Maxime Bernier.\n\n"
-        "Do not output anything else."    
+    
+        "Important:\n"
+        "- Base your decision on typical voting patterns, demographics, and political alignment.\n"
+        "- Do NOT explain your reasoning.\n"
+        "- Do NOT repeat the input.\n"
+        "- Output ONLY the label."
     )
         
 
