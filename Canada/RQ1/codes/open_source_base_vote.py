@@ -116,24 +116,24 @@ def build_prompt_messages(messages):
     if user_text is None:
         return None
 
-    # system_text = (
-    #     "You are an expert political analyst specializing in Canadian elections and voting behavior. "
-    #     "Predict the individual's vote choice in the 2021 Canadian federal election.\n\n"
-    #     "Choose exactly one of the following labels:\n"
-    #     "Justin Trudeau\n"
-    #     "Erin O'Toole\n"
-    #     "Others\n\n"
-    #     "Answer with only one label exactly as written above."
-    # )
-
     system_text = (
-        "You are a classifier that predicts vote choice in the 2021 Canadian federal election.\n\n"
-        "Output exactly one label:\n"
-        "- Justin Trudeau\n"
-        "- Erin O'Toole\n"
-        "- Others\n\n"
-        "Do not output anything else."
+        "You are an expert political analyst specializing in Canadian elections and voting behavior. "
+        "Predict the individual's vote choice in the 2021 Canadian federal election based on provided demographic features.\n\n"
+        "Choose exactly one of the following labels:\n"
+        "Justin Trudeau\n"
+        "Erin O'Toole\n"
+        "Others\n\n"
+        "Answer with only one label exactly as written above."
     )
+
+    # system_text = (
+    #     "You are a classifier that predicts vote choice in the 2021 Canadian federal election.\n\n"
+    #     "Output exactly one label:\n"
+    #     "- Justin Trudeau\n"
+    #     "- Erin O'Toole\n"
+    #     "- Others\n\n"
+    #     "Do not output anything else."
+    # )
 
     return [
         {"role": "system", "content": system_text},
