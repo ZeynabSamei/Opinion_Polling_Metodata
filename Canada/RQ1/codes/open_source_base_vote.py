@@ -56,7 +56,7 @@ if torch.cuda.is_available():
 # =====================================================
 MODELS = [
     "meta-llama/Llama-3.1-8B-Instruct",
-    "meta-llama/Llama-3.1-70B-Instruct",
+    # "meta-llama/Llama-3.1-70B-Instruct",
     "Qwen/Qwen2.5-7B-Instruct",
     "Qwen/Qwen2.5-14B-Instruct",
 ]
