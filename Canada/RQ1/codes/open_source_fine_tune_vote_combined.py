@@ -27,7 +27,7 @@ FINE_TUNE_FILES = [
     "dataset_ft/agg_ft_vote.jsonl",
     # "dataset_ft/agg_ft_vote_2020_v2.jsonl",
     "dataset_ft/individual_ft_vote.jsonl",
-    # "dataset_ft/tweets_ft_vote_sample.jsonl",
+    "dataset_ft/tweets_ft_vote_sample.jsonl",
 ]
 
 MODELS = [
