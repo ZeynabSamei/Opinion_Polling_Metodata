@@ -23,7 +23,7 @@ SEED = 42
 BATCH_SIZE = 16
 MAX_LENGTH = 512
 OUT_DIR = "./results"
-DATA_PATH = "dataset_test.json"
+DATA_PATH = "./dataset_test/test_canada_election_vote_2021_3class_new.json"
 
 # =====================================================
 # Models
