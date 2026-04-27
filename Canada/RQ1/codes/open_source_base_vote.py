@@ -32,7 +32,7 @@ MODELS = [
     "meta-llama/Llama-3.1-8B-Instruct",
     # "meta-llama/Llama-3.1-70B-Instruct",
     "Qwen/Qwen2.5-7B-Instruct",
-    # "Qwen/Qwen2.5-14B-Instruct",
+    "Qwen/Qwen2.5-14B-Instruct",
 ]
 
 
@@ -276,7 +276,7 @@ for model_name in MODELS:
     # Save
     # -------------------------------------------------
     model_tag = model_name.replace("/", "_")
-    out_path = os.path.join(OUT_DIR, f"{model_tag}_results.csv")
+    out_path = os.path.join(OUT_DIR, f"{model_tag}_results_vote.csv")
     df.to_csv(out_path, index=False)
 
     print("\n=== Metrics ===")
