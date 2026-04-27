@@ -199,12 +199,31 @@ for model_name in MODELS:
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        device_map="auto",
-        torch_dtype=torch.bfloat16,
-        attn_implementation="flash_attention_2",
-    )
+
+
+    try:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            device_map="auto",
+            torch_dtype=torch.bfloat16,
+            attn_implementation="flash_attention_2",
+        )
+    except Exception as e:
+        print(f"[WARN] FlashAttention failed, falling back to SDPA. Reason: {e}")
+    
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            device_map="auto",
+            torch_dtype=torch.bfloat16,
+            attn_implementation="sdpa",
+        )
+
+    # model = AutoModelForCausalLM.from_pretrained(
+    #     model_name,
+    #     device_map="auto",
+    #     torch_dtype=torch.bfloat16,
+    #     attn_implementation="flash_attention_2",
+    # )
 
     model.eval()
     device = next(model.parameters()).device
