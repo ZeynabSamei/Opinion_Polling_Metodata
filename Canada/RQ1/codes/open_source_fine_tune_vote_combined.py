@@ -165,10 +165,35 @@ for model_name in MODELS:
 
         train_texts = []
 
+        # system_text = (
+        #     "You are a political behavior model that predicts vote choice.\n"
+        #     "Output only one label: Justin Trudeau, Erin O'Toole, Others."
+        # )
+        
         system_text = (
-            "You are a political behavior model that predicts vote choice.\n"
-            "Output only one label: Justin Trudeau, Erin O'Toole, Others."
+                "You are a political behavior model that predicts voting choice based on demographic profiles.\n\n"
+            
+                "Task:\n"
+                "Given a person's demographic and political attributes, predict their MOST LIKELY vote choice "
+                "in the 2021 Canadian federal election.\n\n"
+            
+                "Rules:\n"
+                "- You must choose ONLY ONE label.\n"
+                "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
+                "Justin Trudeau\n"
+                "Erin O'Toole\n"
+                "Others\n\n"
+            
+                "Definition:\n"
+                "'Others' includes Jagmeet Singh, Yves-François Blanchet, Annamie Paul, and Maxime Bernier.\n\n"
+            
+                "Important:\n"
+                "- Base your decision on typical voting patterns, demographics, and political alignment.\n"
+                "- Do NOT explain your reasoning.\n"
+                "- Do NOT repeat the input.\n"
+                "- Output ONLY the label."
         )
+        
 
         for item in ft_data:
             msgs = item["messages"]
@@ -219,10 +244,35 @@ for model_name in MODELS:
         # -------------------------
         results = []
 
+        # system_text = (
+        #     "You are a political behavior model that predicts vote choice.\n"
+        #     "Output only one label."
+        # )
+
         system_text = (
-            "You are a political behavior model that predicts vote choice.\n"
-            "Output only one label."
+                "You are a political behavior model that predicts voting choice based on demographic profiles.\n\n"
+            
+                "Task:\n"
+                "Given a person's demographic and political attributes, predict their MOST LIKELY vote choice "
+                "in the 2021 Canadian federal election.\n\n"
+            
+                "Rules:\n"
+                "- You must choose ONLY ONE label.\n"
+                "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
+                "Justin Trudeau\n"
+                "Erin O'Toole\n"
+                "Others\n\n"
+            
+                "Definition:\n"
+                "'Others' includes Jagmeet Singh, Yves-François Blanchet, Annamie Paul, and Maxime Bernier.\n\n"
+            
+                "Important:\n"
+                "- Base your decision on typical voting patterns, demographics, and political alignment.\n"
+                "- Do NOT explain your reasoning.\n"
+                "- Do NOT repeat the input.\n"
+                "- Output ONLY the label."
         )
+        
 
         valid = []
         for i, entry in enumerate(data):
