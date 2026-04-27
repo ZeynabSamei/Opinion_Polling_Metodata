@@ -44,7 +44,7 @@ CANDIDATES = [
 
 os.makedirs(OUT_DIR, exist_ok=True)
 
-system_text = (
+SYSTEM_PROMPT = (
         "You are an expert political analyst specializing in Canadian elections and voting behavior. "
     
         "Task:\n"
