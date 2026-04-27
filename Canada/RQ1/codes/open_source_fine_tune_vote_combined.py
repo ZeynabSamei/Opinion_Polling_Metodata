@@ -317,7 +317,7 @@ for model_name in MODELS:
         print("\nRESULTS:")
         print(metrics)
 
-        out = f"{model_name.replace('/', '_')}_{os.path.basename(ft_file)}.csv"
+        out = f"{model_name.replace('/', '_')}_{os.path.basename(ft_file)}_vote.csv"
         df.to_csv(os.path.join(OUT_DIR, out), index=False)
 
         del model
