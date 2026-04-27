@@ -20,7 +20,7 @@ from datasets import Dataset
 # -----------------------------
 # Config
 # -----------------------------
-OUT_DIR = "./result"
+OUT_DIR = "./results"
 DATA_PATH = "dataset_test/test_canada_election_vote_2021_3class_new.json"
 
 FINE_TUNE_FILES = [
