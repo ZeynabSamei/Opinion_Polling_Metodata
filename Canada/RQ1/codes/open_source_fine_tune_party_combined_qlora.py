@@ -256,7 +256,8 @@ for ft_file in FINE_TUNE_FILES:
         torch_dtype=torch.bfloat16,
         low_cpu_mem_usage=True,
         offload_state_dict=False,   # 🚀 IMPORTANT FIX
-        attn_implementation="flash_attention_2",
+        # attn_implementation="flash_attention_2",
+        attn_implementation="sdpa"
     )
 
     model.config.pad_token_id = tokenizer.pad_token_id
