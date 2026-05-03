@@ -27,7 +27,13 @@ from sklearn.metrics import cohen_kappa_score, matthews_corrcoef, f1_score
 # =============================
 OUT_DIR = "./results"
 DATA_PATH = "dataset_test/test_canada_election_party_2021_3class_new.json"
-FINE_TUNE_FILES = ["dataset_ft/individual_ft_party_3class.jsonl"]
+# FINE_TUNE_FILES = ["dataset_ft/individual_ft_party_3class.jsonl"]
+
+FINE_TUNE_FILES = [
+    "dataset_ft/agg_ft_party_2021_3class.jsonl",
+    "dataset_ft/individual_ft_party_3class.jsonl",
+    "dataset_ft/tweets_ft_party_sample.jsonl",
+]
 
 MODEL_NAME = "meta-llama/Llama-3.1-70B-Instruct"
 
