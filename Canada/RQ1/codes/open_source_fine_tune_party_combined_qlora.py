@@ -264,6 +264,8 @@ for ft_file in FINE_TUNE_FILES:
         MODEL_NAME,
         quantization_config=bnb_config,
         device_map="auto",
+        low_cpu_mem_usage=True,
+        offload_state_dict=True,
     )
 
     model.config.pad_token_id = tokenizer.pad_token_id
