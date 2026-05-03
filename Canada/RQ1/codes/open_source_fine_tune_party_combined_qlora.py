@@ -49,8 +49,11 @@ EVAL_BATCH_SIZE = 8
 
 
 # =============================
-# SETUP
+# SPEED SETTINGS
 # =============================
+torch.backends.cuda.matmul.allow_tf32 = True
+torch.backends.cudnn.allow_tf32 = True
+
 random.seed(SEED)
 np.random.seed(SEED)
 torch.manual_seed(SEED)
@@ -99,106 +102,35 @@ def build_prompt(tokenizer, system_text, user_text):
     )
 
 
-# =============================
-# QLoRA CONFIG
-# =============================
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_compute_dtype=torch.bfloat16,
-    bnb_4bit_use_double_quant=True,
-)
-
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-tokenizer.pad_token = tokenizer.eos_token
-
-lora_config = LoraConfig(
-    r=16,
-    lora_alpha=32,
-    target_modules=["q_proj", "v_proj"],
-    lora_dropout=0.05,
-    bias="none",
-    task_type="CAUSAL_LM",
-)
+def get_candidate_ids(tokenizer):
+    return [tokenizer.encode(c, add_special_tokens=False) for c in CANDIDATES]
 
 
 # =============================
-# FASTER EVALUATION (FIXED LOGIC)
+# FAST EVALUATION
 # =============================
-def get_probs(prompts, model, tokenizer, device):
-    results = []
-
-    for prompt in prompts:
-        scores = {}
-
-        for c in CANDIDATES:
-            text = prompt + " " + c
-
-            enc = tokenizer(
-                text,
-                return_tensors="pt",
-                truncation=True,
-                max_length=MAX_LEN
-            ).to(device)
-
-            with torch.no_grad():
-                out = model(**enc)
-
-            logits = out.logits[:, :-1, :]
-            labels = enc.input_ids[:, 1:]
-
-            log_probs = F.log_softmax(logits, dim=-1)
-            token_logp = log_probs.gather(2, labels.unsqueeze(-1)).squeeze(-1)
-
-            scores[c] = token_logp.sum().item()
-
-        exp_scores = np.exp(list(scores.values()))
-        probs = exp_scores / np.sum(exp_scores)
-
-        results.append(dict(zip(CANDIDATES, probs)))
-
-    return results
-
-
-# =============================
-# EVALUATION FUNCTION
-# =============================
+@torch.no_grad()
 def run_evaluation(model, tokenizer, data, ft_name):
 
-    system_text_eval = (
-        "You are an expert political analyst specializing in Canadian elections and voting behavior. "
-            
-        "Task:\n"
-        "Given a person's demographic and political attributes, predict their MOST LIKELY party choice "
-        "in the 2021 Canadian federal election.\n\n"
-    
-        "Rules:\n"
-        "- You must choose ONLY ONE label.\n"
-        "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
-        "Liberal Party\n"
-        "Conservative Party\n"
-        "Minor Parties\n\n"
-    
-        "Definition:\n"
-        "Minor Parties' includes New Democratic Party(NDP), Bloc Québécois, Green Party, and People's Party of Canada.\n\n"
-       
-        "Important:\n"
-        "- Base your decision on typical voting patterns, demographics, and political alignment.\n"
-        "- Do NOT explain your reasoning.\n"
-        "- Do NOT repeat the input.\n"
-        "- Output ONLY the label."
+    device = next(model.parameters()).device
+    cand_ids = get_candidate_ids(tokenizer)
+
+    system_text = (
+        "You are an expert political analyst.\n"
+        "Predict vote choice.\n"
+        "Output ONLY:\n"
+        "Liberal Party\nConservative Party\nMinor Parties"
     )
 
-    device = next(model.parameters()).device
-
     valid = []
+
+    # preprocess once
     for i, entry in enumerate(data):
         gt = extract_gt(entry["messages"])
         if gt is None:
             continue
 
-        user_text = entry["messages"][0]["content"]
-        prompt = build_prompt(tokenizer, system_text_eval, user_text)
-
+        prompt = build_prompt(tokenizer, system_text, entry["messages"][0]["content"])
         valid.append((i, gt, prompt))
 
     results = []
@@ -208,9 +140,46 @@ def run_evaluation(model, tokenizer, data, ft_name):
         batch = valid[i:i + EVAL_BATCH_SIZE]
         prompts = [x[2] for x in batch]
 
-        probs = get_probs(prompts, model, tokenizer, device)
+        enc = tokenizer(
+            prompts,
+            return_tensors="pt",
+            padding=True,
+            truncation=True,
+            max_length=MAX_LEN,
+        ).to(device)
 
-        for (idx, gt, _), p in zip(batch, probs):
+        batch_preds = []
+
+        for j in range(len(prompts)):
+
+            prompt_len = enc.attention_mask[j].sum().item()
+            prompt_tokens = enc.input_ids[j, :prompt_len]
+
+            scores = []
+
+            for c in cand_ids:
+                seq = torch.cat([
+                    prompt_tokens,
+                    torch.tensor(c, device=device)
+                ])
+
+                out = model(seq.unsqueeze(0))
+
+                logits = out.logits[:, :-1, :]
+                labels = seq[1:].unsqueeze(0)
+
+                log_probs = F.log_softmax(logits, dim=-1)
+                token_logp = log_probs.gather(2, labels.unsqueeze(-1)).squeeze(-1)
+
+                scores.append(token_logp.sum().item())
+
+            scores = np.array(scores)
+            probs = np.exp(scores - scores.max())
+            probs = probs / probs.sum()
+
+            batch_preds.append(dict(zip(CANDIDATES, probs)))
+
+        for (idx, gt, _), p in zip(batch, batch_preds):
             pred = max(p, key=p.get)
 
             results.append({
@@ -236,14 +205,34 @@ def run_evaluation(model, tokenizer, data, ft_name):
     for k, v in metrics.items():
         print(f"{k}: {v:.4f}")
 
-    df_path = os.path.join(OUT_DIR, f"llama70b_{ft_name}_results.csv")
-    met_path = os.path.join(OUT_DIR, f"llama70b_{ft_name}_metrics.json")
+    df.to_csv(os.path.join(OUT_DIR, f"llama70b_{ft_name}_results.csv"), index=False)
 
-    df.to_csv(df_path, index=False)
-    with open(met_path, "w") as f:
+    with open(os.path.join(OUT_DIR, f"llama70b_{ft_name}_metrics.json"), "w") as f:
         json.dump(metrics, f, indent=2)
 
-    print(f"\nSaved:\n{df_path}\n{met_path}")
+
+# =============================
+# TOKENIZER + QLORA
+# =============================
+print("Loading tokenizer...")
+
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_compute_dtype=torch.bfloat16,
+    bnb_4bit_use_double_quant=True,
+)
+
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+tokenizer.pad_token = tokenizer.eos_token
+
+lora_config = LoraConfig(
+    r=16,
+    lora_alpha=32,
+    target_modules=["q_proj", "v_proj"],
+    lora_dropout=0.05,
+    bias="none",
+    task_type="CAUSAL_LM",
+)
 
 
 # =============================
@@ -257,15 +246,17 @@ for ft_file in FINE_TUNE_FILES:
     print(f"FT DATASET: {ft_name}")
     print("====================")
 
-    # ---------------- MODEL ----------------
-    print("Loading model...")
-
+    # =============================
+    # FAST MODEL LOADING (IMPORTANT FIX)
+    # =============================
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
         quantization_config=bnb_config,
         device_map="auto",
+        torch_dtype=torch.bfloat16,
         low_cpu_mem_usage=True,
-        offload_state_dict=True,
+        offload_state_dict=False,   # 🚀 IMPORTANT FIX
+        attn_implementation="flash_attention_2",
     )
 
     model.config.pad_token_id = tokenizer.pad_token_id
@@ -276,14 +267,33 @@ for ft_file in FINE_TUNE_FILES:
     print("Trainable params:",
           sum(p.numel() for p in model.parameters() if p.requires_grad))
 
-    # ---------------- FT DATA ----------------
+    # =============================
+    # LOAD FT DATA
+    # =============================
     ft_data = [json.loads(line) for line in open(ft_file)]
 
     system_text = (
-        "You are an expert political analyst.\n"
-        "Predict vote choice.\n"
-        "Output ONLY:\n"
-        "Liberal Party\nConservative Party\nMinor Parties"
+        "You are an expert political analyst specializing in Canadian elections and voting behavior. "
+            
+        "Task:\n"
+        "Given a person's demographic and political attributes, predict their MOST LIKELY party choice "
+        "in the 2021 Canadian federal election.\n\n"
+    
+        "Rules:\n"
+        "- You must choose ONLY ONE label.\n"
+        "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
+        "Liberal Party\n"
+        "Conservative Party\n"
+        "Minor Parties\n\n"
+    
+        "Definition:\n"
+        "Minor Parties' includes New Democratic Party(NDP), Bloc Québécois, Green Party, and People's Party of Canada.\n\n"
+       
+        "Important:\n"
+        "- Base your decision on typical voting patterns, demographics, and political alignment.\n"
+        "- Do NOT explain your reasoning.\n"
+        "- Do NOT repeat the input.\n"
+        "- Output ONLY the label."
     )
 
     train_samples = []
@@ -299,6 +309,8 @@ for ft_file in FINE_TUNE_FILES:
         train_samples.append({
             "text": prompt + " " + gt + tokenizer.eos_token
         })
+
+    print("Training samples:", len(train_samples))
 
     dataset = Dataset.from_list(train_samples)
 
@@ -324,16 +336,22 @@ for ft_file in FINE_TUNE_FILES:
         data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
     )
 
-    # ---------------- TRAIN ----------------
+    # =============================
+    # TRAIN
+    # =============================
     print("Training...")
     trainer.train()
 
-    # ---------------- EVAL ----------------
+    # =============================
+    # EVAL
+    # =============================
     print("Evaluating...")
     model.eval()
     run_evaluation(model, tokenizer, data, ft_name)
 
-    # ---------------- SAVE ----------------
+    # =============================
+    # SAVE ADAPTER
+    # =============================
     model.save_pretrained(os.path.join(OUT_DIR, f"llama3.1_70b_{ft_name}_lora"))
 
     del model
