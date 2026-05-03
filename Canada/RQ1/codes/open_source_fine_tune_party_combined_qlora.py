@@ -219,8 +219,8 @@ def run_evaluation(model, tokenizer, data, ft_name):
         print(f"{k}: {v:.4f}")
 
     # ===== SAVE =====
-    df_path = os.path.join(OUT_DIR, f"{ft_name}_results.csv")
-    met_path = os.path.join(OUT_DIR, f"{ft_name}_metrics.json")
+    df_path = os.path.join(OUT_DIR, f"llama3.1_70b_{ft_name}_results.csv")
+    met_path = os.path.join(OUT_DIR, f"llama3.1_70b_{ft_name}_metrics.json")
 
     df.to_csv(df_path, index=False)
     with open(met_path, "w") as f:
