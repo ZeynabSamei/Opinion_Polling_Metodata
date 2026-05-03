@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import torch
 import torch.nn.functional as F
+from peft import PeftModel
 
 from tqdm import tqdm
 from datasets import Dataset
@@ -116,10 +117,27 @@ def run_evaluation(model, tokenizer, data, ft_name):
     cand_ids = get_candidate_ids(tokenizer)
 
     system_text = (
-        "You are an expert political analyst.\n"
-        "Predict vote choice.\n"
-        "Output ONLY:\n"
-        "Liberal Party\nConservative Party\nMinor Parties"
+        "You are an expert political analyst specializing in Canadian elections and voting behavior. "
+            
+        "Task:\n"
+        "Given a person's demographic and political attributes, predict their MOST LIKELY party choice "
+        "in the 2021 Canadian federal election.\n\n"
+    
+        "Rules:\n"
+        "- You must choose ONLY ONE label.\n"
+        "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
+        "Liberal Party\n"
+        "Conservative Party\n"
+        "Minor Parties\n\n"
+    
+        "Definition:\n"
+        "Minor Parties' includes New Democratic Party(NDP), Bloc Québécois, Green Party, and People's Party of Canada.\n\n"
+       
+        "Important:\n"
+        "- Base your decision on typical voting patterns, demographics, and political alignment.\n"
+        "- Do NOT explain your reasoning.\n"
+        "- Do NOT repeat the input.\n"
+        "- Output ONLY the label."
     )
 
     valid = []
@@ -216,14 +234,17 @@ def run_evaluation(model, tokenizer, data, ft_name):
 # =============================
 print("Loading tokenizer...")
 
+print("Loading tokenizer...")
+
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+tokenizer.pad_token = tokenizer.eos_token
+
+
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_compute_dtype=torch.bfloat16,
     bnb_4bit_use_double_quant=True,
 )
-
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-tokenizer.pad_token = tokenizer.eos_token
 
 lora_config = LoraConfig(
     r=16,
@@ -234,48 +255,49 @@ lora_config = LoraConfig(
     task_type="CAUSAL_LM",
 )
 
+# =============================
+# LOAD MODEL ONCE (IMPORTANT FIX)
+# =============================
+print("Loading base model ONCE (70B)...")
+
+
+base_model = AutoModelForCausalLM.from_pretrained(
+    MODEL_NAME,
+    quantization_config=bnb_config,
+    device_map="auto",
+    torch_dtype=torch.bfloat16,
+    attn_implementation="sdpa",
+    low_cpu_mem_usage=True,
+)
+
+base_model.config.pad_token_id = tokenizer.pad_token_id
+base_model = prepare_model_for_kbit_training(base_model)
+
 
 # =============================
-# MAIN LOOP
+# MAIN LOOP (FAST NOW)
 # =============================
 for ft_file in FINE_TUNE_FILES:
 
     ft_name = os.path.basename(ft_file).replace(".jsonl", "")
 
-    print(f"\n\n====================")
+    print(f"\n====================")
     print(f"FT DATASET: {ft_name}")
     print("====================")
 
-    # =============================
-    # FAST MODEL LOADING (IMPORTANT FIX)
-    # =============================
-    model = AutoModelForCausalLM.from_pretrained(
-        MODEL_NAME,
-        quantization_config=bnb_config,
-        device_map="auto",
-        torch_dtype=torch.bfloat16,
-        low_cpu_mem_usage=True,
-        offload_state_dict=False,   # 🚀 IMPORTANT FIX
-        # attn_implementation="flash_attention_2",
-        attn_implementation="sdpa"
-    )
-
-    model.config.pad_token_id = tokenizer.pad_token_id
-
+    # ❗ clone fresh LoRA adapter each time (NOT full model reload)
+    model = get_peft_model(base_model, lora_config)
     model = prepare_model_for_kbit_training(model)
-    model = get_peft_model(model, lora_config)
 
     print("Trainable params:",
           sum(p.numel() for p in model.parameters() if p.requires_grad))
 
-    # =============================
-    # LOAD FT DATA
-    # =============================
+    # ---------------- FT DATA ----------------
     ft_data = [json.loads(line) for line in open(ft_file)]
 
     system_text = (
         "You are an expert political analyst specializing in Canadian elections and voting behavior. "
-            
+    
         "Task:\n"
         "Given a person's demographic and political attributes, predict their MOST LIKELY party choice "
         "in the 2021 Canadian federal election.\n\n"
@@ -311,8 +333,6 @@ for ft_file in FINE_TUNE_FILES:
             "text": prompt + " " + gt + tokenizer.eos_token
         })
 
-    print("Training samples:", len(train_samples))
-
     dataset = Dataset.from_list(train_samples)
 
     def tokenize(x):
@@ -337,22 +357,14 @@ for ft_file in FINE_TUNE_FILES:
         data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
     )
 
-    # =============================
-    # TRAIN
-    # =============================
     print("Training...")
     trainer.train()
 
-    # =============================
-    # EVAL
-    # =============================
     print("Evaluating...")
     model.eval()
     run_evaluation(model, tokenizer, data, ft_name)
 
-    # =============================
-    # SAVE ADAPTER
-    # =============================
+    # save adapter
     model.save_pretrained(os.path.join(OUT_DIR, f"llama3.1_70b_{ft_name}_lora"))
 
     del model
