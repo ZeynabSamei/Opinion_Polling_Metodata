@@ -32,10 +32,10 @@ FINE_TUNE_FILES = [
 
 # Models to run
 MODELS = [
-    "meta-llama/Llama-3.1-8B-Instruct",
-    # "meta-llama/Llama-3.1-70B-Instruct",
-    "Qwen/Qwen2.5-7B-Instruct",
-    "Qwen/Qwen2.5-14B-Instruct",
+    # "meta-llama/Llama-3.1-8B-Instruct",
+    "meta-llama/Llama-3.1-70B-Instruct",
+    # "Qwen/Qwen2.5-7B-Instruct",
+    # "Qwen/Qwen2.5-14B-Instruct",
 ]
 
 
