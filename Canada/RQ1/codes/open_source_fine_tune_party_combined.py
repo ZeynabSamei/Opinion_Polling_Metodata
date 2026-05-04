@@ -257,22 +257,22 @@ for model_name in MODELS:
         # )
 
         system_text = (
-                "You are a political behavior model that predicts voting choice based on demographic profiles.\n\n"
-            
+                "You are an expert political analyst specializing in Canadian elections and voting behavior. "
+    
                 "Task:\n"
-                "Given a person's demographic and political attributes, predict their MOST LIKELY vote choice "
+                "Given a person's demographic and political attributes, predict their MOST LIKELY party choice "
                 "in the 2021 Canadian federal election.\n\n"
             
                 "Rules:\n"
                 "- You must choose ONLY ONE label.\n"
                 "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
-                "Justin Trudeau\n"
-                "Erin O'Toole\n"
-                "Others\n\n"
+                "Liberal Party\n"
+                "Conservative Party\n"
+                "Minor Parties\n\n"
             
                 "Definition:\n"
-                "'Others' includes Jagmeet Singh, Yves-François Blanchet, Annamie Paul, and Maxime Bernier.\n\n"
-            
+                "Minor Parties' includes New Democratic Party(NDP), Bloc Québécois, Green Party, and People's Party of Canada.\n\n"
+               
                 "Important:\n"
                 "- Base your decision on typical voting patterns, demographics, and political alignment.\n"
                 "- Do NOT explain your reasoning.\n"
