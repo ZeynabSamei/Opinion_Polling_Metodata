@@ -473,6 +473,8 @@ def evaluate(
 
 
     df = pd.DataFrame(rows)
+    print(df.head(5))
+
     if df.empty:
         raise ValueError("No valid evaluation samples found.")
 
