@@ -290,15 +290,20 @@ for model_name in MODELS:
             user_text = entry["messages"][0]["content"]
             prompt = build_prompt(tokenizer, system_text, user_text)
 
-            valid.append((i, gt, prompt))
+            valid.append((i, gt, user_text, prompt))
+
+            # valid.append((i, gt, prompt))
 
         for i in tqdm(range(0, len(valid), EVAL_BATCH_SIZE)):
             batch = valid[i:i+EVAL_BATCH_SIZE]
-            prompts = [x[2] for x in batch]
+            prompts = [x[3] for x in batch]
+            
 
             probs = get_probs(prompts, model, tokenizer, device)
 
-            for (idx, gt, _), p in zip(batch, probs):
+            # for (idx, gt, _), p in zip(batch, probs):
+            for (idx, gt, user_text, _prompt), p in zip(batch, probs):
+
                 pred = max(p, key=p.get)
 
                 results.append({
