@@ -302,6 +302,7 @@ for model_name in MODELS:
                 pred = max(p, key=p.get)
 
                 results.append({
+                    "user_text":user_text,
                     "idx": idx,
                     "gt": gt,
                     "pred": pred,
