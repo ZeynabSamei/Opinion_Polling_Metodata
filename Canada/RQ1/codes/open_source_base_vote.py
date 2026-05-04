@@ -109,18 +109,21 @@ def build_prompt(tokenizer, messages):
             break
 
     if user_text is None:
-        return None
+        return None, None
 
     chat = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": user_text},
     ]
 
-    return tokenizer.apply_chat_template(
+    prompt = tokenizer.apply_chat_template(
         chat,
         tokenize=False,
         add_generation_prompt=True,
     )
+
+    return prompt, user_text
+
 
 
 # =====================================================
@@ -240,11 +243,19 @@ for model_name in MODELS:
         if gt not in CANDIDATES:
             continue
 
-        prompt = build_prompt(tokenizer, messages)
+
+        prompt, user_text = build_prompt(tokenizer, messages)
         if prompt is None:
             continue
+        
+        samples.append((i, prompt, user_text, gt))
 
-        samples.append((i, prompt, gt))
+
+        # prompt = build_prompt(tokenizer, messages)
+        # if prompt is None:
+        #     continue
+
+        # samples.append((i, prompt, gt))
 
     # -------------------------------------------------
     # Inference
@@ -253,20 +264,26 @@ for model_name in MODELS:
 
     for start in tqdm(range(0, len(samples), BATCH_SIZE)):
         batch = samples[start : start + BATCH_SIZE]
-        idxs, prompts, gts = zip(*batch)
+        # idxs, prompts, gts = zip(*batch)
+        idxs, prompts, user_texts, gts = zip(*batch)
+
 
         probs_list = score_candidates(model, tokenizer, prompts, device)
 
-        for idx, gt, probs in zip(idxs, gts, probs_list):
+        # for idx, gt, probs in zip(idxs, gts, probs_list):
+        for idx, user_text, gt, probs in zip(idxs, user_texts, gts, probs_list):
+
             pred = max(probs, key=probs.get)
 
             results.append({
                 "idx": idx,
+                "user_text": user_text,
                 "ground_truth": gt,
                 "prediction": pred,
                 "correct": int(pred == gt),
                 "probs": probs,
             })
+
 
     df = pd.DataFrame(results)
 
