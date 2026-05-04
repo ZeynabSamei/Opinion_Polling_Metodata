@@ -240,6 +240,7 @@ for model_name in MODELS:
         gt = extract_label(messages)
 
         if gt not in CANDIDATES:
+            print(gt)
             continue
 
         prompt, user_text = build_prompt(tokenizer, messages)
