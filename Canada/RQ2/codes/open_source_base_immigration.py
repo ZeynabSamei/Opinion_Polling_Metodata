@@ -23,7 +23,7 @@ SEED = 42
 BATCH_SIZE = 16
 MAX_LENGTH = 512
 OUT_DIR = "./results"
-DATA_PATH = "./dataset_test/test_canada_immigration_2021.json"
+DATA_PATH = "./dataset_test/test_canada_immigration_2021_new.json"
 
 # =====================================================
 # Models
