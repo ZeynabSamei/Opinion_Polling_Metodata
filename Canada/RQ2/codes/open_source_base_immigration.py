@@ -58,13 +58,13 @@ os.makedirs(OUT_DIR, exist_ok=True)
 SYSTEM_PROMPT = (
     "You are a classifier.\n\n"
     "A survey respondent was asked the following question:\n"
-    "\"In your opinion, should Canada admit more immigrants, fewer immigrants, "
-    "or about the same number of immigrants as now?\"\n\n"
+    "\"In your opinion, should Canada admit *More*, *Fewer*, "
+    "or *Same* number of immigrants as now?\"\n\n"
     "Based on the respondent's attributes, predict their answer.\n\n"
-    "Output exactly one word:\n"
-    "More\n"
-    "Fewer\n"
-    "Same\n\n"
+    "Output exactly one of these word:\n"
+    "-More\n"
+    "-Fewer\n"
+    "-Same\n\n"
     "Do not explain your answer."
 )
 
