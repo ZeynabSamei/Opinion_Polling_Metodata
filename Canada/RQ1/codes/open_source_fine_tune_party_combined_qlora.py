@@ -98,7 +98,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--attn_implementation",
         type=str,
-        default="flash_attention_2",
+        default="sdpa",
         choices=["sdpa", "flash_attention_2", "eager"],
     )
     parser.add_argument(
