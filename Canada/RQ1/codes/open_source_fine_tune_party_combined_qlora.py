@@ -54,7 +54,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model_name",
         type=str,
-        default="meta-llama/Llama-3.1-70B-Instruct",
+        default="meta-llama/Llama-3.1-8B-Instruct",
     )
     parser.add_argument(
         "--data_path",
@@ -474,7 +474,7 @@ def evaluate(
         "n_eval": int(len(df)),
     }
 
-    result_base = os.path.join(args.out_dir, f"llama3_70b_{ft_name}")
+    result_base = os.path.join(args.out_dir, f"llama3_8b_{ft_name}")
     df.to_csv(result_base + "_results.csv", index=False)
     with open(result_base + "_metrics.json", "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2)
