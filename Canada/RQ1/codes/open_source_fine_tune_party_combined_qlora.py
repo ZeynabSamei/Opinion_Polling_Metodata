@@ -98,7 +98,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--attn_implementation",
         type=str,
-        default="sdpa",
+        default="flash_attention_2",
         choices=["sdpa", "flash_attention_2", "eager"],
     )
     parser.add_argument(
@@ -194,17 +194,29 @@ def load_qlora_base_model(
         bnb_4bit_use_double_quant=True,
     )
 
+    max_memory = {
+        0: "75GiB",
+        1: "75GiB",
+        "cpu": "120GiB",
+    }
+
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         quantization_config=bnb_config,
-        device_map="auto",
-        torch_dtype=torch.bfloat16,
+        device_map="balanced",
+        max_memory=max_memory,
+        dtype=torch.bfloat16,
         attn_implementation=attn_implementation,
         low_cpu_mem_usage=True,
     )
+
     model.config.pad_token_id = tokenizer.pad_token_id
     model.config.use_cache = False
-    model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
+
+    model = prepare_model_for_kbit_training(
+        model,
+        use_gradient_checkpointing=True,
+    )
     return model
 
 
@@ -233,7 +245,8 @@ def build_train_dataset(
             continue
 
         prompt = build_prompt(tokenizer, first_user_content(messages))
-        answer = " " + gt + tokenizer.eos_token
+        # answer = " " + gt + tokenizer.eos_token
+        answer = gt + tokenizer.eos_token
 
         prompt_ids = tokenizer(
             prompt,
@@ -312,7 +325,7 @@ def prepare_eval_entries(
 
 def get_candidate_token_ids(tokenizer: AutoTokenizer) -> list[list[int]]:
     return [
-        tokenizer(" " + candidate, add_special_tokens=False)["input_ids"]
+        tokenizer(candidate, add_special_tokens=False)["input_ids"]
         for candidate in CANDIDATES
     ]
 
