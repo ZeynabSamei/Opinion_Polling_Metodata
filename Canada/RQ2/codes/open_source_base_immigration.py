@@ -29,7 +29,7 @@ DATA_PATH = "./dataset_test/test_canada_immigration_2021.json"
 # Models
 # =====================================================
 MODELS = [
-    # "meta-llama/Llama-3.1-8B-Instruct",
+    "meta-llama/Llama-3.1-8B-Instruct",
     # "meta-llama/Llama-3.1-70B-Instruct",
     "Qwen/Qwen2.5-7B-Instruct",
     "Qwen/Qwen2.5-14B-Instruct",
@@ -37,22 +37,35 @@ MODELS = [
 
 
 CANDIDATES = [
-    "More immigrants",
-    "Fewer immigrants",
-    "About the same number of immigrants as now"
+    "More",
+    "Fewer",
+    "Same"
 ]
 
 os.makedirs(OUT_DIR, exist_ok=True)
 
+# SYSTEM_PROMPT = (
+#     "You are a classifier trained on Canadian public opinion data. "
+#     "Given a Canadian respondent's demographic and political attributes, "
+#     "predict their opinion on immigration in Canada.\n\n"
+#     "Output exactly one of the following labels:\n"
+#     "- More immigrants\n"
+#     "- Fewer immigrants\n"
+#     "- About the same number of immigrants as now\n\n"
+#     "Do not explain your answer. Output only the label."    
+# )
+
 SYSTEM_PROMPT = (
-    "You are a classifier trained on Canadian public opinion data. "
-    "Given a Canadian respondent's demographic and political attributes, "
-    "predict their opinion on immigration in Canada.\n\n"
-    "Output exactly one of the following labels:\n"
-    "- More immigrants\n"
-    "- Fewer immigrants\n"
-    "- About the same number of immigrants as now\n\n"
-    "Do not explain your answer. Output only the label."    
+    "You are a classifier.\n\n"
+    "A survey respondent was asked the following question:\n"
+    "\"In your opinion, should Canada admit more immigrants, fewer immigrants, "
+    "or about the same number of immigrants as now?\"\n\n"
+    "Based on the respondent's attributes, predict their answer.\n\n"
+    "Output exactly one word:\n"
+    "More\n"
+    "Fewer\n"
+    "Same\n\n"
+    "Do not explain your answer."
 )
 
 os.makedirs(OUT_DIR, exist_ok=True)
