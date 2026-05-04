@@ -311,16 +311,21 @@ class DataCollatorForCompletionOnlyLM:
 def prepare_eval_entries(
     eval_rows: list[dict[str, Any]],
     tokenizer: AutoTokenizer,
-) -> list[tuple[int, str, str]]:
+) -> list[tuple[int, str, str, str]]:
     entries = []
     for idx, entry in enumerate(eval_rows):
         messages = entry.get("messages", [])
         gt = extract_gt(messages)
         if gt is None:
             continue
-        prompt = build_prompt(tokenizer, first_user_content(messages))
-        entries.append((idx, gt, prompt))
+
+        user_text = first_user_content(messages)
+        prompt = build_prompt(tokenizer, user_text)
+
+        entries.append((idx, gt, user_text, prompt))
+
     return entries
+
 
 
 def get_candidate_token_ids(tokenizer: AutoTokenizer) -> list[list[int]]:
@@ -437,8 +442,13 @@ def evaluate(
         range(0, len(eval_entries), args.eval_batch_size),
         desc=f"Eval {ft_name}",
     ):
+
+
         batch = eval_entries[start : start + args.eval_batch_size]
-        prompts = [entry[2] for entry in batch]
+        prompts = [entry[3] for entry in batch]
+
+        # batch = eval_entries[start : start + args.eval_batch_size]
+        # prompts = [entry[2] for entry in batch]
         probabilities = score_candidates_batched(
             model=model,
             tokenizer=tokenizer,
@@ -448,10 +458,11 @@ def evaluate(
             length_normalize=args.length_normalize_eval,
         )
 
-        for (idx, gt, _prompt), probs in zip(batch, probabilities):
+       for (idx, gt, user_text, _prompt), probs in zip(batch, probabilities):
             pred = max(probs, key=probs.get)
             rows.append(
                 {
+                    "user_text": user_text,
                     "idx": idx,
                     "gt": gt,
                     "pred": pred,
@@ -459,6 +470,7 @@ def evaluate(
                     **{f"prob_{candidate}": probs[candidate] for candidate in CANDIDATES},
                 }
             )
+
 
     df = pd.DataFrame(rows)
     if df.empty:
@@ -569,9 +581,9 @@ def main() -> None:
         print("Training...")
         trainer.train()
 
-        adapter_dir = os.path.join(args.out_dir, f"llama3_70b_{ft_name}_lora")
-        model.save_pretrained(adapter_dir, selected_adapters=[ft_name])
-        print(f"Saved adapter: {adapter_dir}")
+        # adapter_dir = os.path.join(args.out_dir, f"llama3_70b_{ft_name}_lora")
+        # model.save_pretrained(adapter_dir, selected_adapters=[ft_name])
+        # print(f"Saved adapter: {adapter_dir}")
 
         print("Evaluating...")
         metrics = evaluate(model, tokenizer, eval_entries, ft_name, args)
