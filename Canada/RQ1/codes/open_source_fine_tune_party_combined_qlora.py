@@ -458,7 +458,7 @@ def evaluate(
             length_normalize=args.length_normalize_eval,
         )
 
-       for (idx, gt, user_text, _prompt), probs in zip(batch, probabilities):
+        for (idx, gt, user_text, _prompt), probs in zip(batch, probabilities):
             pred = max(probs, key=probs.get)
             rows.append(
                 {
