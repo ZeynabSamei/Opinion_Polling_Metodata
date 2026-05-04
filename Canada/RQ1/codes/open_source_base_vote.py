@@ -286,6 +286,8 @@ for model_name in MODELS:
 
 
     df = pd.DataFrame(results)
+    print(df.head(5))
+    
 
     metrics = compute_metrics(df)
 
