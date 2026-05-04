@@ -265,7 +265,7 @@ for model_name in MODELS:
 
             pred = max(probs, key=probs.get)
 
-           results.append({
+            results.append({
                 "idx": idx,
                 "user_text": user_text,
                 "ground_truth": gt,
