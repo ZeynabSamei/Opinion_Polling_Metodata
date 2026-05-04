@@ -65,8 +65,8 @@ def parse_args() -> argparse.Namespace:
         "--ft_files",
         nargs="+",
         default=[
-            "dataset_ft/agg_ft_party_2021_3class.jsonl",
-            # "dataset_ft/individual_ft_party_3class.jsonl",
+            # "dataset_ft/agg_ft_party_2021_3class.jsonl",
+            "dataset_ft/individual_ft_party_3class.jsonl",
             # "dataset_ft/tweets_ft_party_sample.jsonl",
         ],
     )
