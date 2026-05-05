@@ -488,7 +488,7 @@ def evaluate(
         "n_eval": int(len(df)),
     }
 
-    result_base = os.path.join(args.out_dir, f"{model_name}_{ft_name}_lora")
+    result_base = os.path.join(args.out_dir, f"{args.model_name}_{ft_name}_lora")
     df.to_csv(result_base + "_results.csv", index=False)
     with open(result_base + "_metrics.json", "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2)
