@@ -425,6 +425,10 @@ def score_candidates_batched(
     ]
 
 
+def safe_model_name(model_name: str) -> str:
+    return "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in model_name)
+
+
 def evaluate(
     model: AutoModelForCausalLM,
     tokenizer: AutoTokenizer,
@@ -488,7 +492,10 @@ def evaluate(
         "n_eval": int(len(df)),
     }
 
-    result_base = os.path.join(args.out_dir, f"{args.model_name}_{ft_name}_lora")
+
+    safe_name = safe_model_name(args.model_name)
+    result_base = os.path.join(args.out_dir, f"{safe_name}_{ft_name}_lora")
+    # result_base = os.path.join(args.out_dir, f"{args.model_name}_{ft_name}_lora")
     df.to_csv(result_base + "_results.csv", index=False)
     with open(result_base + "_metrics.json", "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2)
@@ -507,6 +514,7 @@ def evaluate(
 def safe_adapter_name(ft_file: str) -> str:
     name = os.path.basename(ft_file).replace(".jsonl", "")
     return "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in name)
+
 
 
 def main() -> None:
