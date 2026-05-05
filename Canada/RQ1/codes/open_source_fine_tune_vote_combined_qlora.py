@@ -27,7 +27,7 @@ VOTE2ID = {candidate: i for i, candidate in enumerate(CANDIDATES)}
 
 SYSTEM_TEXT = (
     "You are a political behavior model that predicts voting choice based on demographic profiles.\n\n"
-            
+
     "Task:\n"
     "Given a person's demographic and political attributes, predict their MOST LIKELY vote choice "
     "in the 2021 Canadian federal election.\n\n"
@@ -58,19 +58,22 @@ def parse_args() -> argparse.Namespace:
         "--model_name",
         type=str,
         default="meta-llama/Llama-3.1-70B-Instruct",
+                # "meta-llama/Llama-3.1-8B-Instruct",
+                # "Qwen/Qwen2.5-7B-Instruct",
+                # "Qwen/Qwen2.5-14B-Instruct",
     )
     parser.add_argument(
         "--data_path",
         type=str,
-        default="dataset_test/test_canada_election_party_2021_3class_new.json",
+        default="dataset_test/test_canada_election_vote_2021_3class_new.json",
     )
     parser.add_argument(
         "--ft_files",
         nargs="+",
         default=[
-            "dataset_ft/agg_ft_party_2021_3class.jsonl",
-            # "dataset_ft/individual_ft_party_3class.jsonl",
-            # "dataset_ft/tweets_ft_party_sample.jsonl",
+            "dataset_ft/agg_ft_vote.jsonl",
+            # "dataset_ft/individual_ft_vote.jsonl",
+            # "dataset_ft/tweets_ft_vote_sample.jsonl",
         ],
     )
     parser.add_argument("--out_dir", type=str, default="./results")
@@ -428,6 +431,10 @@ def score_candidates_batched(
     ]
 
 
+def safe_model_name(model_name: str) -> str:
+    return "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in model_name)
+
+
 def evaluate(
     model: AutoModelForCausalLM,
     tokenizer: AutoTokenizer,
@@ -491,7 +498,10 @@ def evaluate(
         "n_eval": int(len(df)),
     }
 
-    result_base = os.path.join(args.out_dir, f"llama3_8b_{ft_name}_lora")
+
+    safe_name = safe_model_name(args.model_name)
+    result_base = os.path.join(args.out_dir, f"{safe_name}_{ft_name}_lora")
+    # result_base = os.path.join(args.out_dir, f"{args.model_name}_{ft_name}_lora")
     df.to_csv(result_base + "_results.csv", index=False)
     with open(result_base + "_metrics.json", "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2)
@@ -510,6 +520,7 @@ def evaluate(
 def safe_adapter_name(ft_file: str) -> str:
     name = os.path.basename(ft_file).replace(".jsonl", "")
     return "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in name)
+
 
 
 def main() -> None:
@@ -585,7 +596,6 @@ def main() -> None:
 
         print("Training...")
         trainer.train()
-
 
         print("Evaluating...")
         metrics = evaluate(model, tokenizer, eval_entries, ft_name, args)
