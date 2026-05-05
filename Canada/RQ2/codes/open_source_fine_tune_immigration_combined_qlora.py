@@ -54,7 +54,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--data_path",
         type=str,
-        default="dataset_test/test_canada_immigration_2021_new.json"",
+        default="dataset_test/test_canada_immigration_2021_new.json",
     )
     parser.add_argument(
         "--ft_files",
