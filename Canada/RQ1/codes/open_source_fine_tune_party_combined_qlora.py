@@ -488,7 +488,7 @@ def evaluate(
         "n_eval": int(len(df)),
     }
 
-    result_base = os.path.join(args.out_dir, f"llama3_8b_{ft_name}_lora")
+    result_base = os.path.join(args.out_dir, f"{model_name}_{ft_name}_lora")
     df.to_csv(result_base + "_results.csv", index=False)
     with open(result_base + "_metrics.json", "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2)
@@ -582,10 +582,6 @@ def main() -> None:
 
         print("Training...")
         trainer.train()
-
-        # adapter_dir = os.path.join(args.out_dir, f"llama3_70b_{ft_name}_lora")
-        # model.save_pretrained(adapter_dir, selected_adapters=[ft_name])
-        # print(f"Saved adapter: {adapter_dir}")
 
         print("Evaluating...")
         metrics = evaluate(model, tokenizer, eval_entries, ft_name, args)
