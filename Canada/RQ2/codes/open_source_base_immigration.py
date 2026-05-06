@@ -23,7 +23,7 @@ SEED = 42
 BATCH_SIZE = 16
 MAX_LENGTH = 512
 OUT_DIR = "./results"
-DATA_PATH = "./dataset_test/test_canada_immigration_2021_new.json"
+DATA_PATH = "./dataset_test/test_canada_immigration_2024_new.json"
 
 # =====================================================
 # Models
@@ -57,7 +57,7 @@ os.makedirs(OUT_DIR, exist_ok=True)
 
 SYSTEM_PROMPT = (
     "You are a classifier.\n\n"
-    "A survey respondent was asked the following question:\n"
+    "A survey respondent was asked the following question in 2024:\n"
     "In your opinion, should Canada admit more immigrants, fewer immigrants, or about the same number of immigrants as now?"
     
     "Based on the respondent's attributes, predict their answer.\n\n"
