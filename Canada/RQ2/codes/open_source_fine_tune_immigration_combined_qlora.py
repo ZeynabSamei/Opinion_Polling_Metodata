@@ -22,19 +22,19 @@ from transformers import (
 )
 
 
-CANDIDATES = ["Fewer", "More", "Same"]
+CANDIDATES = ["Fewer immigrants", "More immigrants", "Same amount"]
 VOTE2ID = {candidate: i for i, candidate in enumerate(CANDIDATES)}
 
 SYSTEM_TEXT = (
     "You are a classifier.\n\n"
-    "A survey respondent was asked the following question:\n"
-    "\"In your opinion, should Canada admit *More*, *Fewer*, "
-    "or *Same* number of immigrants as now?\"\n\n"
+    "A survey respondent was asked the following question in 2024:\n"
+    "In your opinion, should Canada admit more immigrants, fewer immigrants, or about the same number of immigrants as now?"
+    
     "Based on the respondent's attributes, predict their answer.\n\n"
-    "Output exactly one of these word:\n"
-    "-More\n"
-    "-Fewer\n"
-    "-Same\n\n"
+    "Output exactly one of the following labels:\n"
+    "More immigrants\n"
+    "Fewer immigrants\n"
+    "Same amount\n\n"
     "Do not explain your answer."
 )
 
@@ -54,15 +54,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--data_path",
         type=str,
-        default="dataset_test/test_canada_immigration_2021_new.json",
+        default="dataset_test/test_canada_immigration_2024_new.json",
     )
     parser.add_argument(
         "--ft_files",
         nargs="+",
         default=[
-            "dataset_ft/agg_ft_immigration.jsonl",
+            # "dataset_ft/agg_ft_immigration.jsonl",
             # "dataset_ft/individual_ft_immigration.jsonl",
-            # "dataset_ft/tweets_ft_immigration.jsonl",
+            "dataset_ft/tweets_ft_immigration.jsonl",
         ],
     )
     parser.add_argument("--out_dir", type=str, default="./results")
