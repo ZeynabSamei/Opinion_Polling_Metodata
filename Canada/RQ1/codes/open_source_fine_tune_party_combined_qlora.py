@@ -22,7 +22,9 @@ from transformers import (
 )
 
 
-CANDIDATES = ["Liberal Party", "Conservative Party", "Minor Parties"]
+# CANDIDATES = ["Liberal Party", "Conservative Party", "Minor Parties"]
+CANDIDATES = ["Liberal", "Conservative", "Other"]
+
 VOTE2ID = {candidate: i for i, candidate in enumerate(CANDIDATES)}
 
 SYSTEM_TEXT = (
@@ -33,11 +35,11 @@ SYSTEM_TEXT = (
     "Rules:\n"
     "- You must choose ONLY ONE label.\n"
     "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
-    "Liberal Party\n"
-    "Conservative Party\n"
-    "Minor Parties\n\n"
+    "Liberal\n"
+    "Conservative\n"
+    "Other\n\n"
     "Definition:\n"
-    "Minor Parties includes New Democratic Party (NDP), Bloc Quebecois, Green Party, "
+    "Other includes New Democratic Party (NDP), Bloc Quebecois, Green Party, "
     "and People's Party of Canada.\n\n"
     "Important:\n"
     "- Base your decision on typical voting patterns, demographics, and political alignment.\n"
