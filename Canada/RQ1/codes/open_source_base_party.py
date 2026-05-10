@@ -37,9 +37,9 @@ MODELS = [
 
 
 CANDIDATES = [
-    "Liberal Party",
-    "Conservative Party",
-    "Minor Parties"
+    "Liberal",
+    "Conservative",
+    "Other"
 ]
 
 os.makedirs(OUT_DIR, exist_ok=True)
@@ -54,12 +54,12 @@ SYSTEM_PROMPT = (
         "Rules:\n"
         "- You must choose ONLY ONE label.\n"
         "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
-        "Liberal Party\n"
-        "Conservative Party\n"
-        "Minor Parties\n\n"
+        "Liberal\n"
+        "Conservative\n"
+        "Other\n\n"
     
         "Definition:\n"
-        "Minor Parties' includes New Democratic Party(NDP), Bloc Québécois, Green Party, and People's Party of Canada.\n\n"
+        "Other' includes New Democratic Party(NDP), Bloc Québécois, Green Party, and People's Party of Canada.\n\n"
        
         "Important:\n"
         "- Base your decision on typical voting patterns, demographics, and political alignment.\n"
