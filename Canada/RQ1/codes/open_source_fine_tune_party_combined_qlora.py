@@ -209,7 +209,7 @@ def load_qlora_base_model(
         attn_implementation=attn_implementation,
         low_cpu_mem_usage=True,
         device_map={"": 0}, 
-        load_in_4bit=True,
+        # load_in_4bit=True,
     )
 
     model.config.pad_token_id = tokenizer.pad_token_id
