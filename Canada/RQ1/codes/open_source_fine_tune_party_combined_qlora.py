@@ -203,11 +203,13 @@ def load_qlora_base_model(
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         quantization_config=bnb_config,
-        device_map="balanced",
+        # device_map="balanced",
         max_memory=max_memory,
         dtype=torch.bfloat16,
         attn_implementation=attn_implementation,
         low_cpu_mem_usage=True,
+        device_map={"": 0}, 
+        load_in_4bit=True,
     )
 
     model.config.pad_token_id = tokenizer.pad_token_id
