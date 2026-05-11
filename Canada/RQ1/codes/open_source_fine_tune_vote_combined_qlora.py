@@ -71,7 +71,7 @@ def parse_args() -> argparse.Namespace:
         "--ft_files",
         nargs="+",
         default=[
-            "dataset_ft/agg_ft_vote.jsonl",
+            "dataset_ft/agg_ft_vote_2020.jsonl",
             # "dataset_ft/individual_ft_vote.jsonl",
             # "dataset_ft/tweets_ft_vote_sample.jsonl",
         ],
