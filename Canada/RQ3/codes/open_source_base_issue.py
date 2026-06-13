@@ -37,10 +37,10 @@ MODELS = [
 
 
 CANDIDATES = [
-    "Economy & Cost of Living"
-    "Healthcare"
-    "Environment & Climate Change"
-    "Social Issues & Society"
+    "Economy & Cost of Living",
+    "Healthcare",
+    "Environment & Climate Change",
+    "Social Issues & Society",
     "Government & Politics"
 ]
 
