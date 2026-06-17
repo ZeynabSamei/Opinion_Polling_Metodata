@@ -210,7 +210,8 @@ def load_qlora_base_model(
         dtype=torch.bfloat16,
         attn_implementation=attn_implementation,
         low_cpu_mem_usage=True,
-        device_map={"": 0}, 
+        # device_map={"": 0}, 
+        device_map=auto
         # load_in_4bit=True,
     )
 
