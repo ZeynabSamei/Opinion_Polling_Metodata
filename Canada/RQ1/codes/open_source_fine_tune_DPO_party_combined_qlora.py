@@ -508,8 +508,8 @@ def evaluate(
     
     safe_name = safe_model_name(args.model_name)
     result_base = os.path.join(args.out_dir, f"{safe_name}_{stage_name}")
-    df.to_csv(result_base + "_results.csv", index=False)
-    with open(result_base + "_metrics.json", "w", encoding="utf-8") as f:
+    df.to_csv(result_base + "_results_ft_dpo.csv", index=False)
+    with open(result_base + "_metrics_ft_dpo.json", "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2)
     
     print(f"\n=== RESULTS: {stage_name} ===")
