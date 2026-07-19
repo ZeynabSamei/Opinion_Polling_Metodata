@@ -21,6 +21,7 @@ from transformers import (
     TrainingArguments,
 )
 from trl import DPOTrainer, DPOConfig
+import trl
 
 
 CANDIDATES = ["Liberal", "Conservative", "Other"]
@@ -533,13 +534,18 @@ def train_sft(
     """Run SFT training."""
     print(f"\n{'='*20} SFT Training: {stage_name} {'='*20}")
     
+    # Calculate warmup steps
+    epochs = args.sft_epochs if args.epochs is None else args.epochs
+    total_steps = (len(train_dataset) * epochs) // (args.train_batch_size * args.grad_accum)
+    warmup_steps = max(1, int(total_steps * 0.03))
+    
     training_args = TrainingArguments(
         output_dir=os.path.join(args.tmp_dir, f"sft_{stage_name}"),
         per_device_train_batch_size=args.train_batch_size,
         gradient_accumulation_steps=args.grad_accum,
-        num_train_epochs=args.sft_epochs if args.epochs is None else args.epochs,
+        num_train_epochs=epochs,
         learning_rate=args.sft_learning_rate if args.learning_rate is None else args.learning_rate,
-        warmup_ratio=0.03,
+        warmup_steps=warmup_steps,  # FIXED: warmup_ratio -> warmup_steps
         lr_scheduler_type="cosine",
         optim="paged_adamw_8bit",
         bf16=True,
@@ -577,13 +583,18 @@ def train_dpo(
     """Run DPO training."""
     print(f"\n{'='*20} DPO Training: {stage_name} {'='*20}")
     
+    # Calculate warmup steps
+    epochs = args.dpo_epochs if args.epochs is None else args.epochs
+    total_steps = (len(train_dataset) * epochs) // (args.train_batch_size * args.grad_accum)
+    warmup_steps = max(1, int(total_steps * 0.03))
+    
     dpo_config = DPOConfig(
         output_dir=os.path.join(args.tmp_dir, f"dpo_{stage_name}"),
         per_device_train_batch_size=args.train_batch_size,
         gradient_accumulation_steps=args.grad_accum,
-        num_train_epochs=args.dpo_epochs if args.epochs is None else args.epochs,
+        num_train_epochs=epochs,
         learning_rate=args.dpo_learning_rate if args.learning_rate is None else args.learning_rate,
-        warmup_ratio=0.03,
+        warmup_steps=warmup_steps,  # FIXED: warmup_ratio -> warmup_steps
         lr_scheduler_type="cosine",
         optim="paged_adamw_8bit",
         bf16=True,
@@ -598,16 +609,35 @@ def train_dpo(
         dataloader_pin_memory=True,
         beta=args.beta,
         max_length=args.max_len,
-        max_prompt_length=args.max_prompt_len,
+        # FIXED: removed max_prompt_length
     )
     
-    trainer = DPOTrainer(
-        model=model,
-        ref_model=ref_model,
-        args=dpo_config,
-        train_dataset=train_dataset,
-        tokenizer=tokenizer,
-    )
+    # FIXED: Check TRL version for correct DPOTrainer API
+    trl_version = tuple(map(int, trl.__version__.split('.')[:2]))
+    
+    if trl_version >= (0, 11):
+        trainer = DPOTrainer(
+            model=model,
+            ref_model=ref_model,
+            args=dpo_config,
+            train_dataset=train_dataset,
+        )
+    elif trl_version >= (0, 9):
+        trainer = DPOTrainer(
+            model=model,
+            ref_model=ref_model,
+            args=dpo_config,
+            train_dataset=train_dataset,
+            processing_class=tokenizer,
+        )
+    else:
+        trainer = DPOTrainer(
+            model=model,
+            ref_model=ref_model,
+            args=dpo_config,
+            train_dataset=train_dataset,
+            tokenizer=tokenizer,
+        )
     
     trainer.train()
     del trainer
@@ -659,6 +689,10 @@ def main() -> None:
                 tokenizer=tokenizer,
                 attn_implementation=args.attn_implementation,
             )
+            # FIXED: Wrap ref_model with PEFT using "default" adapter
+            ref_model = get_peft_model(ref_model, build_lora_config(args), adapter_name="default")
+            for param in ref_model.parameters():
+                param.requires_grad = False
     
     lora_config = build_lora_config(args)
     
@@ -667,8 +701,8 @@ def main() -> None:
         print("\nEvaluating base model...")
         evaluate(base_model, tokenizer, eval_entries, "base_model", args)
     
-    # Create PEFT model
-    model = get_peft_model(base_model, lora_config)
+    # FIXED: Create PEFT model with "default" adapter name
+    model = get_peft_model(base_model, lora_config, adapter_name="default")
     model.print_trainable_parameters()
     
     summary = {}
