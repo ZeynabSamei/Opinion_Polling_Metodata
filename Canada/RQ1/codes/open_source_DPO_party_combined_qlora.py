@@ -575,7 +575,7 @@ def main() -> None:
             dataloader_pin_memory=True,
             beta=args.beta,
             max_length=args.max_len,
-            max_prompt_length=args.max_prompt_len,
+            # max_prompt_length=args.max_prompt_len,
         )
 
         trainer = DPOTrainer(
