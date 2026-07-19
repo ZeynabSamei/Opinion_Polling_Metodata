@@ -536,15 +536,17 @@ def main() -> None:
         print(f"Loaded DPO rows: {len(ft_rows)}; usable rows: {len(train_dataset)}")
 
         if model is None:
-            model = get_peft_model(base_model, lora_config, adapter_name=ft_name)
+            model = get_peft_model(base_model, lora_config, adapter_name="default")
         else:
+            # For multiple datasets, we still need to handle adapters
+            # But DPOTrainer requires "default" adapter
             model.add_adapter(ft_name, lora_config)
             model.set_adapter(ft_name)
 
         # Set up reference model adapter if using separate reference model
         ref_adapter_model = None
         if ref_model is not None:
-            ref_adapter_model = get_peft_model(ref_model, lora_config)
+            ref_adapter_model = get_peft_model(ref_model, lora_config, adapter_name="default")
             # Freeze reference model
             for param in ref_adapter_model.parameters():
                 param.requires_grad = False
