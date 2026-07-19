@@ -560,7 +560,7 @@ def main() -> None:
             gradient_accumulation_steps=args.grad_accum,
             num_train_epochs=args.epochs,
             learning_rate=args.learning_rate,
-            warmup_ratio=0.03,
+            warmup_steps=10,  # Changed from warmup_ratio
             lr_scheduler_type="cosine",
             optim="paged_adamw_8bit",
             bf16=True,
@@ -575,16 +575,38 @@ def main() -> None:
             dataloader_pin_memory=True,
             beta=args.beta,
             max_length=args.max_len,
-            # max_prompt_length=args.max_prompt_len,
         )
 
-        trainer = DPOTrainer(
-            model=model,
-            ref_model=ref_adapter_model,
-            args=dpo_config,
-            train_dataset=train_dataset,
-            tokenizer=tokenizer,
-        )
+        # Check TRL version to use correct API
+        import trl
+        trl_version = tuple(map(int, trl.__version__.split('.')[:2]))
+        
+        if trl_version >= (0, 11):
+            # TRL >= 0.11: no tokenizer/processing_class parameter
+            trainer = DPOTrainer(
+                model=model,
+                ref_model=ref_adapter_model,
+                args=dpo_config,
+                train_dataset=train_dataset,
+            )
+        elif trl_version >= (0, 9):
+            # TRL 0.9-0.10: uses processing_class
+            trainer = DPOTrainer(
+                model=model,
+                ref_model=ref_adapter_model,
+                args=dpo_config,
+                train_dataset=train_dataset,
+                processing_class=tokenizer,
+            )
+        else:
+            # TRL < 0.9: uses tokenizer
+            trainer = DPOTrainer(
+                model=model,
+                ref_model=ref_adapter_model,
+                args=dpo_config,
+                train_dataset=train_dataset,
+                tokenizer=tokenizer,
+            )
 
         print("Training with DPO...")
         trainer.train()
