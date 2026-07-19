@@ -57,7 +57,7 @@ def parse_args() -> argparse.Namespace:
         "--ft_files",
         nargs="+",
         default=[
-            "dataset_ft/tweets_ft_immigration_dpo.jsonl",
+            "dataset_ft/agg_ft_immigration_2024_dpo.jsonl",
         ],
     )
     parser.add_argument("--out_dir", type=str, default="./results_dpo_immigration")
