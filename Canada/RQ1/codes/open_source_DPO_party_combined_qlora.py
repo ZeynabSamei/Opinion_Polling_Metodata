@@ -1,4 +1,5 @@
 import argparse
+import inspect
 import json
 import os
 import random
@@ -484,6 +485,60 @@ def evaluate(
     return metrics
 
 
+def build_dpo_config(args: argparse.Namespace, ft_name: str) -> DPOConfig:
+    """
+    Build a DPOConfig using only the kwargs the installed TRL version's
+    DPOConfig actually accepts. TRL has renamed/removed/relocated fields
+    like `max_prompt_length` across versions (some infer it automatically
+    from `max_length`, some moved it to the trainer, some dropped it), so
+    hardcoding kwargs breaks on version drift. Instead, propose the full
+    desired set and drop whatever the installed signature doesn't support,
+    warning about anything dropped so it doesn't fail silently.
+    """
+    desired = dict(
+        output_dir=os.path.join(args.tmp_dir, ft_name),
+        per_device_train_batch_size=args.train_batch_size,
+        gradient_accumulation_steps=args.grad_accum,
+        num_train_epochs=args.epochs,
+        learning_rate=args.learning_rate,
+        warmup_steps=10,
+        lr_scheduler_type="cosine",
+        optim="paged_adamw_8bit",
+        bf16=True,
+        gradient_checkpointing=True,
+        max_grad_norm=0.3,
+        logging_steps=10,
+        save_strategy="no",
+        report_to="none",
+        seed=args.seed,
+        data_seed=args.seed,
+        remove_unused_columns=False,
+        dataloader_pin_memory=True,
+        beta=args.beta,
+        max_length=args.max_len,
+        max_prompt_length=args.max_prompt_len,
+    )
+
+    accepted_params = set(inspect.signature(DPOConfig.__init__).parameters.keys())
+    accepted = {k: v for k, v in desired.items() if k in accepted_params}
+    dropped = {k: v for k, v in desired.items() if k not in accepted_params}
+
+    if dropped:
+        print(
+            f"[INFO] Installed TRL's DPOConfig does not accept these kwargs; "
+            f"dropping them: {sorted(dropped.keys())}"
+        )
+        if "max_prompt_length" in dropped:
+            print(
+                "[INFO] max_prompt_length not supported by this DPOConfig — "
+                "TRL will infer the prompt/completion split internally. If you "
+                "need to enforce a specific prompt budget, truncate `item['prompt']` "
+                "yourself before calling build_prompt(), or upgrade/pin TRL."
+            )
+
+    return DPOConfig(**accepted)
+
+
 def make_dpo_trainer(
     model,
     ref_model,
@@ -596,29 +651,7 @@ def main() -> None:
         model.config.use_cache = False
         model.print_trainable_parameters()
 
-        dpo_config = DPOConfig(
-            output_dir=os.path.join(args.tmp_dir, ft_name),
-            per_device_train_batch_size=args.train_batch_size,
-            gradient_accumulation_steps=args.grad_accum,
-            num_train_epochs=args.epochs,
-            learning_rate=args.learning_rate,
-            warmup_steps=10,
-            lr_scheduler_type="cosine",
-            optim="paged_adamw_8bit",
-            bf16=True,
-            gradient_checkpointing=True,
-            max_grad_norm=0.3,
-            logging_steps=10,
-            save_strategy="no",
-            report_to="none",
-            seed=args.seed,
-            data_seed=args.seed,
-            remove_unused_columns=False,
-            dataloader_pin_memory=True,
-            beta=args.beta,
-            max_length=args.max_len,
-            max_prompt_length=args.max_prompt_len,
-        )
+        dpo_config = build_dpo_config(args, ft_name)
 
         trainer = make_dpo_trainer(model, ref_model, dpo_config, train_dataset, tokenizer)
 
@@ -651,8 +684,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
 # import argparse
 # import json
 # import os
