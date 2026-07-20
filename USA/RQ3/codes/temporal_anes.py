@@ -181,7 +181,18 @@ def load_qlora_base_model(
         bnb_4bit_compute_dtype=torch.bfloat16,
         bnb_4bit_use_double_quant=True,
     )
-    max_memory = {0: "75GiB", 1: "75GiB", "cpu": "120GiB"}
+    
+    # FIXED: Dynamically detect available GPUs
+    num_gpus = torch.cuda.device_count()
+    if num_gpus == 0:
+        max_memory = {"cpu": "120GiB"}
+    elif num_gpus == 1:
+        max_memory = {0: "75GiB", "cpu": "120GiB"}
+    else:
+        max_memory = {i: "75GiB" for i in range(num_gpus)}
+        max_memory["cpu"] = "120GiB"
+    
+    print(f"  Available GPUs: {num_gpus}, Memory config: {max_memory}")
     
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
@@ -196,7 +207,6 @@ def load_qlora_base_model(
     model.config.use_cache = False
     model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
     return model
-
 
 def build_lora_config(args: argparse.Namespace) -> LoraConfig:
     return LoraConfig(
