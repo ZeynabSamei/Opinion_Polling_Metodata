@@ -640,18 +640,20 @@ def experiment_1_sequential(args, base_model, tokenizer, candidates, system_text
 
 
 def experiment_2_cumulative(args, base_model, tokenizer, candidates, system_text, data_by_year):
-    """Experiment 2: Train on all previous years (cumulative), test on 2024"""
+    """Experiment 2: Train on previous years (most recent first), test on 2024"""
     print("\n" + "="*70)
-    print("EXPERIMENT 2: Cumulative Training → Test on 2024")
+    print("EXPERIMENT 2: Cumulative Training → Test on 2024 (Recent First)")
     print("="*70)
     
     results = []
     all_predictions = []
     test_rows = data_by_year[2024]
     
-    # For each training window size (1, 2, 3, 4 previous elections)
-    for n_previous in range(1, len(YEARS)):
-        train_years = YEARS[:n_previous]  # e.g., [2008] or [2008, 2012] or ...
+    # Get all years before 2024, sorted chronologically
+    previous_years = [y for y in YEARS if y < 2024]  # [2008, 2012, 2016, 2020]
+    
+    for n_years in range(1, len(previous_years) + 1):
+        train_years = previous_years[-n_years:]  # Take last n years (most recent)
         train_rows = []
         for y in train_years:
             train_rows.extend(data_by_year[y])
@@ -659,7 +661,7 @@ def experiment_2_cumulative(args, base_model, tokenizer, candidates, system_text
         run_name = f"train_{'_'.join(map(str, train_years))}_test2024"
         train_label = "+".join(map(str, train_years))
         
-        print(f"\n--- Train: {train_years} → Test: 2024 ---")
+        print(f"\n--- Train: {train_years} ({len(train_rows)} samples) → Test: 2024 ---")
         
         metrics, pred_df = train_and_evaluate(
             train_rows, test_rows,
@@ -682,7 +684,6 @@ def experiment_2_cumulative(args, base_model, tokenizer, candidates, system_text
     print(f"\nPredictions saved to: {pred_path}")
     
     return results, combined_df
-
 
 def evaluate_base_model(args, base_model, tokenizer, candidates, system_text, data_by_year):
     """Evaluate base model (no fine-tuning) on all test years for comparison."""
