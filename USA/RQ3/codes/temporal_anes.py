@@ -350,7 +350,13 @@ def train_and_evaluate(train_rows, test_rows, base_model, tokenizer, candidates,
     train_dataset = build_sft_dataset(train_rows, tokenizer, candidates, system_text, args.max_len)
     test_entries = prepare_eval_entries(test_rows, tokenizer, candidates, system_text)
     print(f"  Train: {len(train_dataset)}, Test: {len(test_entries)}")
-    
+
+ 
+    if hasattr(base_model, 'peft_config'):
+        base_model = base_model.unload()
+        base_model.config.use_cache = False
+        base_model = prepare_model_for_kbit_training(base_model, use_gradient_checkpointing=True)
+                           
     model = get_peft_model(base_model, build_lora_config(args), adapter_name="default")
     model.train()
     model.config.use_cache = False
