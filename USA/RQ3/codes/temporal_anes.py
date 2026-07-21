@@ -415,7 +415,7 @@ def experiment_1_sequential(args, base_model, tokenizer, candidates, system_text
         print(f"  Acc={metrics['acc']:.4f}, Kappa={metrics['kappa']:.4f}, F1={metrics['macro_f1']:.4f}")
     
     combined = pd.concat(all_preds, ignore_index=True)
-    combined.to_csv(os.path.join(args.out_dir, f"predictions_sequential_{args.task}_{args.model_name.split('/')[-1]}.csv"), index=False)
+    combined.to_csv(os.path.join(args.out_dir, f"predictions_sequential_{args.task}_{args.model_name.split('/')[-1]}_more.csv"), index=False)
     return results, combined
 
 
@@ -440,7 +440,7 @@ def experiment_2_cumulative(args, base_model, tokenizer, candidates, system_text
         print(f"  Acc={metrics['acc']:.4f}, Kappa={metrics['kappa']:.4f}, F1={metrics['macro_f1']:.4f}")
     
     combined = pd.concat(all_preds, ignore_index=True)
-    combined.to_csv(os.path.join(args.out_dir, f"predictions_cumulative_{args.task}_{args.model_name.split('/')[-1]}.csv"), index=False)
+    combined.to_csv(os.path.join(args.out_dir, f"predictions_cumulative_{args.task}_{args.model_name.split('/')[-1]}_more.csv"), index=False)
     return results, combined
 
 
@@ -459,7 +459,7 @@ def evaluate_base_model(args, base_model, tokenizer, candidates, system_text, da
         print(f"  Acc={metrics['acc']:.4f}, Kappa={metrics['kappa']:.4f}, F1={metrics['macro_f1']:.4f}")
     
     combined = pd.concat(all_preds, ignore_index=True)
-    combined.to_csv(os.path.join(args.out_dir, f"predictions_base_{args.task}_{args.model_name.split('/')[-1]}.csv"), index=False)
+    combined.to_csv(os.path.join(args.out_dir, f"predictions_base_{args.task}_{args.model_name.split('/')[-1]}_more.csv"), index=False)
     return combined
 
 
@@ -475,7 +475,7 @@ def main():
     print("Loading ANES data...")
     data_by_year = {}
     for year in YEARS:
-        path = os.path.join(args.data_dir, f"anes_{year}.jsonl")
+        path = os.path.join(args.data_dir, f"anes_{year}_more.jsonl")
         if os.path.exists(path):
             data_by_year[year] = load_jsonl(path)
             print(f"  {year}: {len(data_by_year[year])}")
@@ -605,7 +605,7 @@ if __name__ == "__main__":
 #         "--data_dir",
 #         type=str,
 #         default="dataset_test/",
-#         help="Directory containing ANES jsonl files named anes_{year}.jsonl"
+#         help="Directory containing ANES jsonl files named anes_{year}_more.jsonl"
 #     )
 #     parser.add_argument(
 #         "--experiment",
