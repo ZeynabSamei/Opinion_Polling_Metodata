@@ -351,8 +351,8 @@ def train_and_evaluate(train_rows, test_rows, base_model, tokenizer, candidates,
     test_entries = prepare_eval_entries(test_rows, tokenizer, candidates, system_text)
     print(f"  Train: {len(train_dataset)}, Test: {len(test_entries)}")
 
- 
-    if hasattr(base_model, 'peft_config'):
+
+    if hasattr(base_model, 'peft_config') and hasattr(base_model, 'unload'):
         base_model = base_model.unload()
         base_model.config.use_cache = False
         base_model = prepare_model_for_kbit_training(base_model, use_gradient_checkpointing=True)
