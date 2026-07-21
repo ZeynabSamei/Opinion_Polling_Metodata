@@ -137,7 +137,9 @@ def build_memorization_user_text(user_text: str, year_tag: Optional[int]) -> str
     year_tag=<int>      -> true-year or shuffled-year condition (same mechanic either way;
                             which one it is depends on whether year_tag == the row's real test_year)
     """
-    demo_text = reframe_third_person(user_text)
+    # demo_text = reframe_third_person(user_text)
+    demo_text = (user_text)
+    
     if year_tag is None:
         prefix = "The following characteristics describe a respondent: "
     else:
