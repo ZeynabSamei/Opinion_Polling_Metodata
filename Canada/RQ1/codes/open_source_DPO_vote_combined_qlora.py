@@ -78,9 +78,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max_len", type=int, default=512)
     parser.add_argument("--max_prompt_len", type=int, default=256)
     parser.add_argument("--epochs", type=float, default=1.0)
-    parser.add_argument("--train_batch_size", type=int, default=1)
-    parser.add_argument("--grad_accum", type=int, default=16)
-    parser.add_argument("--eval_batch_size", type=int, default=8)
+    parser.add_argument("--train_batch_size", type=int, default=4)
+    parser.add_argument("--grad_accum", type=int, default=4)
+    parser.add_argument("--eval_batch_size", type=int, default=32)
     parser.add_argument("--learning_rate", type=float, default=5e-5)
     parser.add_argument("--lora_r", type=int, default=16)
     parser.add_argument("--lora_alpha", type=int, default=32)
@@ -576,6 +576,7 @@ def main() -> None:
             data_seed=args.seed,
             remove_unused_columns=False,
             dataloader_pin_memory=True,
+            dataloader_num_workers=4, 
             beta=args.beta,
             max_length=args.max_len,
         )
