@@ -475,7 +475,7 @@ def main():
     print("Loading ANES data...")
     data_by_year = {}
     for year in YEARS:
-        path = os.path.join(args.data_dir, f"anes_{year}_more.jsonl")
+        path = os.path.join(args.data_dir, f"anes_{year}_without_year.jsonl")
         if os.path.exists(path):
             data_by_year[year] = load_jsonl(path)
             print(f"  {year}: {len(data_by_year[year])}")
