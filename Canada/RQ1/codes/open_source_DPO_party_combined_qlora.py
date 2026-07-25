@@ -756,8 +756,14 @@ def main() -> None:
             # build_policy_model above. Previous adapters are discarded
             # (fresh AutoModelForCausalLM copy pattern would be expensive, so
             # instead we delete/re-add the adapter on the same base_model).
-            if hasattr(base_model, "peft_config") and "default" in getattr(base_model, "peft_config", {}):
-                base_model.delete_adapter("default")
+
+            # Check if adapter exists by trying to get it
+            if hasattr(base_model, "peft_config") and base_model.peft_config:
+                if "default" in base_model.peft_config:
+                    base_model.delete_adapter("default")
+            
+            # if hasattr(base_model, "peft_config") and "default" in getattr(base_model, "peft_config", {}):
+            #     base_model.delete_adapter("default")
             model = build_policy_model(base_model, lora_config, args)
             model.set_adapter("default")
             model.train()
