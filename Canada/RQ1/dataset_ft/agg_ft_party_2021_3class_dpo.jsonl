@@ -1,7 +1,7 @@
 {"prompt": "In 2021 Canadian federal election survey, 28% of Canada Total respondents said they would vote for which party?\n\n", "chosen": "Conservative", "rejected": "Liberal"}
 {"prompt": "In 2021 Canadian federal election survey, 28% of Canada Total respondents said they would vote for which party?\n\n", "chosen": "Conservative", "rejected": "Other"}
-{"prompt": "In 2021 Canadian federal election survey, 28% of Canada Total respondents said they would vote for which party?\n\n", "chosen": "Liberal", "rejected": "Conservative"}
-{"prompt": "In 2021 Canadian federal election survey, 28% of Canada Total respondents said they would vote for which party?\n\n", "chosen": "Liberal", "rejected": "Other"}
+{"prompt": "In 2021 Canadian federal election survey, 29% of Canada Total respondents said they would vote for which party?\n\n", "chosen": "Liberal", "rejected": "Conservative"}
+{"prompt": "In 2021 Canadian federal election survey, 29% of Canada Total respondents said they would vote for which party?\n\n", "chosen": "Liberal", "rejected": "Other"}
 {"prompt": "In 2021 Canadian federal election survey, 32% of Canada Total respondents said they would vote for which party?\n\n", "chosen": "Other", "rejected": "Conservative"}
 {"prompt": "In 2021 Canadian federal election survey, 32% of Canada Total respondents said they would vote for which party?\n\n", "chosen": "Other", "rejected": "Liberal"}
 {"prompt": "In 2021 Canadian federal election survey, 35% of Male respondents said they would vote for which party?\n\n", "chosen": "Conservative", "rejected": "Liberal"}
