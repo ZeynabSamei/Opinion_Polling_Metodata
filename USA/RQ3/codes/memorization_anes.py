@@ -360,17 +360,45 @@ def print_metrics(metrics: dict, condition_name: str, year: Optional[int] = None
     print(f"  F1 (macro): {metrics['f1_macro']:.4f}")
     print(f"  F1 (weighted): {metrics['f1_weighted']:.4f}")
     print(f"\n  Per-class performance:")
-    for label in [c for c in ['Democrat', 'Republican', 'Other', 'liberal', 'moderate', 'conservative'] 
-                  if label in metrics]:
-        if f'precision_{label}' in metrics:
-            print(f"    {label:12s} | P: {metrics[f'precision_{label}']:.4f} | "
-                  f"R: {metrics[f'recall_{label}']:.4f} | "
-                  f"F1: {metrics[f'f1_{label}']:.4f} | "
-                  f"N: {metrics[f'support_{label}']}")
+    
+    # Get all labels that have metrics
+    label_metrics = {}
+    for key in metrics.keys():
+        if key.startswith('precision_'):
+            label = key.replace('precision_', '')
+            if label not in label_metrics:
+                label_metrics[label] = {}
+            label_metrics[label]['precision'] = metrics[key]
+        elif key.startswith('recall_'):
+            label = key.replace('recall_', '')
+            if label not in label_metrics:
+                label_metrics[label] = {}
+            label_metrics[label]['recall'] = metrics[key]
+        elif key.startswith('f1_'):
+            label = key.replace('f1_', '')
+            if label not in label_metrics:
+                label_metrics[label] = {}
+            label_metrics[label]['f1'] = metrics[key]
+        elif key.startswith('support_'):
+            label = key.replace('support_', '')
+            if label not in label_metrics:
+                label_metrics[label] = {}
+            label_metrics[label]['support'] = metrics[key]
+    
+    # Print per-class metrics
+    for label in sorted(label_metrics.keys()):
+        if 'precision' in label_metrics[label]:
+            print(f"    {label:12s} | P: {label_metrics[label]['precision']:.4f} | "
+                  f"R: {label_metrics[label]['recall']:.4f} | "
+                  f"F1: {label_metrics[label]['f1']:.4f} | "
+                  f"N: {label_metrics[label]['support']}")
+    
     print(f"\n  Confidence: mean={metrics['mean_confidence']:.4f}, "
           f"std={metrics['std_confidence']:.4f}")
     print(f"  Margin: mean={metrics['mean_margin']:.4f}, "
           f"std={metrics['std_margin']:.4f}")
+
+
 
 
 def save_dataframe(df, args, suffix):
