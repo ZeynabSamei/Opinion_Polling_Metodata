@@ -361,7 +361,7 @@ def print_metrics(metrics: dict, condition_name: str, year: Optional[int] = None
     print(f"  F1 (weighted): {metrics['f1_weighted']:.4f}")
     print(f"\n  Per-class performance:")
     
-    # Get all labels that have metrics
+    # Get all labels that have precision metrics
     label_metrics = {}
     for key in metrics.keys():
         if key.startswith('precision_'):
@@ -387,19 +387,20 @@ def print_metrics(metrics: dict, condition_name: str, year: Optional[int] = None
     
     # Print per-class metrics
     for label in sorted(label_metrics.keys()):
-        if 'precision' in label_metrics[label]:
-            print(f"    {label:12s} | P: {label_metrics[label]['precision']:.4f} | "
-                  f"R: {label_metrics[label]['recall']:.4f} | "
-                  f"F1: {label_metrics[label]['f1']:.4f} | "
-                  f"N: {label_metrics[label]['support']}")
+        precision = label_metrics[label].get('precision', 0.0)
+        recall = label_metrics[label].get('recall', 0.0)
+        f1 = label_metrics[label].get('f1', 0.0)
+        support = label_metrics[label].get('support', 0)  # Default to 0 if not present
+        
+        print(f"    {label:12s} | P: {precision:.4f} | "
+              f"R: {recall:.4f} | "
+              f"F1: {f1:.4f} | "
+              f"N: {support}")
     
     print(f"\n  Confidence: mean={metrics['mean_confidence']:.4f}, "
           f"std={metrics['std_confidence']:.4f}")
     print(f"  Margin: mean={metrics['mean_margin']:.4f}, "
           f"std={metrics['std_margin']:.4f}")
-
-
-
 
 def save_dataframe(df, args, suffix):
     """Helper function to save a single dataframe"""
