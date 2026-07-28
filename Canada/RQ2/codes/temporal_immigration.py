@@ -23,10 +23,8 @@ from transformers import (
 
 
 # ---------- Configuration ----------
-# NOTE: Assumed survey wave years for Canadian immigration attitudes data.
-# Adjust this list to match whatever wave years your dataset_dir actually
-# contains (e.g. if you have annual data instead of these waves).
-YEARS = [2019, 2021, 2023, 2025]
+# Annual data, every year from 2019 through 2025.
+YEARS = list(range(2019, 2026))
 
 TASK_CONFIGS = {
     "immigration_level": {
