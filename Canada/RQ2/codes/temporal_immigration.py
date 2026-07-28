@@ -29,23 +29,18 @@ YEARS = list(range(2019, 2026))
 TASK_CONFIGS = {
     "immigration_level": {
         "candidates": ["More immigrants", "Fewer immigrants", "Same amount"],
-        "system_text": (
-            "You are a survey response prediction model.\n\n"
-            "Your task is to predict the survey response associated with this respondent "
-            "profile based on the provided characteristics.\n"
-            "Survey question: In your opinion, should Canada admit more immigrants, fewer "
-            "immigrants, or about the same number of immigrants as now?\n\n"
-            "Rules:\n"
-            "- You must choose ONLY ONE label.\n"
-            "- Output must be EXACTLY one of the following (no explanation, no extra text):\n"
-            "More immigrants\n"
-            "Fewer immigrants\n"
-            "Same amount\n\n"
-            "Important:\n"
-            "- Base your decision on typical attitudes and demographics.\n"
-            "- Do NOT explain your reasoning.\n"
-            "- Do NOT repeat the input.\n"
-            "- Output ONLY the label."
+        "system_text": (      
+                        "You are a survey response prediction model.\n\n"
+                        "Your task is to predict the survey response associated with this respondent profile based on the provided characteristics.\n"
+                        "Survey question: "
+                        "In your opinion, should Canada admit more immigrants, fewer immigrants, or about the same number of immigrants as now?\n"
+                        
+                        "The possible responses are:\n"
+                        "More immigrants\n"
+                        "Fewer immigrants\n"
+                        "Same amount\n\n"
+                        "Output exactly one of the three response labels above. Do not provide explanations, reasoning, or additional text."
+
         ),
     },
 }
@@ -59,8 +54,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--task", type=str, default="immigration_level", choices=["immigration_level"])
     parser.add_argument("--data_dir", type=str, default="dataset_test/")
     parser.add_argument("--experiment", type=str, default="all", choices=["sequential", "cumulative", "all"])
-    parser.add_argument("--out_dir", type=str, default="./results_temporal_canada")
-    parser.add_argument("--tmp_dir", type=str, default="./tmp_qlora_temporal_canada")
+    parser.add_argument("--out_dir", type=str, default="./results_temporal_canada_immigration")
+    parser.add_argument("--tmp_dir", type=str, default="./tmp_qlora_temporal_canada_immigration")
     parser.add_argument("--seed", type=int, default=42)
 
     parser.add_argument("--max_len", type=int, default=256)
@@ -492,8 +487,8 @@ def main():
     print("Loading Canada immigration-attitude survey data...")
     data_by_year = {}
     for year in YEARS:
-        # Expected file naming: canada_immigration_{year}.jsonl
-        path = os.path.join(args.data_dir, f"canada_immigration_{year}.jsonl")
+        # Expected file naming: cd_{year}.jsonl
+        path = os.path.join(args.data_dir, f"cd_{year}.jsonl")
         if os.path.exists(path):
             data_by_year[year] = load_jsonl(path)
             print(f"  {year}: {len(data_by_year[year])}")
