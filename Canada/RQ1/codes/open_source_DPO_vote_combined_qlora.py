@@ -211,7 +211,7 @@ def load_qlora_base_model(
 
     max_memory = {
         0: "75GiB",
-        # 1: "75GiB",
+        1: "75GiB",
         "cpu": "120GiB",
     }
 
