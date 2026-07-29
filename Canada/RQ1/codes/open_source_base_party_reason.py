@@ -177,6 +177,7 @@ data = load_data(DATA_PATH)
 for model_name in MODELS:
     print(f"\n=== Loading model: {model_name} ===")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
+    tokenizer.padding_side = "left"
 
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
