@@ -163,9 +163,7 @@ def generate_predictions(model,tokenizer,prompts,device):
         generated = model.generate(
             **enc,
             max_new_tokens=80,
-            do_sample=True,
-            temperature=0.0,
-            top_p=1.0,
+            do_sample=False,
             use_cache=False,
             pad_token_id=tokenizer.eos_token_id,
         )
