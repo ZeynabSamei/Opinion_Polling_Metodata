@@ -480,8 +480,8 @@ def main():
     print("Loading Canada party-choice survey data...")
     data_by_year = {}
     for year in YEARS:
-        # Expected file naming: cd_party_{year}.jsonl
-        path = os.path.join(args.data_dir, f"cd_party_{year}.jsonl")
+        # Expected file naming: dc_party_{year}.jsonl
+        path = os.path.join(args.data_dir, f"dc_party_{year}.jsonl")
         if os.path.exists(path):
             data_by_year[year] = load_jsonl(path)
             print(f"  {year}: {len(data_by_year[year])}")
