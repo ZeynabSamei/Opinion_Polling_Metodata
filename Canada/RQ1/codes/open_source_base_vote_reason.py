@@ -2,34 +2,28 @@
 # LLM Voting Behavior Evaluation (Reasoning)
 # Canada Federal Election 2021
 # =====================================================
-
 import os
 import json
 import random
 import numpy as np
 import pandas as pd
 import torch
-
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from sklearn.metrics import cohen_kappa_score, matthews_corrcoef, f1_score
 
-
 # =====================================================
 # Configuration
 # =====================================================
-
 SEED = 42
-BATCH_SIZE = 16
+BATCH_SIZE = 8
 MAX_LENGTH = 512
 OUT_DIR = "./results"
 DATA_PATH = "./dataset_test/test_canada_election_vote_2021_3class_new.json"
 
-
 # =====================================================
 # Models
 # =====================================================
-
 MODELS = [
     "meta-llama/Llama-3.1-8B-Instruct",
     # "meta-llama/Llama-3.1-70B-Instruct",
@@ -45,60 +39,46 @@ CANDIDATES = [
 
 os.makedirs(OUT_DIR, exist_ok=True)
 
-
 # =====================================================
-# System Prompt (Reasoning)
+# System Prompt
 # =====================================================
-
 SYSTEM_PROMPT = (
-    "You are a political behavior model that predicts voting choice based on demographic profiles.\n\n"
-
+    "You are a political behavior model specializing in Canadian elections.\n\n"
     "Task:\n"
     "Given a person's demographic and political attributes, predict their MOST LIKELY vote choice "
     "in the 2021 Canadian federal election.\n\n"
-
-    "Reason carefully about demographic characteristics, political alignment, and typical voting "
-    "patterns before making your prediction.\n\n"
-
-    "Output format:\n"
-    "Return ONLY a valid JSON object with exactly two keys:\n"
+    "Reason briefly about demographic characteristics, political preferences, "
+    "and typical voting patterns before making your prediction.\n\n"
+    "Return ONLY a valid JSON object:\n"
     "{\n"
-    '  "predict": value of predict,\n'
-    '  "reason": brief explanation of the reasoning\n'
+    '  \"predict\": \"Justin Trudeau|Erin O\'Toole|Others\",\n'
+    '  \"reason\": \"brief explanation\"\n'
     "}\n\n"
-
     "Rules:\n"
-    "- The value of predict must be exactly one of: Justin Trudeau, Erin O'Toole, Others.\n"
-    "- The reason should explain the main demographic and political factors considered.\n"
+    "- predict must be exactly one of: Justin Trudeau, Erin O'Toole, Others.\n"
+    "- reason should mention the main demographic or political factors.\n"
     "- Do not include markdown.\n"
-    "- Do not include any text outside the JSON object.\n\n"
-
-    "Definition:\n"
-    "'Others' includes Jagmeet Singh, Yves-François Blanchet, Annamie Paul, and Maxime Bernier."
+    "- Do not include text outside JSON.\n\n"
+    "Others includes Jagmeet Singh, Yves-François Blanchet, Annamie Paul, and Maxime Bernier."
 )
-
 
 # =====================================================
 # Reproducibility
 # =====================================================
-
 def set_seed(seed):
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
 
-
 set_seed(SEED)
 
 # =====================================================
 # Data
 # =====================================================
-
 def load_data(path):
     with open(path, "r") as f:
         return json.load(f)
-
 
 def extract_label(messages):
     for m in messages:
@@ -106,10 +86,8 @@ def extract_label(messages):
             return m["content"].strip()
     return None
 
-
 def build_prompt(tokenizer, messages):
     user_text = None
-
     for m in messages:
         if m["role"] == "user":
             user_text = m["content"]
@@ -126,38 +104,39 @@ def build_prompt(tokenizer, messages):
     prompt = tokenizer.apply_chat_template(
         chat,
         tokenize=False,
-        add_generation_prompt=True,
+        add_generation_prompt=True
     )
 
     return prompt, user_text
 
-
 # =====================================================
 # Generation
 # =====================================================
-
-@torch.no_grad()
+@torch.inference_mode()
 def generate_predictions(model, tokenizer, prompts, device):
+    enc = tokenizer(
+        list(prompts),
+        return_tensors="pt",
+        padding=True,
+        truncation=True,
+        max_length=MAX_LENGTH,
+    ).to(device)
+
+    generated = model.generate(
+        **enc,
+        max_new_tokens=80,
+        do_sample=False,
+        use_cache=True,
+        pad_token_id=tokenizer.eos_token_id,
+    )
+
     outputs = []
 
-    for prompt in prompts:
-        enc = tokenizer(
-            prompt,
-            return_tensors="pt",
-            truncation=True,
-            max_length=MAX_LENGTH,
-        ).to(device)
-
-        generated = model.generate(
-            **enc,
-            max_new_tokens=200,
-            do_sample=False,
-            temperature=0.0,
-            pad_token_id=tokenizer.eos_token_id,
-        )
+    for i in range(len(prompts)):
+        input_len = enc.input_ids[i].shape[0]
 
         output = tokenizer.decode(
-            generated[0][enc.input_ids.shape[1]:],
+            generated[i][input_len:],
             skip_special_tokens=True
         )
 
@@ -165,7 +144,9 @@ def generate_predictions(model, tokenizer, prompts, device):
 
     return outputs
 
-
+# =====================================================
+# Parse JSON
+# =====================================================
 def parse_reasoning_output(text):
     try:
         result = json.loads(text)
@@ -185,11 +166,9 @@ def parse_reasoning_output(text):
 
         return "Others", text
 
-
 # =====================================================
 # Metrics
 # =====================================================
-
 def compute_metrics(df):
     label_map = {c: i for i, c in enumerate(CANDIDATES)}
 
@@ -200,21 +179,23 @@ def compute_metrics(df):
         "accuracy": (y_true == y_pred).mean(),
         "cohen_kappa": cohen_kappa_score(y_true, y_pred),
         "mcc": matthews_corrcoef(y_true, y_pred),
-        "macro_f1": f1_score(y_true, y_pred, average="macro"),
+        "macro_f1": f1_score(
+            y_true,
+            y_pred,
+            average="macro"
+        ),
     }
 
-
 # =====================================================
-# Main loop
+# Main
 # =====================================================
-
 data = load_data(DATA_PATH)
 
 for model_name in MODELS:
-
     print(f"\n=== Loading model: {model_name} ===")
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
+    tokenizer.padding_side = "left"
 
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -222,55 +203,55 @@ for model_name in MODELS:
     try:
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
-            device_map="auto",
-            torch_dtype=torch.bfloat16,
+            device_map={"": 0},
+            dtype=torch.bfloat16,
             attn_implementation="flash_attention_2",
         )
 
     except Exception as e:
-        print(f"[WARN] FlashAttention failed, falling back to SDPA. Reason: {e}")
+        print(f"[WARN] FlashAttention failed: {e}")
 
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
-            device_map="auto",
-            torch_dtype=torch.bfloat16,
+            device_map={"": 0},
+            dtype=torch.bfloat16,
             attn_implementation="sdpa",
         )
 
     model.eval()
     device = next(model.parameters()).device
 
-    # -------------------------------------------------
-    # Preprocess dataset
-    # -------------------------------------------------
-
     samples = []
 
     for i, item in enumerate(data):
-
         messages = item.get("messages", [])
         gt = extract_label(messages)
 
         if gt not in CANDIDATES:
             continue
 
-        prompt, user_text = build_prompt(tokenizer, messages)
+        prompt, user_text = build_prompt(
+            tokenizer,
+            messages
+        )
 
         if prompt is None:
             continue
 
-        samples.append((i, prompt, user_text, gt))
-
-
-    # -------------------------------------------------
-    # Inference
-    # -------------------------------------------------
+        samples.append(
+            (
+                i,
+                prompt,
+                user_text,
+                gt
+            )
+        )
 
     results = []
 
     for start in tqdm(range(0, len(samples), BATCH_SIZE)):
 
-        batch = samples[start:start + BATCH_SIZE]
+        batch = samples[start:start+BATCH_SIZE]
 
         idxs, prompts, user_texts, gts = zip(*batch)
 
@@ -287,7 +268,6 @@ for model_name in MODELS:
             gts,
             outputs
         ):
-
             pred, reason = parse_reasoning_output(output)
 
             results.append({
@@ -300,17 +280,15 @@ for model_name in MODELS:
                 "correct": int(pred == gt),
             })
 
-
     df = pd.DataFrame(results)
 
     print(df.head(5))
 
     metrics = compute_metrics(df)
 
-
-    # -------------------------------------------------
-    # Save
-    # -------------------------------------------------
+    print("\n=== Metrics ===")
+    for k, v in metrics.items():
+        print(f"{k}: {v:.4f}")
 
     model_tag = model_name.replace("/", "_")
 
@@ -320,11 +298,6 @@ for model_name in MODELS:
     )
 
     df.to_csv(out_path, index=False)
-
-    print("\n=== Metrics ===")
-
-    for k, v in metrics.items():
-        print(f"{k}: {v:.4f}")
 
     print(f"\nSaved: {out_path}")
 
