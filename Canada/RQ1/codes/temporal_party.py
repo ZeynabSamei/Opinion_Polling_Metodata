@@ -515,16 +515,16 @@ def main():
         evaluate_base_model(args, base_model, tokenizer, candidates, system_text, data_by_year, years)
 
     if args.experiment in ["sequential", "all"]:
-        # seq_results, _ = experiment_1_sequential(args, base_model, tokenizer, candidates, system_text,
-        #                                           data_by_year, years)
-        # all_results["experiments"]["sequential"] = seq_results
-        pass
+        seq_results, _ = experiment_1_sequential(args, base_model, tokenizer, candidates, system_text,
+                                                  data_by_year, years)
+        all_results["experiments"]["sequential"] = seq_results
+        # pass
 
     if args.experiment in ["cumulative", "all"]:
-        # cum_results, _ = experiment_2_cumulative(args, base_model, tokenizer, candidates, system_text,
-        #                                           data_by_year, years, final_year)
-        # all_results["experiments"]["cumulative"] = cum_results
-        pass
+        cum_results, _ = experiment_2_cumulative(args, base_model, tokenizer, candidates, system_text,
+                                                  data_by_year, years, final_year)
+        all_results["experiments"]["cumulative"] = cum_results
+        # pass
 
     with open(os.path.join(args.out_dir, f"metrics_{args.task}_{args.model_name.split('/')[-1]}.json"), "w") as f:
         json.dump(all_results, f, indent=2)
