@@ -49,8 +49,7 @@ def parse_args() -> argparse.Namespace:
         # default="meta-llama/Llama-3.1-70B-Instruct",
                 # "meta-llama/Llama-3.1-8B-Instruct",
                 # "Qwen/Qwen2.5-7B-Instruct",
-                "Qwen/Qwen2.5-14B-Instruct",
-    )
+                "Qwen/Qwen2.5-14B-Instruct" )
     parser.add_argument(
         "--data_path",
         type=str,
