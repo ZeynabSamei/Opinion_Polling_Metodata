@@ -190,18 +190,33 @@ def load_qlora_base_model(
         bnb_4bit_use_double_quant=True,
     )
 
+    # max_memory = {
+    #     0: "75GiB",
+    #     1: "75GiB",
+    #     "cpu": "120GiB",
+    # }
+
+    # model = AutoModelForCausalLM.from_pretrained(
+    #     model_name,
+    #     quantization_config=bnb_config,
+    #     device_map="balanced",
+    #     max_memory=max_memory,
+    #     dtype=torch.bfloat16,
+    #     attn_implementation=attn_implementation,
+    #     low_cpu_mem_usage=True,
+    # )
+
     max_memory = {
-        0: "75GiB",
-        1: "75GiB",
-        "cpu": "120GiB",
+    0: "75GiB",
+    "cpu": "120GiB",
     }
 
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         quantization_config=bnb_config,
-        device_map="balanced",
+        device_map="auto",
         max_memory=max_memory,
-        dtype=torch.bfloat16,
+        torch_dtype=torch.bfloat16,
         attn_implementation=attn_implementation,
         low_cpu_mem_usage=True,
     )
