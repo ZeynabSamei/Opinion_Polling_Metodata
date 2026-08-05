@@ -203,7 +203,9 @@ for model_name in MODELS:
     try:
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
-            device_map={"": 0},
+            device_map="auto",
+            max_memory={0: "75GiB", 1: "75GiB"},    
+            # device_map={"": 0},
             dtype=torch.bfloat16,
             attn_implementation="flash_attention_2",
         )
