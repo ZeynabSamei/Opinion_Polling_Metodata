@@ -111,7 +111,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--grad_accum", type=int, default=16)
     parser.add_argument("--eval_batch_size", type=int, default=8)
     parser.add_argument("--sft_learning_rate", type=float, default=2e-4)
-    parser.add_argument("--dpo_learning_rate", type=float, default=5e-5)
+    parser.add_argument("--dpo_learning_rate", type=float, default=1e-6)
     parser.add_argument("--learning_rate", type=float, default=None, help="Override for single-stage training")
     
     # LoRA configuration
