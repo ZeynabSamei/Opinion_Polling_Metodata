@@ -242,7 +242,8 @@ def load_qlora_base_model(
         bnb_4bit_compute_dtype=torch.bfloat16,
         bnb_4bit_use_double_quant=True,
     )
-    max_memory = {0: "75GiB", 1: "75GiB", "cpu": "120GiB"}
+    # max_memory = {0: "75GiB", 1: "75GiB", "cpu": "120GiB"}
+    max_memory = {0: "75GiB", "cpu": "120GiB"}
     
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
